@@ -1,0 +1,14 @@
+<div [class.is-open]="isModalOpen()" class="modal" id="modal-giftcard" role="dialog" aria-modal="true" aria-labelledby="modal-giftcard-title">
+  <div class="modal__panel modal__panel--lg">
+    <div class="modal__header">
+      <ng-content select="[modal-header]"></ng-content>
+      <button class="modal__close" (click)="closeModal()" aria-label="Close"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="modal__body">
+      <ng-content select="[modal-body]"></ng-content>
+    </div>
+    <div class="modal__footer">
+      <ng-content select="[modal-footer]"></ng-content>
+    </div>
+  </div>
+</div>

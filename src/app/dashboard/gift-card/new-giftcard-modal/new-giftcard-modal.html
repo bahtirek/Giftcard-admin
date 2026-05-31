@@ -1,0 +1,23 @@
+<modal (modalCloseEvent)="closeModal()" [isModalOpen]="isModalOpen()">
+  <div modal-header>
+    <div><h2 class="modal__title" id="modal-giftcard-title">New Gift Card</h2><p class="text-sm text-secondary mt-xs">Add a new gift card for a store or location.</p></div>
+  </div>
+  <div modal-body class="flex flex-col gap-md">
+    <div class="grid-2 gap-md">
+      <div class="field"><label class="field__label" for="gc-account">Account <span style="color:var(--color-danger)">*</span></label><select class="select" id="gc-account"><option value="">Select account…</option><option>Starbucks Corp.</option><option>Amazon Retail</option><option>Pizza Palace LLC</option><option>Target Inc.</option></select></div>
+      <div class="field"><label class="field__label" for="gc-location">Location / Store name <span style="color:var(--color-danger)">*</span></label><input class="input" id="gc-location" type="text" placeholder="e.g. Downtown Seattle" /></div>
+    </div>
+    <div class="field"><label class="field__label" for="gc-desc">Short description</label><textarea class="textarea" id="gc-desc" rows="2" placeholder="Describe what this gift card can be used for…"></textarea></div>
+    <div class="grid-3 gap-md">
+      <div class="field"><label class="field__label" for="gc-amt1">Preset amount 1</label><div class="input-group"><span class="input-group__addon">$</span><input class="input" id="gc-amt1" type="number" placeholder="25" /></div></div>
+      <div class="field"><label class="field__label" for="gc-amt2">Preset amount 2</label><div class="input-group"><span class="input-group__addon">$</span><input class="input" id="gc-amt2" type="number" placeholder="50" /></div></div>
+      <div class="field"><label class="field__label" for="gc-max">Max custom amount</label><div class="input-group"><span class="input-group__addon">$</span><input class="input" id="gc-max" type="number" placeholder="500" /></div></div>
+    </div>
+    <div class="field"><label class="field__label" for="gc-img">Card image URL</label><input class="input" id="gc-img" type="url" placeholder="https://…" /></div>
+    <div class="field"><label class="field__label" for="gc-status-new">Status</label><select class="select" id="gc-status-new"><option>Active</option><option>Draft</option><option>Inactive</option></select></div>
+  </div>
+  <div modal-footer>
+    <button class="btn btn--outline" (click)="closeModal()">Cancel</button>
+    <button class="btn btn--primary ml-md">Create Gift Card</button>
+  </div>
+</modal>
