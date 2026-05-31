@@ -1,1 +1,43 @@
-<p>order-modal works!</p>
+<modal (modalCloseEvent)="closeModal()" [isModalOpen]="isModalOpen()">
+  <div modal-header>
+    <div><h2 class="modal__title" id="modal-order-title">Order #ORD-8820</h2><p class="text-sm text-secondary mt-xs"><span class="badge badge--warning badge--dot">Pending</span></p></div>
+  </div>
+  <div modal-body class="flex flex-col gap-md">
+    <div class="grid-2 gap-md">
+      <div>
+        <div class="text-xs text-tertiary uppercase tracking-wider mb-xs">Customer</div>
+        <div class="font-medium">Maya Rodriguez</div>
+        <div class="text-sm text-secondary">maya@email.com</div>
+      </div>
+      <div>
+        <div class="text-xs text-tertiary uppercase tracking-wider mb-xs">Gift Card</div>
+        <div class="font-medium">🍕 Pizza Palace — Main St.</div>
+        <div class="text-sm text-secondary">Amount: $75.00</div>
+      </div>
+      <div>
+        <div class="text-xs text-tertiary uppercase tracking-wider mb-xs">Recipient</div>
+        <div class="font-medium">Chris Rodriguez</div>
+        <div class="text-sm text-secondary">+1 555 0123</div>
+      </div>
+      <div>
+        <div class="text-xs text-tertiary uppercase tracking-wider mb-xs">Order Date</div>
+        <div class="font-medium">26 May 2026, 14:32</div>
+        <div class="text-sm text-secondary font-mono">#ORD-8820</div>
+      </div>
+    </div>
+    <div>
+      <div class="text-xs text-tertiary uppercase tracking-wider mb-xs">Note to recipient</div>
+      <div class="text-sm text-primary bg-subtle p-sm rounded-lg border" style="font-style:italic">"Happy birthday! Enjoy a delicious pizza on me. 🎉"</div>
+    </div>
+    <div>
+      <div class="text-xs text-tertiary uppercase tracking-wider mb-sm">Update Status</div>
+      <div class="flex gap-md flex-wrap">
+        <button class="btn btn--outline btn--sm"><i class="ti ti-check" aria-hidden="true"></i>Mark Completed</button>
+        <button class="btn btn--danger-outline btn--sm" onclick="closeModal('modal-order');openModal('modal-cancel')"><i class="ti ti-x" aria-hidden="true"></i>Cancel Order</button>
+      </div>
+    </div>
+  </div>
+  <div modal-footer>
+    <button class="btn btn--outline" onclick="closeModal('modal-order')">Close</button>
+  </div>
+</modal>

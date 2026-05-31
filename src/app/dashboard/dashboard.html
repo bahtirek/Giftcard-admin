@@ -23,7 +23,7 @@
         <i class="ti ti-building-store" aria-hidden="true"></i>All Accounts
         <span class="sidenav-link__badge">24</span>
       </button>
-      <button class="sidenav-link" (click)="openModal('isAccountModalOpen')">
+      <button class="sidenav-link" (click)="openModal('isNewAccountModalOpen')">
         <i class="ti ti-plus" aria-hidden="true"></i>New Account
       </button>
 
@@ -646,129 +646,22 @@
 
 <!-- New Account -->
 
-<new-account-modal (modalCloseEvent)="closeModal('isAccountModalOpen')" [isModalOpen]="modals().isAccountModalOpen" />
+<new-account-modal (modalCloseEvent)="closeModal('isNewAccountModalOpen')" [isModalOpen]="modals().isNewAccountModalOpen" />
 
 <!-- Edit Account -->
-<div class="modal" id="modal-account-edit" role="dialog" aria-modal="true" aria-labelledby="modal-account-edit-title">
-  <div class="modal__panel modal__panel--lg">
-    <div class="modal__header">
-      <div><h2 class="modal__title" id="modal-account-edit-title">Edit Account — Starbucks Corp.</h2></div>
-      <button class="modal__close" onclick="closeModal('modal-account-edit')" aria-label="Close"><i class="ti ti-x"></i></button>
-    </div>
-    <div class="modal__body flex flex-col gap-md">
-      <div class="form-grid-2">
-        <div class="field"><label class="field__label">Business name</label><input class="input" type="text" value="Starbucks Corp." /></div>
-        <div class="field"><label class="field__label">Status</label><select class="select"><option>Active</option><option>Inactive</option><option>Pending</option></select></div>
-      </div>
-      <div class="form-grid-2">
-        <div class="field"><label class="field__label">Contact email</label><input class="input" type="email" value="contact@starbucks.com" /></div>
-        <div class="field"><label class="field__label">Contact phone</label><input class="input" type="tel" value="+1 555 4200" /></div>
-      </div>
-      <div class="field"><label class="field__label">Notes</label><textarea class="textarea" rows="3">Premium partner since 2024. Annual contract renewal due Jan 2027.</textarea></div>
-    </div>
-    <div class="modal__footer">
-      <button class="btn btn--danger-outline btn--sm" style="margin-inline-end:auto">Deactivate Account</button>
-      <button class="btn btn--outline" onclick="closeModal('modal-account-edit')">Cancel</button>
-      <button class="btn btn--primary">Save Changes</button>
-    </div>
-  </div>
-</div>
+<edit-account-modal (modalCloseEvent)="closeModal('isEditAccountModalOpen')" [isModalOpen]="modals().isEditAccountModalOpen" />
 
 <!-- New Gift Card -->
 <new-giftcard-modal (modalCloseEvent)="closeModal('isGiftcardModalOpen')" [isModalOpen]="modals().isGiftcardModalOpen" />
 
 <!-- Edit Gift Card -->
-<div class="modal" id="modal-giftcard-edit" role="dialog" aria-modal="true" aria-labelledby="modal-giftcard-edit-title">
-  <div class="modal__panel modal__panel--lg">
-    <div class="modal__header">
-      <div><h2 class="modal__title" id="modal-giftcard-edit-title">Edit Gift Card — Starbucks</h2></div>
-      <button class="modal__close" onclick="closeModal('modal-giftcard-edit')" aria-label="Close"><i class="ti ti-x"></i></button>
-    </div>
-    <div class="modal__body flex flex-col gap-md">
-      <div class="form-grid-2">
-        <div class="field"><label class="field__label">Account</label><select class="select"><option selected>Starbucks Corp.</option><option>Amazon Retail</option></select></div>
-        <div class="field"><label class="field__label">Location</label><input class="input" type="text" value="Downtown Seattle" /></div>
-      </div>
-      <div class="field"><label class="field__label">Description</label><textarea class="textarea" rows="2">Treat yourself or a loved one to the finest coffee experience.</textarea></div>
-      <div class="form-grid-3">
-        <div class="field"><label class="field__label">Preset amount 1</label><div class="input-group"><span class="input-group__addon">$</span><input class="input" type="number" value="25" /></div></div>
-        <div class="field"><label class="field__label">Preset amount 2</label><div class="input-group"><span class="input-group__addon">$</span><input class="input" type="number" value="50" /></div></div>
-        <div class="field"><label class="field__label">Max custom</label><div class="input-group"><span class="input-group__addon">$</span><input class="input" type="number" value="500" /></div></div>
-      </div>
-      <div class="field"><label class="field__label">Status</label><select class="select"><option>Active</option><option>Draft</option><option>Inactive</option></select></div>
-    </div>
-    <div class="modal__footer">
-      <button class="btn btn--danger-outline btn--sm" style="margin-inline-end:auto"><i class="ti ti-trash" aria-hidden="true"></i>Delete Card</button>
-      <button class="btn btn--outline" onclick="closeModal('modal-giftcard-edit')">Cancel</button>
-      <button class="btn btn--primary">Save Changes</button>
-    </div>
-  </div>
-</div>
+<edit-giftcard-modal (modalCloseEvent)="closeModal('isGiftcardEditModalOpen')" [isModalOpen]="modals().isGiftcardEditModalOpen" />
 
 <!-- Order Detail (Admin only) -->
-<div class="modal" id="modal-order" role="dialog" aria-modal="true" aria-labelledby="modal-order-title">
-  <div class="modal__panel modal__panel--lg">
-    <div class="modal__header">
-      <div><h2 class="modal__title" id="modal-order-title">Order #ORD-8820</h2><p class="text-sm text-secondary mt-xs"><span class="badge badge--warning badge--dot">Pending</span></p></div>
-      <button class="modal__close" onclick="closeModal('modal-order')" aria-label="Close"><i class="ti ti-x"></i></button>
-    </div>
-    <div class="modal__body flex flex-col gap-lg">
-      <div class="form-grid-2">
-        <div>
-          <div class="text-xs text-tertiary uppercase tracking-wider mb-xs">Customer</div>
-          <div class="font-medium">Maya Rodriguez</div>
-          <div class="text-sm text-secondary">maya@email.com</div>
-        </div>
-        <div>
-          <div class="text-xs text-tertiary uppercase tracking-wider mb-xs">Gift Card</div>
-          <div class="font-medium">🍕 Pizza Palace — Main St.</div>
-          <div class="text-sm text-secondary">Amount: $75.00</div>
-        </div>
-        <div>
-          <div class="text-xs text-tertiary uppercase tracking-wider mb-xs">Recipient</div>
-          <div class="font-medium">Chris Rodriguez</div>
-          <div class="text-sm text-secondary">+1 555 0123</div>
-        </div>
-        <div>
-          <div class="text-xs text-tertiary uppercase tracking-wider mb-xs">Order Date</div>
-          <div class="font-medium">26 May 2026, 14:32</div>
-          <div class="text-sm text-secondary font-mono">#ORD-8820</div>
-        </div>
-      </div>
-      <div>
-        <div class="text-xs text-tertiary uppercase tracking-wider mb-xs">Note to recipient</div>
-        <div class="text-sm text-primary bg-subtle p-sm rounded-lg border" style="font-style:italic">"Happy birthday! Enjoy a delicious pizza on me. 🎉"</div>
-      </div>
-      <div>
-        <div class="text-xs text-tertiary uppercase tracking-wider mb-sm">Update Status</div>
-        <div class="flex gap-sm flex-wrap">
-          <button class="btn btn--outline btn--sm"><i class="ti ti-check" aria-hidden="true"></i>Mark Completed</button>
-          <button class="btn btn--danger-outline btn--sm" onclick="closeModal('modal-order');openModal('modal-cancel')"><i class="ti ti-x" aria-hidden="true"></i>Cancel Order</button>
-        </div>
-      </div>
-    </div>
-    <div class="modal__footer">
-      <button class="btn btn--outline" onclick="closeModal('modal-order')">Close</button>
-    </div>
-  </div>
-</div>
+<order-modal (modalCloseEvent)="closeModal('isOrderModalOpen')" [isModalOpen]="modals().isOrderModalOpen" />
 
 <!-- Cancel Confirm -->
-<div class="modal" id="modal-cancel" role="dialog" aria-modal="true" aria-labelledby="modal-cancel-title">
-  <div class="modal__panel modal__panel--sm">
-    <div class="modal__header">
-      <h2 class="modal__title" id="modal-cancel-title">Cancel Order?</h2>
-      <button class="modal__close" onclick="closeModal('modal-cancel')" aria-label="Close"><i class="ti ti-x"></i></button>
-    </div>
-    <div class="modal__body">
-      <p class="text-sm text-secondary leading-normal">Are you sure you want to cancel order <strong class="text-primary">#ORD-8820</strong>? This will refund the customer and cannot be undone.</p>
-    </div>
-    <div class="modal__footer">
-      <button class="btn btn--outline" onclick="closeModal('modal-cancel')">Keep Order</button>
-      <button class="btn btn--danger" onclick="closeModal('modal-cancel')">Yes, Cancel Order</button>
-    </div>
-  </div>
-</div>
+<cancel-order-modal (modalCloseEvent)="closeModal('isCancelModalOpen')" [isModalOpen]="modals().isCancelModalOpen" />
 
 <script>
 // ── Role state ──

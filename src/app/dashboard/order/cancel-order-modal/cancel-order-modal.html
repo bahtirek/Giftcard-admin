@@ -1,1 +1,12 @@
-<p>cancel-order-modal works!</p>
+<modal (modalCloseEvent)="closeModal()" [isModalOpen]="isModalOpen()">
+  <div modal-header>
+    <h2 class="modal__title" id="modal-cancel-title">Cancel Order?</h2>
+  </div>
+  <div modal-body class="flex flex-col gap-md">
+    <p class="text-sm text-secondary leading-normal">Are you sure you want to cancel order <strong class="text-primary">#ORD-8820</strong>? This will refund the customer and cannot be undone.</p>
+  </div>
+  <div modal-footer>
+      <button class="btn btn--outline" (click)="closeModal()">Keep Order</button>
+      <button class="btn btn--danger ml-md" (click)="closeModal()">Yes, Cancel Order</button>
+  </div>
+</modal>

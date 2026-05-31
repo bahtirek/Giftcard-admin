@@ -1,1 +1,21 @@
-<p>edit-account-modal works!</p>
+<modal (modalCloseEvent)="closeModal()" [isModalOpen]="isModalOpen()">
+  <div modal-header>
+    <div><h2 class="modal__title" id="modal-account-title">Edit Account — Starbucks Corp.</h2></div>
+  </div>
+  <div modal-body class="flex flex-col gap-md">
+      <div class="form-grid-2">
+        <div class="field"><label class="field__label">Business name</label><input class="input" type="text" value="Starbucks Corp." /></div>
+        <div class="field"><label class="field__label">Status</label><select class="select"><option>Active</option><option>Inactive</option><option>Pending</option></select></div>
+      </div>
+      <div class="form-grid-2">
+        <div class="field"><label class="field__label">Contact email</label><input class="input" type="email" value="contact@starbucks.com" /></div>
+        <div class="field"><label class="field__label">Contact phone</label><input class="input" type="tel" value="+1 555 4200" /></div>
+      </div>
+      <div class="field"><label class="field__label">Notes</label><textarea class="textarea" rows="3">Premium partner since 2024. Annual contract renewal due Jan 2027.</textarea></div>
+  </div>
+  <div modal-footer>
+      <button class="btn btn--danger-outline btn--sm" style="margin-inline-end:auto">Deactivate Account</button>
+      <button class="btn btn--outline" (click)="closeModal()">Cancel</button>
+      <button class="btn btn--primary">Save Changes</button>
+  </div>
+</modal>
