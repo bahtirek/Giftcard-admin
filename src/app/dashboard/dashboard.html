@@ -1,0 +1,845 @@
+<div class="shell" id="shell">
+
+  <!-- ══════════ SIDEBAR ══════════ -->
+  <aside class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
+
+    <div class="navbar__brand border-b px-md" style="block-size:52px;flex-shrink:0">
+      <div class="brand-icon" aria-hidden="true"><i class="ti ti-gift"></i></div>
+      <div>
+        <div class="text-sm font-semibold text-primary">GiftHub</div>
+        <div class="text-xs text-tertiary">Admin Portal</div>
+      </div>
+    </div>
+
+    <nav class="sidenav flex-1 overflow-auto mt-sm" aria-label="Sidebar">
+
+      <p class="sidenav__label" style="margin-block-start:0">Overview</p>
+      <button class="sidenav-link is-active" onclick="nav(this,'view-dashboard')">
+        <i class="ti ti-layout-dashboard" aria-hidden="true"></i>Dashboard
+      </button>
+
+      <p class="sidenav__label">Accounts</p>
+      <button class="sidenav-link" onclick="nav(this,'view-accounts')">
+        <i class="ti ti-building-store" aria-hidden="true"></i>All Accounts
+        <span class="sidenav-link__badge">24</span>
+      </button>
+      <button class="sidenav-link" (click)="openModal('isAccountModalOpen')">
+        <i class="ti ti-plus" aria-hidden="true"></i>New Account
+      </button>
+
+      <p class="sidenav__label">Gift Cards</p>
+      <button class="sidenav-link" onclick="nav(this,'view-giftcards')">
+        <i class="ti ti-credit-card" aria-hidden="true"></i>All Gift Cards
+        <span class="sidenav-link__badge">87</span>
+      </button>
+      <button class="sidenav-link" (click)="openModal('isGiftcardModalOpen')">
+        <i class="ti ti-plus" aria-hidden="true"></i>New Gift Card
+      </button>
+
+      <!-- admin-only section -->
+      <p class="sidenav__label" id="admin-section-label">Orders</p>
+      <button class="sidenav-link" id="nav-orders" onclick="nav(this,'view-orders')">
+        <i class="ti ti-shopping-bag" aria-hidden="true"></i>All Orders
+        <span class="sidenav-link__badge">156</span>
+      </button>
+
+      <p class="sidenav__label">Settings</p>
+      <button class="sidenav-link" onclick="nav(this,'view-settings')">
+        <i class="ti ti-settings" aria-hidden="true"></i>Settings
+      </button>
+
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-row" id="user-row">
+        <div class="user-avatar role-admin" id="user-avatar">AD</div>
+        <div class="min-w-0">
+          <div class="text-sm font-medium text-primary truncate" id="user-name">Alex Doe</div>
+          <div class="text-xs text-tertiary" id="user-role-label">Administrator</div>
+        </div>
+        <div class="ms-auto flex gap-xs">
+          <span class="badge badge--brand" id="role-badge">Admin</span>
+        </div>
+      </div>
+      <div class="flex gap-xs mt-sm pb-sm">
+        <button class="btn btn--outline btn--sm flex-1" onclick="switchRole()">
+          <i class="ti ti-switch-horizontal" aria-hidden="true"></i>Switch role
+        </button>
+        <button class="btn btn--ghost btn--sm icon-btn" aria-label="Sign out" title="Sign out">
+          <i class="ti ti-logout" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ══════════ TOPBAR ══════════ -->
+  <header class="navbar" role="banner">
+    <button class="icon-btn hidden" id="menu-btn" aria-label="Open menu" onclick="document.getElementById('sidebar').classList.toggle('is-open')" style="display:none">
+      <i class="ti ti-menu-2" aria-hidden="true"></i>
+    </button>
+
+    <div class="search-box flex-1" style="max-inline-size:320px" role="search">
+      <i class="ti ti-search text-tertiary" aria-hidden="true"></i>
+      <input type="search" placeholder="Search accounts, cards, orders…" aria-label="Search" />
+    </div>
+
+    <div class="navbar__actions ms-auto">
+      <button class="icon-btn relative" aria-label="Notifications">
+        <i class="ti ti-bell" aria-hidden="true"></i>
+        <span class="notif-dot" aria-hidden="true"></span>
+      </button>
+      <button class="icon-btn" onclick="toggleTheme()" aria-label="Toggle theme" id="theme-btn">
+        <i class="ti ti-moon" aria-hidden="true"></i>
+      </button>
+      <button class="btn btn--primary" onclick="openModal('modal-giftcard')">
+        <i class="ti ti-plus" aria-hidden="true"></i>New Gift Card
+      </button>
+    </div>
+  </header>
+
+  <!-- ══════════ MAIN ══════════ -->
+  <main class="main" id="main-content">
+    <div class="flex flex-col gap-md p-md" style="max-inline-size:1400px;margin-inline:auto">
+
+      <!-- ── DASHBOARD VIEW ── -->
+      <div class="view is-active" id="view-dashboard">
+
+        <div class="flex items-start justify-between mb-md flex-wrap gap-sm">
+          <div>
+            <h1 class="text-xl font-semibold text-primary leading-snug">Dashboard</h1>
+            <p class="text-sm text-secondary mt-xs">Welcome back. Here's what's happening.</p>
+          </div>
+          <div class="flex gap-sm">
+            <button class="btn btn--outline"><i class="ti ti-calendar" aria-hidden="true"></i>May 2026</button>
+            <button class="btn btn--outline"><i class="ti ti-download" aria-hidden="true"></i>Export</button>
+          </div>
+        </div>
+
+        <!-- stats -->
+        <div class="stats-grid mb-md">
+          <div class="card">
+            <div class="card__body">
+              <div class="flex justify-between items-center mb-xs">
+                <span class="text-xs text-secondary">Total Sales</span>
+                <i class="ti ti-credit-card text-tertiary" aria-hidden="true"></i>
+              </div>
+              <div class="text-3xl font-semibold text-primary leading-none">$128,450</div>
+              <div class="flex items-center gap-xs text-xs text-success mt-xs">
+                <i class="ti ti-arrow-up-right" aria-hidden="true"></i>+18.2% this month
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card__body">
+              <div class="flex justify-between items-center mb-xs">
+                <span class="text-xs text-secondary">Gift Cards Sold</span>
+                <i class="ti ti-gift text-tertiary" aria-hidden="true"></i>
+              </div>
+              <div class="text-3xl font-semibold text-primary leading-none">1,284</div>
+              <div class="flex items-center gap-xs text-xs text-success mt-xs">
+                <i class="ti ti-arrow-up-right" aria-hidden="true"></i>+9.4% this month
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card__body">
+              <div class="flex justify-between items-center mb-xs">
+                <span class="text-xs text-secondary">Active Accounts</span>
+                <i class="ti ti-building-store text-tertiary" aria-hidden="true"></i>
+              </div>
+              <div class="text-3xl font-semibold text-primary leading-none">24</div>
+              <div class="flex items-center gap-xs text-xs text-tertiary mt-xs">
+                <i class="ti ti-plus" aria-hidden="true"></i>3 added this month
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card__body">
+              <div class="flex justify-between items-center mb-xs">
+                <span class="text-xs text-secondary">Pending Orders</span>
+                <i class="ti ti-clock text-tertiary" aria-hidden="true"></i>
+              </div>
+              <div class="text-3xl font-semibold text-primary leading-none">37</div>
+              <div class="flex items-center gap-xs text-xs text-warning mt-xs">
+                <i class="ti ti-alert-triangle" aria-hidden="true"></i>12 need attention
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- recent orders + top cards -->
+        <div class="content-split">
+
+          <!-- recent orders -->
+          <div class="card" id="dashboard-orders-card">
+            <div class="card__header">
+              <span class="card__title">Recent Orders</span>
+              <button class="btn btn--ghost btn--sm" onclick="nav(document.querySelector('[onclick*=view-orders]'),'view-orders')">
+                View all <i class="ti ti-arrow-right" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="table-wrapper no-border">
+              <table class="table">
+                <thead><tr>
+                  <th>Order</th><th>Customer</th><th>Card</th><th>Amount</th><th>Status</th>
+                </tr></thead>
+                <tbody>
+                  <tr>
+                    <td class="font-mono text-xs text-secondary">#ORD-8821</td>
+                    <td><div class="flex items-center gap-sm"><div class="c-avatar" style="background:#dbeafe;color:#1e40af">JL</div>Jamie Lee</div></td>
+                    <td>Starbucks</td><td class="font-medium">$50.00</td>
+                    <td><span class="badge badge--success badge--dot">Completed</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs text-secondary">#ORD-8820</td>
+                    <td><div class="flex items-center gap-sm"><div class="c-avatar" style="background:#fef9c3;color:#713f12">MR</div>Maya R.</div></td>
+                    <td>Pizza Palace</td><td class="font-medium">$75.00</td>
+                    <td><span class="badge badge--warning badge--dot">Pending</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs text-secondary">#ORD-8819</td>
+                    <td><div class="flex items-center gap-sm"><div class="c-avatar" style="background:#d1fae5;color:#065f46">BK</div>Ben K.</div></td>
+                    <td>Amazon</td><td class="font-medium">$100.00</td>
+                    <td><span class="badge badge--success badge--dot">Completed</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs text-secondary">#ORD-8818</td>
+                    <td><div class="flex items-center gap-sm"><div class="c-avatar" style="background:#ede9fe;color:#4c1d95">SP</div>Sara P.</div></td>
+                    <td>Target</td><td class="font-medium">$25.00</td>
+                    <td><span class="badge badge--danger badge--dot">Cancelled</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs text-secondary">#ORD-8817</td>
+                    <td><div class="flex items-center gap-sm"><div class="c-avatar" style="background:#fce7f3;color:#831843">DM</div>Dan M.</div></td>
+                    <td>Burger King</td><td class="font-medium">$30.00</td>
+                    <td><span class="badge badge--info badge--dot">Processing</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- top gift cards -->
+          <div class="card">
+            <div class="card__header">
+              <span class="card__title">Top Gift Cards</span>
+            </div>
+            <div class="p-md flex flex-col gap-sm">
+              <div class="flex items-center gap-sm">
+                <div style="font-size:1.5rem;inline-size:36px;text-align:center">☕</div>
+                <div class="flex-1 min-w-0"><div class="text-sm font-medium truncate">Starbucks</div><div class="text-xs text-tertiary">284 sold</div></div>
+                <div class="text-sm font-semibold">$14,200</div>
+              </div>
+              <div class="flex items-center gap-sm">
+                <div style="font-size:1.5rem;inline-size:36px;text-align:center">🛒</div>
+                <div class="flex-1 min-w-0"><div class="text-sm font-medium truncate">Amazon</div><div class="text-xs text-tertiary">198 sold</div></div>
+                <div class="text-sm font-semibold">$19,800</div>
+              </div>
+              <div class="flex items-center gap-sm">
+                <div style="font-size:1.5rem;inline-size:36px;text-align:center">🍕</div>
+                <div class="flex-1 min-w-0"><div class="text-sm font-medium truncate">Pizza Palace</div><div class="text-xs text-tertiary">167 sold</div></div>
+                <div class="text-sm font-semibold">$12,525</div>
+              </div>
+              <div class="flex items-center gap-sm">
+                <div style="font-size:1.5rem;inline-size:36px;text-align:center">🎯</div>
+                <div class="flex-1 min-w-0"><div class="text-sm font-medium truncate">Target</div><div class="text-xs text-tertiary">143 sold</div></div>
+                <div class="text-sm font-semibold">$7,150</div>
+              </div>
+              <div class="flex items-center gap-sm">
+                <div style="font-size:1.5rem;inline-size:36px;text-align:center">🍔</div>
+                <div class="flex-1 min-w-0"><div class="text-sm font-medium truncate">Burger King</div><div class="text-xs text-tertiary">118 sold</div></div>
+                <div class="text-sm font-semibold">$5,900</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── ACCOUNTS VIEW ── -->
+      <div class="view" id="view-accounts">
+        <div class="flex items-start justify-between mb-md flex-wrap gap-sm">
+          <div>
+            <h1 class="text-xl font-semibold text-primary leading-snug">Accounts</h1>
+            <p class="text-sm text-secondary mt-xs">Manage business accounts and their gift card locations.</p>
+          </div>
+          <button class="btn btn--primary" onclick="openModal('modal-account')">
+            <i class="ti ti-plus" aria-hidden="true"></i>New Account
+          </button>
+        </div>
+
+        <!-- filters -->
+        <div class="flex gap-sm flex-wrap mb-md">
+          <div class="search-box" style="max-inline-size:280px">
+            <i class="ti ti-search text-tertiary" aria-hidden="true"></i>
+            <input type="search" placeholder="Search accounts…" />
+          </div>
+          <select class="select" style="inline-size:auto;min-inline-size:140px"><option>All Status</option><option>Active</option><option>Inactive</option><option>Pending</option></select>
+          <select class="select" style="inline-size:auto;min-inline-size:140px"><option>All Types</option><option>Restaurant</option><option>Retail</option><option>Grocery</option></select>
+          <button class="btn btn--outline"><i class="ti ti-adjustments-horizontal" aria-hidden="true"></i>Filter</button>
+        </div>
+
+        <!-- accounts table -->
+        <div class="card">
+          <div class="table-wrapper no-border">
+            <table class="table">
+              <thead><tr>
+                <th>Business</th><th>Type</th><th>Locations</th><th>Cards</th><th>Total Sales</th><th>Status</th><th>Created</th><th><span class="sr-only">Actions</span></th>
+              </tr></thead>
+              <tbody>
+                <tr>
+                  <td><div class="flex items-center gap-sm"><div style="font-size:1.25rem">☕</div><div><div class="font-medium">Starbucks Corp.</div><div class="text-xs text-tertiary">contact@starbucks.com</div></div></div></td>
+                  <td class="text-secondary">Restaurant</td><td>12</td><td>28</td><td class="font-medium">$84,200</td>
+                  <td><span class="badge badge--success badge--dot">Active</span></td>
+                  <td class="text-secondary text-xs">Jan 2024</td>
+                  <td><div class="flex gap-xs"><button class="btn btn--ghost btn--sm" onclick="openModal('modal-account-edit')"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="btn btn--ghost btn--sm"><i class="ti ti-eye" aria-hidden="true"></i></button></div></td>
+                </tr>
+                <tr>
+                  <td><div class="flex items-center gap-sm"><div style="font-size:1.25rem">🛒</div><div><div class="font-medium">Amazon Retail</div><div class="text-xs text-tertiary">partners@amazon.com</div></div></div></td>
+                  <td class="text-secondary">Retail</td><td>1</td><td>5</td><td class="font-medium">$62,400</td>
+                  <td><span class="badge badge--success badge--dot">Active</span></td>
+                  <td class="text-secondary text-xs">Feb 2024</td>
+                  <td><div class="flex gap-xs"><button class="btn btn--ghost btn--sm" onclick="openModal('modal-account-edit')"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="btn btn--ghost btn--sm"><i class="ti ti-eye" aria-hidden="true"></i></button></div></td>
+                </tr>
+                <tr>
+                  <td><div class="flex items-center gap-sm"><div style="font-size:1.25rem">🍕</div><div><div class="font-medium">Pizza Palace LLC</div><div class="text-xs text-tertiary">admin@pizzapalace.com</div></div></div></td>
+                  <td class="text-secondary">Restaurant</td><td>6</td><td>12</td><td class="font-medium">$28,100</td>
+                  <td><span class="badge badge--warning badge--dot">Pending</span></td>
+                  <td class="text-secondary text-xs">Mar 2024</td>
+                  <td><div class="flex gap-xs"><button class="btn btn--ghost btn--sm" onclick="openModal('modal-account-edit')"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="btn btn--ghost btn--sm"><i class="ti ti-eye" aria-hidden="true"></i></button></div></td>
+                </tr>
+                <tr>
+                  <td><div class="flex items-center gap-sm"><div style="font-size:1.25rem">🎯</div><div><div class="font-medium">Target Inc.</div><div class="text-xs text-tertiary">gifts@target.com</div></div></div></td>
+                  <td class="text-secondary">Retail</td><td>8</td><td>16</td><td class="font-medium">$19,600</td>
+                  <td><span class="badge badge--neutral badge--dot">Inactive</span></td>
+                  <td class="text-secondary text-xs">Mar 2024</td>
+                  <td><div class="flex gap-xs"><button class="btn btn--ghost btn--sm" onclick="openModal('modal-account-edit')"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="btn btn--ghost btn--sm"><i class="ti ti-eye" aria-hidden="true"></i></button></div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card__footer justify-between">
+            <span class="text-xs text-secondary">Showing 4 of 24 accounts</span>
+            <div class="flex gap-xs">
+              <button class="btn btn--outline btn--sm" disabled>‹ Prev</button>
+              <button class="btn btn--outline btn--sm">Next ›</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── GIFT CARDS VIEW ── -->
+      <div class="view" id="view-giftcards">
+        <div class="flex items-start justify-between mb-md flex-wrap gap-sm">
+          <div>
+            <h1 class="text-xl font-semibold text-primary leading-snug">Gift Cards</h1>
+            <p class="text-sm text-secondary mt-xs">Browse and manage all gift cards across accounts.</p>
+          </div>
+          <button class="btn btn--primary" onclick="openModal('modal-giftcard')">
+            <i class="ti ti-plus" aria-hidden="true"></i>New Gift Card
+          </button>
+        </div>
+
+        <!-- filters + toggle -->
+        <div class="flex gap-sm flex-wrap items-center mb-md">
+          <div class="search-box" style="max-inline-size:260px">
+            <i class="ti ti-search text-tertiary" aria-hidden="true"></i>
+            <input type="search" placeholder="Search gift cards…" />
+          </div>
+          <select class="select" style="inline-size:auto;min-inline-size:160px"><option>All Accounts</option><option>Starbucks</option><option>Amazon</option><option>Pizza Palace</option></select>
+          <select class="select" style="inline-size:auto;min-inline-size:140px"><option>All Status</option><option>Active</option><option>Inactive</option><option>Draft</option></select>
+          <div class="ms-auto flex gap-xs">
+            <button class="btn btn--outline btn--sm" id="gc-grid-btn" onclick="setGcView('grid')" aria-label="Grid view"><i class="ti ti-layout-grid" aria-hidden="true"></i></button>
+            <button class="btn btn--ghost btn--sm" id="gc-list-btn" onclick="setGcView('list')" aria-label="List view"><i class="ti ti-list" aria-hidden="true"></i></button>
+          </div>
+        </div>
+
+        <!-- grid view -->
+        <div class="gc-grid" id="gc-grid-view">
+          <!-- card -->
+          <div class="gc-card">
+            <div class="gc-card__thumb relative" style="background:linear-gradient(135deg,#00704a,#1e3932)">
+              <span>☕</span>
+              <div class="gc-card__actions">
+                <button class="btn btn--sm" style="background:rgba(255,255,255,.9);color:#18181b;border:none" onclick="openModal('modal-giftcard-edit')" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button>
+              </div>
+            </div>
+            <div class="gc-card__body">
+              <div class="flex justify-between items-start mb-xs">
+                <div class="text-sm font-semibold text-primary">Starbucks</div>
+                <span class="badge badge--success">Active</span>
+              </div>
+              <div class="text-xs text-secondary mb-sm">Downtown Seattle Location</div>
+              <div class="flex justify-between items-center">
+                <div class="text-xs text-tertiary">$10 – $500</div>
+                <div class="text-xs font-medium text-brand">142 sold</div>
+              </div>
+            </div>
+          </div>
+          <div class="gc-card">
+            <div class="gc-card__thumb relative" style="background:linear-gradient(135deg,#ff9900,#232f3e)">
+              <span>🛒</span>
+              <div class="gc-card__actions">
+                <button class="btn btn--sm" style="background:rgba(255,255,255,.9);color:#18181b;border:none" onclick="openModal('modal-giftcard-edit')" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button>
+              </div>
+            </div>
+            <div class="gc-card__body">
+              <div class="flex justify-between items-start mb-xs">
+                <div class="text-sm font-semibold text-primary">Amazon</div>
+                <span class="badge badge--success">Active</span>
+              </div>
+              <div class="text-xs text-secondary mb-sm">Online Store</div>
+              <div class="flex justify-between items-center">
+                <div class="text-xs text-tertiary">$25 – $1000</div>
+                <div class="text-xs font-medium text-brand">198 sold</div>
+              </div>
+            </div>
+          </div>
+          <div class="gc-card">
+            <div class="gc-card__thumb relative" style="background:linear-gradient(135deg,#e63946,#1d1d2e)">
+              <span>🍕</span>
+              <div class="gc-card__actions">
+                <button class="btn btn--sm" style="background:rgba(255,255,255,.9);color:#18181b;border:none" onclick="openModal('modal-giftcard-edit')" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button>
+              </div>
+            </div>
+            <div class="gc-card__body">
+              <div class="flex justify-between items-start mb-xs">
+                <div class="text-sm font-semibold text-primary">Pizza Palace</div>
+                <span class="badge badge--warning">Pending</span>
+              </div>
+              <div class="text-xs text-secondary mb-sm">Main St. Location</div>
+              <div class="flex justify-between items-center">
+                <div class="text-xs text-tertiary">$15 – $200</div>
+                <div class="text-xs font-medium text-brand">67 sold</div>
+              </div>
+            </div>
+          </div>
+          <div class="gc-card">
+            <div class="gc-card__thumb relative" style="background:linear-gradient(135deg,#cc0000,#333)">
+              <span>🎯</span>
+              <div class="gc-card__actions">
+                <button class="btn btn--sm" style="background:rgba(255,255,255,.9);color:#18181b;border:none" onclick="openModal('modal-giftcard-edit')" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button>
+              </div>
+            </div>
+            <div class="gc-card__body">
+              <div class="flex justify-between items-start mb-xs">
+                <div class="text-sm font-semibold text-primary">Target</div>
+                <span class="badge badge--neutral">Inactive</span>
+              </div>
+              <div class="text-xs text-secondary mb-sm">North Mall Branch</div>
+              <div class="flex justify-between items-center">
+                <div class="text-xs text-tertiary">$5 – $500</div>
+                <div class="text-xs font-medium text-brand">43 sold</div>
+              </div>
+            </div>
+          </div>
+          <div class="gc-card">
+            <div class="gc-card__thumb relative" style="background:linear-gradient(135deg,#d4a017,#1a1a1a)">
+              <span>🍔</span>
+              <div class="gc-card__actions">
+                <button class="btn btn--sm" style="background:rgba(255,255,255,.9);color:#18181b;border:none" onclick="openModal('modal-giftcard-edit')" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button>
+              </div>
+            </div>
+            <div class="gc-card__body">
+              <div class="flex justify-between items-start mb-xs">
+                <div class="text-sm font-semibold text-primary">Burger King</div>
+                <span class="badge badge--success">Active</span>
+              </div>
+              <div class="text-xs text-secondary mb-sm">Central Park Branch</div>
+              <div class="flex justify-between items-center">
+                <div class="text-xs text-tertiary">$10 – $100</div>
+                <div class="text-xs font-medium text-brand">118 sold</div>
+              </div>
+            </div>
+          </div>
+          <div class="gc-card" style="border-style:dashed;box-shadow:none;display:flex;align-items:center;justify-content:center;min-block-size:200px;cursor:pointer;transition:background-color var(--transition-base)" onclick="openModal('modal-giftcard')" onmouseenter="this.style.backgroundColor='var(--bg-subtle)'" onmouseleave="this.style.backgroundColor=''">
+            <div class="text-center p-lg">
+              <i class="ti ti-plus text-tertiary" style="font-size:2rem" aria-hidden="true"></i>
+              <div class="text-sm font-medium text-secondary mt-sm">Add Gift Card</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- list view (hidden by default) -->
+        <div class="hidden" id="gc-list-view">
+          <div class="card">
+            <div class="table-wrapper no-border">
+              <table class="table">
+                <thead><tr><th>Card</th><th>Account</th><th>Location</th><th>Price Range</th><th>Sold</th><th>Status</th><th><span class="sr-only">Actions</span></th></tr></thead>
+                <tbody>
+                  <tr><td><div class="flex items-center gap-sm"><span>☕</span><span class="font-medium">Starbucks</span></div></td><td class="text-secondary">Starbucks Corp.</td><td class="text-secondary">Downtown Seattle</td><td>$10–$500</td><td>142</td><td><span class="badge badge--success badge--dot">Active</span></td><td><div class="flex gap-xs"><button class="btn btn--ghost btn--sm" onclick="openModal('modal-giftcard-edit')"><i class="ti ti-edit" aria-hidden="true"></i></button></div></td></tr>
+                  <tr><td><div class="flex items-center gap-sm"><span>🛒</span><span class="font-medium">Amazon</span></div></td><td class="text-secondary">Amazon Retail</td><td class="text-secondary">Online</td><td>$25–$1000</td><td>198</td><td><span class="badge badge--success badge--dot">Active</span></td><td><div class="flex gap-xs"><button class="btn btn--ghost btn--sm" onclick="openModal('modal-giftcard-edit')"><i class="ti ti-edit" aria-hidden="true"></i></button></div></td></tr>
+                  <tr><td><div class="flex items-center gap-sm"><span>🍕</span><span class="font-medium">Pizza Palace</span></div></td><td class="text-secondary">Pizza Palace LLC</td><td class="text-secondary">Main St.</td><td>$15–$200</td><td>67</td><td><span class="badge badge--warning badge--dot">Pending</span></td><td><div class="flex gap-xs"><button class="btn btn--ghost btn--sm" onclick="openModal('modal-giftcard-edit')"><i class="ti ti-edit" aria-hidden="true"></i></button></div></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ORDERS VIEW (Admin only) ── -->
+      <div class="view" id="view-orders">
+        <div class="flex items-start justify-between mb-md flex-wrap gap-sm">
+          <div>
+            <h1 class="text-xl font-semibold text-primary leading-snug">Orders</h1>
+            <p class="text-sm text-secondary mt-xs">View, update and cancel customer orders.</p>
+          </div>
+          <div class="flex gap-sm">
+            <button class="btn btn--outline"><i class="ti ti-download" aria-hidden="true"></i>Export</button>
+          </div>
+        </div>
+
+        <!-- tabs -->
+        <div class="tabs mb-md">
+          <div class="tabs__item is-active" onclick="filterOrders(this,'all')">All <span class="badge badge--neutral ms-auto" style="margin-inline-start:6px">156</span></div>
+          <div class="tabs__item" onclick="filterOrders(this,'pending')">Pending <span class="badge badge--warning" style="margin-inline-start:6px">37</span></div>
+          <div class="tabs__item" onclick="filterOrders(this,'completed')">Completed <span class="badge badge--success" style="margin-inline-start:6px">104</span></div>
+          <div class="tabs__item" onclick="filterOrders(this,'cancelled')">Cancelled <span class="badge badge--danger" style="margin-inline-start:6px">15</span></div>
+        </div>
+
+        <!-- filters -->
+        <div class="flex gap-sm flex-wrap mb-md">
+          <div class="search-box" style="max-inline-size:260px">
+            <i class="ti ti-search text-tertiary" aria-hidden="true"></i>
+            <input type="search" placeholder="Search orders…" />
+          </div>
+          <select class="select" style="inline-size:auto;min-inline-size:160px"><option>All Gift Cards</option><option>Starbucks</option><option>Amazon</option></select>
+          <select class="select" style="inline-size:auto;min-inline-size:140px"><option>Date: Newest</option><option>Date: Oldest</option><option>Amount: High</option><option>Amount: Low</option></select>
+        </div>
+
+        <div class="card">
+          <div class="table-wrapper no-border">
+            <table class="table">
+              <thead><tr>
+                <th>Order ID</th><th>Customer</th><th>Gift Card</th><th>Recipient</th><th>Amount</th><th>Date</th><th>Status</th><th><span class="sr-only">Actions</span></th>
+              </tr></thead>
+              <tbody>
+                <tr>
+                  <td class="font-mono text-xs text-secondary">#ORD-8821</td>
+                  <td><div class="flex items-center gap-sm"><div class="c-avatar" style="background:#dbeafe;color:#1e40af">JL</div><div><div class="font-medium">Jamie Lee</div><div class="text-xs text-tertiary">jamie@email.com</div></div></div></td>
+                  <td>☕ Starbucks</td>
+                  <td class="text-secondary">mom@email.com</td>
+                  <td class="font-medium">$50.00</td>
+                  <td class="text-secondary text-xs">27 May 2026</td>
+                  <td><span class="badge badge--success badge--dot">Completed</span></td>
+                  <td><div class="flex gap-xs">
+                    <button class="btn btn--ghost btn--sm" onclick="openModal('modal-order')" title="View"><i class="ti ti-eye" aria-hidden="true"></i></button>
+                  </div></td>
+                </tr>
+                <tr>
+                  <td class="font-mono text-xs text-secondary">#ORD-8820</td>
+                  <td><div class="flex items-center gap-sm"><div class="c-avatar" style="background:#fef9c3;color:#713f12">MR</div><div><div class="font-medium">Maya Rodriguez</div><div class="text-xs text-tertiary">maya@email.com</div></div></div></td>
+                  <td>🍕 Pizza Palace</td>
+                  <td class="text-secondary">+1 555 0123</td>
+                  <td class="font-medium">$75.00</td>
+                  <td class="text-secondary text-xs">26 May 2026</td>
+                  <td><span class="badge badge--warning badge--dot">Pending</span></td>
+                  <td><div class="flex gap-xs">
+                    <button class="btn btn--ghost btn--sm" onclick="openModal('modal-order')" title="View"><i class="ti ti-eye" aria-hidden="true"></i></button>
+                    <button class="btn btn--danger-outline btn--sm" onclick="openModal('modal-cancel')" title="Cancel"><i class="ti ti-x" aria-hidden="true"></i></button>
+                  </div></td>
+                </tr>
+                <tr>
+                  <td class="font-mono text-xs text-secondary">#ORD-8819</td>
+                  <td><div class="flex items-center gap-sm"><div class="c-avatar" style="background:#d1fae5;color:#065f46">BK</div><div><div class="font-medium">Ben Kim</div><div class="text-xs text-tertiary">ben@email.com</div></div></div></td>
+                  <td>🛒 Amazon</td>
+                  <td class="text-secondary">friend@email.com</td>
+                  <td class="font-medium">$100.00</td>
+                  <td class="text-secondary text-xs">26 May 2026</td>
+                  <td><span class="badge badge--info badge--dot">Processing</span></td>
+                  <td><div class="flex gap-xs">
+                    <button class="btn btn--ghost btn--sm" onclick="openModal('modal-order')" title="View"><i class="ti ti-eye" aria-hidden="true"></i></button>
+                    <button class="btn btn--outline btn--sm" title="Mark complete"><i class="ti ti-check" aria-hidden="true"></i></button>
+                    <button class="btn btn--danger-outline btn--sm" onclick="openModal('modal-cancel')" title="Cancel"><i class="ti ti-x" aria-hidden="true"></i></button>
+                  </div></td>
+                </tr>
+                <tr>
+                  <td class="font-mono text-xs text-secondary">#ORD-8818</td>
+                  <td><div class="flex items-center gap-sm"><div class="c-avatar" style="background:#ede9fe;color:#4c1d95">SP</div><div><div class="font-medium">Sara Park</div><div class="text-xs text-tertiary">sara@email.com</div></div></div></td>
+                  <td>🎯 Target</td>
+                  <td class="text-secondary">sis@email.com</td>
+                  <td class="font-medium">$25.00</td>
+                  <td class="text-secondary text-xs">25 May 2026</td>
+                  <td><span class="badge badge--danger badge--dot">Cancelled</span></td>
+                  <td><div class="flex gap-xs">
+                    <button class="btn btn--ghost btn--sm" onclick="openModal('modal-order')" title="View"><i class="ti ti-eye" aria-hidden="true"></i></button>
+                  </div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card__footer justify-between">
+            <span class="text-xs text-secondary">Showing 4 of 156 orders</span>
+            <div class="flex gap-xs">
+              <button class="btn btn--outline btn--sm" disabled>‹ Prev</button>
+              <button class="btn btn--outline btn--sm">Next ›</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SETTINGS VIEW ── -->
+      <div class="view" id="view-settings">
+        <div class="mb-md">
+          <h1 class="text-xl font-semibold text-primary leading-snug">Settings</h1>
+          <p class="text-sm text-secondary mt-xs">Manage your portal preferences and account settings.</p>
+        </div>
+        <div class="content-split">
+          <div class="flex flex-col gap-md">
+            <div class="card">
+              <div class="card__header"><span class="card__title">Profile</span></div>
+              <div class="card__body flex flex-col gap-md">
+                <div class="form-grid-2">
+                  <div class="field"><label class="field__label">First name</label><input class="input" type="text" value="Alex" /></div>
+                  <div class="field"><label class="field__label">Last name</label><input class="input" type="text" value="Doe" /></div>
+                </div>
+                <div class="field"><label class="field__label">Email</label><input class="input" type="email" value="alex.doe@gifthub.com" /></div>
+                <div class="field"><label class="field__label">Phone</label><input class="input" type="tel" value="+1 555 0100" /></div>
+              </div>
+              <div class="card__footer justify-end"><button class="btn btn--primary">Save changes</button></div>
+            </div>
+            <div class="card">
+              <div class="card__header"><span class="card__title">Security</span></div>
+              <div class="card__body flex flex-col gap-md">
+                <div class="field"><label class="field__label">Current password</label><input class="input" type="password" placeholder="••••••••" /></div>
+                <div class="form-grid-2">
+                  <div class="field"><label class="field__label">New password</label><input class="input" type="password" placeholder="••••••••" /></div>
+                  <div class="field"><label class="field__label">Confirm password</label><input class="input" type="password" placeholder="••••••••" /></div>
+                </div>
+              </div>
+              <div class="card__footer justify-end"><button class="btn btn--primary">Update password</button></div>
+            </div>
+          </div>
+          <div class="flex flex-col gap-md">
+            <div class="card">
+              <div class="card__header"><span class="card__title">Notifications</span></div>
+              <div class="card__body flex flex-col gap-md">
+                <label class="check-label"><input class="checkbox" type="checkbox" checked /><span>New order placed</span></label>
+                <label class="check-label"><input class="checkbox" type="checkbox" checked /><span>Order cancelled</span></label>
+                <label class="check-label"><input class="checkbox" type="checkbox" /><span>Low stock alert</span></label>
+                <label class="check-label"><input class="checkbox" type="checkbox" checked /><span>New account registered</span></label>
+                <label class="check-label"><input class="checkbox" type="checkbox" /><span>Weekly report</span></label>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card__header"><span class="card__title">Appearance</span></div>
+              <div class="card__body flex flex-col gap-md">
+                <div class="field"><label class="field__label">Theme</label>
+                  <select class="select"><option>Light</option><option>Dark</option><option>System</option></select>
+                </div>
+                <div class="field"><label class="field__label">Language</label>
+                  <select class="select"><option>English (US)</option><option>Spanish</option><option>French</option></select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- ══════════════════════════════════════════
+     MODALS
+══════════════════════════════════════════ -->
+
+<!-- New Account -->
+
+<new-account-modal (modalCloseEvent)="closeModal('isAccountModalOpen')" [isModalOpen]="modals().isAccountModalOpen" />
+
+<!-- Edit Account -->
+<div class="modal" id="modal-account-edit" role="dialog" aria-modal="true" aria-labelledby="modal-account-edit-title">
+  <div class="modal__panel modal__panel--lg">
+    <div class="modal__header">
+      <div><h2 class="modal__title" id="modal-account-edit-title">Edit Account — Starbucks Corp.</h2></div>
+      <button class="modal__close" onclick="closeModal('modal-account-edit')" aria-label="Close"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="modal__body flex flex-col gap-md">
+      <div class="form-grid-2">
+        <div class="field"><label class="field__label">Business name</label><input class="input" type="text" value="Starbucks Corp." /></div>
+        <div class="field"><label class="field__label">Status</label><select class="select"><option>Active</option><option>Inactive</option><option>Pending</option></select></div>
+      </div>
+      <div class="form-grid-2">
+        <div class="field"><label class="field__label">Contact email</label><input class="input" type="email" value="contact@starbucks.com" /></div>
+        <div class="field"><label class="field__label">Contact phone</label><input class="input" type="tel" value="+1 555 4200" /></div>
+      </div>
+      <div class="field"><label class="field__label">Notes</label><textarea class="textarea" rows="3">Premium partner since 2024. Annual contract renewal due Jan 2027.</textarea></div>
+    </div>
+    <div class="modal__footer">
+      <button class="btn btn--danger-outline btn--sm" style="margin-inline-end:auto">Deactivate Account</button>
+      <button class="btn btn--outline" onclick="closeModal('modal-account-edit')">Cancel</button>
+      <button class="btn btn--primary">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- New Gift Card -->
+<new-giftcard-modal (modalCloseEvent)="closeModal('isGiftcardModalOpen')" [isModalOpen]="modals().isGiftcardModalOpen" />
+
+<!-- Edit Gift Card -->
+<div class="modal" id="modal-giftcard-edit" role="dialog" aria-modal="true" aria-labelledby="modal-giftcard-edit-title">
+  <div class="modal__panel modal__panel--lg">
+    <div class="modal__header">
+      <div><h2 class="modal__title" id="modal-giftcard-edit-title">Edit Gift Card — Starbucks</h2></div>
+      <button class="modal__close" onclick="closeModal('modal-giftcard-edit')" aria-label="Close"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="modal__body flex flex-col gap-md">
+      <div class="form-grid-2">
+        <div class="field"><label class="field__label">Account</label><select class="select"><option selected>Starbucks Corp.</option><option>Amazon Retail</option></select></div>
+        <div class="field"><label class="field__label">Location</label><input class="input" type="text" value="Downtown Seattle" /></div>
+      </div>
+      <div class="field"><label class="field__label">Description</label><textarea class="textarea" rows="2">Treat yourself or a loved one to the finest coffee experience.</textarea></div>
+      <div class="form-grid-3">
+        <div class="field"><label class="field__label">Preset amount 1</label><div class="input-group"><span class="input-group__addon">$</span><input class="input" type="number" value="25" /></div></div>
+        <div class="field"><label class="field__label">Preset amount 2</label><div class="input-group"><span class="input-group__addon">$</span><input class="input" type="number" value="50" /></div></div>
+        <div class="field"><label class="field__label">Max custom</label><div class="input-group"><span class="input-group__addon">$</span><input class="input" type="number" value="500" /></div></div>
+      </div>
+      <div class="field"><label class="field__label">Status</label><select class="select"><option>Active</option><option>Draft</option><option>Inactive</option></select></div>
+    </div>
+    <div class="modal__footer">
+      <button class="btn btn--danger-outline btn--sm" style="margin-inline-end:auto"><i class="ti ti-trash" aria-hidden="true"></i>Delete Card</button>
+      <button class="btn btn--outline" onclick="closeModal('modal-giftcard-edit')">Cancel</button>
+      <button class="btn btn--primary">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- Order Detail (Admin only) -->
+<div class="modal" id="modal-order" role="dialog" aria-modal="true" aria-labelledby="modal-order-title">
+  <div class="modal__panel modal__panel--lg">
+    <div class="modal__header">
+      <div><h2 class="modal__title" id="modal-order-title">Order #ORD-8820</h2><p class="text-sm text-secondary mt-xs"><span class="badge badge--warning badge--dot">Pending</span></p></div>
+      <button class="modal__close" onclick="closeModal('modal-order')" aria-label="Close"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="modal__body flex flex-col gap-lg">
+      <div class="form-grid-2">
+        <div>
+          <div class="text-xs text-tertiary uppercase tracking-wider mb-xs">Customer</div>
+          <div class="font-medium">Maya Rodriguez</div>
+          <div class="text-sm text-secondary">maya@email.com</div>
+        </div>
+        <div>
+          <div class="text-xs text-tertiary uppercase tracking-wider mb-xs">Gift Card</div>
+          <div class="font-medium">🍕 Pizza Palace — Main St.</div>
+          <div class="text-sm text-secondary">Amount: $75.00</div>
+        </div>
+        <div>
+          <div class="text-xs text-tertiary uppercase tracking-wider mb-xs">Recipient</div>
+          <div class="font-medium">Chris Rodriguez</div>
+          <div class="text-sm text-secondary">+1 555 0123</div>
+        </div>
+        <div>
+          <div class="text-xs text-tertiary uppercase tracking-wider mb-xs">Order Date</div>
+          <div class="font-medium">26 May 2026, 14:32</div>
+          <div class="text-sm text-secondary font-mono">#ORD-8820</div>
+        </div>
+      </div>
+      <div>
+        <div class="text-xs text-tertiary uppercase tracking-wider mb-xs">Note to recipient</div>
+        <div class="text-sm text-primary bg-subtle p-sm rounded-lg border" style="font-style:italic">"Happy birthday! Enjoy a delicious pizza on me. 🎉"</div>
+      </div>
+      <div>
+        <div class="text-xs text-tertiary uppercase tracking-wider mb-sm">Update Status</div>
+        <div class="flex gap-sm flex-wrap">
+          <button class="btn btn--outline btn--sm"><i class="ti ti-check" aria-hidden="true"></i>Mark Completed</button>
+          <button class="btn btn--danger-outline btn--sm" onclick="closeModal('modal-order');openModal('modal-cancel')"><i class="ti ti-x" aria-hidden="true"></i>Cancel Order</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal__footer">
+      <button class="btn btn--outline" onclick="closeModal('modal-order')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Cancel Confirm -->
+<div class="modal" id="modal-cancel" role="dialog" aria-modal="true" aria-labelledby="modal-cancel-title">
+  <div class="modal__panel modal__panel--sm">
+    <div class="modal__header">
+      <h2 class="modal__title" id="modal-cancel-title">Cancel Order?</h2>
+      <button class="modal__close" onclick="closeModal('modal-cancel')" aria-label="Close"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="modal__body">
+      <p class="text-sm text-secondary leading-normal">Are you sure you want to cancel order <strong class="text-primary">#ORD-8820</strong>? This will refund the customer and cannot be undone.</p>
+    </div>
+    <div class="modal__footer">
+      <button class="btn btn--outline" onclick="closeModal('modal-cancel')">Keep Order</button>
+      <button class="btn btn--danger" onclick="closeModal('modal-cancel')">Yes, Cancel Order</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Role state ──
+let currentRole = 'admin'; // 'admin' | 'salesperson'
+
+function applyRole(role) {
+  currentRole = role;
+  const isAdmin = role === 'admin';
+  // Orders section
+  document.getElementById('admin-section-label').style.display = isAdmin ? '' : 'none';
+  document.getElementById('nav-orders').style.display = isAdmin ? '' : 'none';
+  // Badge + avatar
+  document.getElementById('role-badge').textContent = isAdmin ? 'Admin' : 'Sales';
+  document.getElementById('role-badge').className = isAdmin ? 'badge badge--brand' : 'badge badge--info';
+  document.getElementById('user-avatar').className = isAdmin ? 'user-avatar role-admin' : 'user-avatar role-sales';
+  document.getElementById('user-role-label').textContent = isAdmin ? 'Administrator' : 'Salesperson';
+  // If on orders view as salesperson, go to dashboard
+  if (!isAdmin && document.getElementById('view-orders').classList.contains('is-active')) {
+    nav(document.querySelector('.sidenav-link'), 'view-dashboard');
+  }
+}
+
+function switchRole() {
+  applyRole(currentRole === 'admin' ? 'salesperson' : 'admin');
+}
+
+// ── Navigation ──
+function nav(btn, viewId) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('is-active'));
+  document.getElementById(viewId).classList.add('is-active');
+  document.querySelectorAll('.sidenav-link').forEach(l => l.classList.remove('is-active'));
+  if (btn) btn.classList.add('is-active');
+}
+
+// ── Modals ──
+function openModal(id) {
+  const m = document.getElementById(id);
+  if (m) { m.classList.add('is-open'); document.body.style.overflow = 'hidden'; }
+}
+function closeModal(id) {
+  const m = document.getElementById(id);
+  if (m) { m.classList.remove('is-open'); document.body.style.overflow = ''; }
+}
+// Close on backdrop click
+document.querySelectorAll('.modal').forEach(modal => {
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(modal.id); });
+});
+// Close on Escape
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.querySelectorAll('.modal.is-open').forEach(m => closeModal(m.id));
+});
+
+// ── Gift card view toggle ──
+function setGcView(v) {
+  document.getElementById('gc-grid-view').classList.toggle('hidden', v !== 'grid');
+  document.getElementById('gc-list-view').classList.toggle('hidden', v !== 'list');
+  document.getElementById('gc-grid-btn').className = v === 'grid' ? 'btn btn--outline btn--sm' : 'btn btn--ghost btn--sm';
+  document.getElementById('gc-list-btn').className = v === 'list' ? 'btn btn--outline btn--sm' : 'btn btn--ghost btn--sm';
+}
+
+// ── Order tab filter ──
+function filterOrders(el, status) {
+  document.querySelectorAll('.tabs__item').forEach(t => t.classList.remove('is-active'));
+  el.classList.add('is-active');
+}
+
+// ── Dark mode ──
+let dark = false;
+function toggleTheme() {
+  dark = !dark;
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+  document.getElementById('theme-btn').querySelector('i').className = dark ? 'ti ti-sun' : 'ti ti-moon';
+}
+</script>
