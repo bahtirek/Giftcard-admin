@@ -1,0 +1,70 @@
+<div class="view" id="view-accounts">
+  <div class="flex items-start justify-between mb-md flex-wrap gap-sm">
+    <div>
+      <h1 class="text-xl font-semibold text-primary leading-snug">Accounts</h1>
+      <p class="text-sm text-secondary mt-xs">Manage business accounts and their gift card locations.</p>
+    </div>
+    <button class="btn btn--primary" onclick="openModal('modal-account')">
+      <i class="ti ti-plus" aria-hidden="true"></i>New Account
+    </button>
+  </div>
+
+  <!-- filters -->
+  <div class="flex gap-sm flex-wrap mb-md">
+    <div class="search-box" style="max-inline-size:280px">
+      <i class="ti ti-search text-tertiary" aria-hidden="true"></i>
+      <input type="search" placeholder="Search accounts…" />
+    </div>
+    <select class="select" style="inline-size:auto;min-inline-size:140px"><option>All Status</option><option>Active</option><option>Inactive</option><option>Pending</option></select>
+    <select class="select" style="inline-size:auto;min-inline-size:140px"><option>All Types</option><option>Restaurant</option><option>Retail</option><option>Grocery</option></select>
+    <button class="btn btn--outline"><i class="ti ti-adjustments-horizontal" aria-hidden="true"></i>Filter</button>
+  </div>
+
+  <!-- accounts table -->
+  <div class="card">
+    <div class="table-wrapper no-border">
+      <table class="table">
+        <thead><tr>
+          <th>Business</th><th>Type</th><th>Locations</th><th>Cards</th><th>Total Sales</th><th>Status</th><th>Created</th><th><span class="sr-only">Actions</span></th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td><div class="flex items-center gap-sm"><div style="font-size:1.25rem">☕</div><div><div class="font-medium">Starbucks Corp.</div><div class="text-xs text-tertiary">contact@starbucks.com</div></div></div></td>
+            <td class="text-secondary">Restaurant</td><td>12</td><td>28</td><td class="font-medium">$84,200</td>
+            <td><span class="badge badge--success badge--dot">Active</span></td>
+            <td class="text-secondary text-xs">Jan 2024</td>
+            <td><div class="flex gap-xs"><button class="btn btn--ghost btn--sm" onclick="openModal('modal-account-edit')"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="btn btn--ghost btn--sm"><i class="ti ti-eye" aria-hidden="true"></i></button></div></td>
+          </tr>
+          <tr>
+            <td><div class="flex items-center gap-sm"><div style="font-size:1.25rem">🛒</div><div><div class="font-medium">Amazon Retail</div><div class="text-xs text-tertiary">partners@amazon.com</div></div></div></td>
+            <td class="text-secondary">Retail</td><td>1</td><td>5</td><td class="font-medium">$62,400</td>
+            <td><span class="badge badge--success badge--dot">Active</span></td>
+            <td class="text-secondary text-xs">Feb 2024</td>
+            <td><div class="flex gap-xs"><button class="btn btn--ghost btn--sm" onclick="openModal('modal-account-edit')"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="btn btn--ghost btn--sm"><i class="ti ti-eye" aria-hidden="true"></i></button></div></td>
+          </tr>
+          <tr>
+            <td><div class="flex items-center gap-sm"><div style="font-size:1.25rem">🍕</div><div><div class="font-medium">Pizza Palace LLC</div><div class="text-xs text-tertiary">admin@pizzapalace.com</div></div></div></td>
+            <td class="text-secondary">Restaurant</td><td>6</td><td>12</td><td class="font-medium">$28,100</td>
+            <td><span class="badge badge--warning badge--dot">Pending</span></td>
+            <td class="text-secondary text-xs">Mar 2024</td>
+            <td><div class="flex gap-xs"><button class="btn btn--ghost btn--sm" onclick="openModal('modal-account-edit')"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="btn btn--ghost btn--sm"><i class="ti ti-eye" aria-hidden="true"></i></button></div></td>
+          </tr>
+          <tr>
+            <td><div class="flex items-center gap-sm"><div style="font-size:1.25rem">🎯</div><div><div class="font-medium">Target Inc.</div><div class="text-xs text-tertiary">gifts@target.com</div></div></div></td>
+            <td class="text-secondary">Retail</td><td>8</td><td>16</td><td class="font-medium">$19,600</td>
+            <td><span class="badge badge--neutral badge--dot">Inactive</span></td>
+            <td class="text-secondary text-xs">Mar 2024</td>
+            <td><div class="flex gap-xs"><button class="btn btn--ghost btn--sm" onclick="openModal('modal-account-edit')"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="btn btn--ghost btn--sm"><i class="ti ti-eye" aria-hidden="true"></i></button></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card__footer justify-between">
+      <span class="text-xs text-secondary">Showing 4 of 24 accounts</span>
+      <div class="flex gap-xs">
+        <button class="btn btn--outline btn--sm" disabled>‹ Prev</button>
+        <button class="btn btn--outline btn--sm">Next ›</button>
+      </div>
+    </div>
+  </div>
+</div>

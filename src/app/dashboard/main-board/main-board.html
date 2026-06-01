@@ -1,0 +1,153 @@
+<div class="view" id="view-dashboard">
+
+  <div class="flex items-start justify-between mb-md flex-wrap gap-sm">
+    <div>
+      <h1 class="text-xl font-semibold text-primary leading-snug">Dashboard</h1>
+      <p class="text-sm text-secondary mt-xs">Welcome back. Here's what's happening.</p>
+    </div>
+    <div class="flex gap-sm">
+      <button class="btn btn--outline"><i class="ti ti-calendar" aria-hidden="true"></i>May 2026</button>
+      <button class="btn btn--outline"><i class="ti ti-download" aria-hidden="true"></i>Export</button>
+    </div>
+  </div>
+
+  <!-- stats -->
+  <div class="grid-4 gap-md mb-md">
+    <div class="card">
+      <div class="card__body">
+        <div class="flex justify-between items-center mb-xs">
+          <span class="text-xs text-secondary">Total Sales</span>
+          <i class="ti ti-credit-card text-tertiary" aria-hidden="true"></i>
+        </div>
+        <div class="text-3xl font-semibold text-primary leading-none">$128,450</div>
+        <div class="flex items-center gap-xs text-xs text-success mt-xs">
+          <i class="ti ti-arrow-up-right" aria-hidden="true"></i>+18.2% this month
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card__body">
+        <div class="flex justify-between items-center mb-xs">
+          <span class="text-xs text-secondary">Gift Cards Sold</span>
+          <i class="ti ti-gift text-tertiary" aria-hidden="true"></i>
+        </div>
+        <div class="text-3xl font-semibold text-primary leading-none">1,284</div>
+        <div class="flex items-center gap-xs text-xs text-success mt-xs">
+          <i class="ti ti-arrow-up-right" aria-hidden="true"></i>+9.4% this month
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card__body">
+        <div class="flex justify-between items-center mb-xs">
+          <span class="text-xs text-secondary">Active Accounts</span>
+          <i class="ti ti-building-store text-tertiary" aria-hidden="true"></i>
+        </div>
+        <div class="text-3xl font-semibold text-primary leading-none">24</div>
+        <div class="flex items-center gap-xs text-xs text-tertiary mt-xs">
+          <i class="ti ti-plus" aria-hidden="true"></i>3 added this month
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card__body">
+        <div class="flex justify-between items-center mb-xs">
+          <span class="text-xs text-secondary">Pending Orders</span>
+          <i class="ti ti-clock text-tertiary" aria-hidden="true"></i>
+        </div>
+        <div class="text-3xl font-semibold text-primary leading-none">37</div>
+        <div class="flex items-center gap-xs text-xs text-warning mt-xs">
+          <i class="ti ti-alert-triangle" aria-hidden="true"></i>12 need attention
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- recent orders + top cards -->
+  <div class="content-split">
+
+    <!-- recent orders -->
+    <div class="card" id="dashboard-orders-card">
+      <div class="card__header">
+        <span class="card__title">Recent Orders</span>
+        <button class="btn btn--ghost btn--sm" onclick="nav(document.querySelector('[onclick*=view-orders]'),'view-orders')">
+          View all <i class="ti ti-arrow-right" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="table-wrapper no-border">
+        <table class="table">
+          <thead><tr>
+            <th>Order</th><th>Customer</th><th>Card</th><th>Amount</th><th>Status</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td class="font-mono text-xs text-secondary">#ORD-8821</td>
+              <td><div class="flex items-center gap-sm"><div class="c-avatar" style="background:#dbeafe;color:#1e40af">JL</div>Jamie Lee</div></td>
+              <td>Starbucks</td><td class="font-medium">$50.00</td>
+              <td><span class="badge badge--success badge--dot">Completed</span></td>
+            </tr>
+            <tr>
+              <td class="font-mono text-xs text-secondary">#ORD-8820</td>
+              <td><div class="flex items-center gap-sm"><div class="c-avatar" style="background:#fef9c3;color:#713f12">MR</div>Maya R.</div></td>
+              <td>Pizza Palace</td><td class="font-medium">$75.00</td>
+              <td><span class="badge badge--warning badge--dot">Pending</span></td>
+            </tr>
+            <tr>
+              <td class="font-mono text-xs text-secondary">#ORD-8819</td>
+              <td><div class="flex items-center gap-sm"><div class="c-avatar" style="background:#d1fae5;color:#065f46">BK</div>Ben K.</div></td>
+              <td>Amazon</td><td class="font-medium">$100.00</td>
+              <td><span class="badge badge--success badge--dot">Completed</span></td>
+            </tr>
+            <tr>
+              <td class="font-mono text-xs text-secondary">#ORD-8818</td>
+              <td><div class="flex items-center gap-sm"><div class="c-avatar" style="background:#ede9fe;color:#4c1d95">SP</div>Sara P.</div></td>
+              <td>Target</td><td class="font-medium">$25.00</td>
+              <td><span class="badge badge--danger badge--dot">Cancelled</span></td>
+            </tr>
+            <tr>
+              <td class="font-mono text-xs text-secondary">#ORD-8817</td>
+              <td><div class="flex items-center gap-sm"><div class="c-avatar" style="background:#fce7f3;color:#831843">DM</div>Dan M.</div></td>
+              <td>Burger King</td><td class="font-medium">$30.00</td>
+              <td><span class="badge badge--info badge--dot">Processing</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- top gift cards -->
+    <div class="card">
+      <div class="card__header">
+        <span class="card__title">Top Gift Cards</span>
+      </div>
+      <div class="p-md flex flex-col gap-sm">
+        <div class="flex items-center gap-sm">
+          <div style="font-size:1.5rem;inline-size:36px;text-align:center">☕</div>
+          <div class="flex-1 min-w-0"><div class="text-sm font-medium truncate">Starbucks</div><div class="text-xs text-tertiary">284 sold</div></div>
+          <div class="text-sm font-semibold">$14,200</div>
+        </div>
+        <div class="flex items-center gap-sm">
+          <div style="font-size:1.5rem;inline-size:36px;text-align:center">🛒</div>
+          <div class="flex-1 min-w-0"><div class="text-sm font-medium truncate">Amazon</div><div class="text-xs text-tertiary">198 sold</div></div>
+          <div class="text-sm font-semibold">$19,800</div>
+        </div>
+        <div class="flex items-center gap-sm">
+          <div style="font-size:1.5rem;inline-size:36px;text-align:center">🍕</div>
+          <div class="flex-1 min-w-0"><div class="text-sm font-medium truncate">Pizza Palace</div><div class="text-xs text-tertiary">167 sold</div></div>
+          <div class="text-sm font-semibold">$12,525</div>
+        </div>
+        <div class="flex items-center gap-sm">
+          <div style="font-size:1.5rem;inline-size:36px;text-align:center">🎯</div>
+          <div class="flex-1 min-w-0"><div class="text-sm font-medium truncate">Target</div><div class="text-xs text-tertiary">143 sold</div></div>
+          <div class="text-sm font-semibold">$7,150</div>
+        </div>
+        <div class="flex items-center gap-sm">
+          <div style="font-size:1.5rem;inline-size:36px;text-align:center">🍔</div>
+          <div class="flex-1 min-w-0"><div class="text-sm font-medium truncate">Burger King</div><div class="text-xs text-tertiary">118 sold</div></div>
+          <div class="text-sm font-semibold">$5,900</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
