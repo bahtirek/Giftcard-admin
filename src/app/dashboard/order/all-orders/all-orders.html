@@ -1,0 +1,99 @@
+<div class="view" id="view-orders">
+  <div class="flex items-start justify-between mb-md flex-wrap gap-sm">
+    <div>
+      <h1 class="text-xl font-semibold text-primary leading-snug">Orders</h1>
+      <p class="text-sm text-secondary mt-xs">View, update and cancel customer orders.</p>
+    </div>
+    <div class="flex gap-sm">
+      <button class="btn btn--outline"><i class="ti ti-download" aria-hidden="true"></i>Export</button>
+    </div>
+  </div>
+
+  <!-- tabs -->
+  <div class="tabs mb-md">
+    <div class="tabs__item is-active" onclick="filterOrders(this,'all')">All <span class="badge badge--neutral ms-auto" style="margin-inline-start:6px">156</span></div>
+    <div class="tabs__item" onclick="filterOrders(this,'pending')">Pending <span class="badge badge--warning" style="margin-inline-start:6px">37</span></div>
+    <div class="tabs__item" onclick="filterOrders(this,'completed')">Completed <span class="badge badge--success" style="margin-inline-start:6px">104</span></div>
+    <div class="tabs__item" onclick="filterOrders(this,'cancelled')">Cancelled <span class="badge badge--danger" style="margin-inline-start:6px">15</span></div>
+  </div>
+
+  <!-- filters -->
+  <div class="flex gap-md flex-wrap mb-md">
+    <div class="search-box" style="max-inline-size:260px">
+      <i class="ti ti-search text-tertiary" aria-hidden="true"></i>
+      <input type="search" placeholder="Search orders…" />
+    </div>
+    <select class="select" style="inline-size:auto;min-inline-size:160px"><option>All Gift Cards</option><option>Starbucks</option><option>Amazon</option></select>
+    <select class="select" style="inline-size:auto;min-inline-size:140px"><option>Date: Newest</option><option>Date: Oldest</option><option>Amount: High</option><option>Amount: Low</option></select>
+  </div>
+
+  <div class="card">
+    <div class="table-wrapper no-border">
+      <table class="table">
+        <thead><tr>
+          <th>Order ID</th><th>Customer</th><th>Gift Card</th><th>Recipient</th><th>Amount</th><th>Date</th><th>Status</th><th><span class="sr-only">Actions</span></th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td class="font-mono text-xs text-secondary">#ORD-8821</td>
+            <td><div class="flex items-center gap-sm"><div class="c-avatar" style="background:#dbeafe;color:#1e40af">JL</div><div><div class="font-medium">Jamie Lee</div><div class="text-xs text-tertiary">jamie@email.com</div></div></div></td>
+            <td>☕ Starbucks</td>
+            <td class="text-secondary">mom@email.com</td>
+            <td class="font-medium">$50.00</td>
+            <td class="text-secondary text-xs">27 May 2026</td>
+            <td><span class="badge badge--success badge--dot">Completed</span></td>
+            <td><div class="flex gap-xs">
+              <button class="btn btn--ghost btn--sm" onclick="openModal('modal-order')" title="View"><i class="ti ti-eye" aria-hidden="true"></i></button>
+            </div></td>
+          </tr>
+          <tr>
+            <td class="font-mono text-xs text-secondary">#ORD-8820</td>
+            <td><div class="flex items-center gap-sm"><div class="c-avatar" style="background:#fef9c3;color:#713f12">MR</div><div><div class="font-medium">Maya Rodriguez</div><div class="text-xs text-tertiary">maya@email.com</div></div></div></td>
+            <td>🍕 Pizza Palace</td>
+            <td class="text-secondary">+1 555 0123</td>
+            <td class="font-medium">$75.00</td>
+            <td class="text-secondary text-xs">26 May 2026</td>
+            <td><span class="badge badge--warning badge--dot">Pending</span></td>
+            <td><div class="flex gap-xs">
+              <button class="btn btn--ghost btn--sm" onclick="openModal('modal-order')" title="View"><i class="ti ti-eye" aria-hidden="true"></i></button>
+              <button class="btn btn--danger-outline btn--sm" onclick="openModal('modal-cancel')" title="Cancel"><i class="ti ti-x" aria-hidden="true"></i></button>
+            </div></td>
+          </tr>
+          <tr>
+            <td class="font-mono text-xs text-secondary">#ORD-8819</td>
+            <td><div class="flex items-center gap-sm"><div class="c-avatar" style="background:#d1fae5;color:#065f46">BK</div><div><div class="font-medium">Ben Kim</div><div class="text-xs text-tertiary">ben@email.com</div></div></div></td>
+            <td>🛒 Amazon</td>
+            <td class="text-secondary">friend@email.com</td>
+            <td class="font-medium">$100.00</td>
+            <td class="text-secondary text-xs">26 May 2026</td>
+            <td><span class="badge badge--info badge--dot">Processing</span></td>
+            <td><div class="flex gap-xs">
+              <button class="btn btn--ghost btn--sm" onclick="openModal('modal-order')" title="View"><i class="ti ti-eye" aria-hidden="true"></i></button>
+              <button class="btn btn--outline btn--sm" title="Mark complete"><i class="ti ti-check" aria-hidden="true"></i></button>
+              <button class="btn btn--danger-outline btn--sm" onclick="openModal('modal-cancel')" title="Cancel"><i class="ti ti-x" aria-hidden="true"></i></button>
+            </div></td>
+          </tr>
+          <tr>
+            <td class="font-mono text-xs text-secondary">#ORD-8818</td>
+            <td><div class="flex items-center gap-sm"><div class="c-avatar" style="background:#ede9fe;color:#4c1d95">SP</div><div><div class="font-medium">Sara Park</div><div class="text-xs text-tertiary">sara@email.com</div></div></div></td>
+            <td>🎯 Target</td>
+            <td class="text-secondary">sis@email.com</td>
+            <td class="font-medium">$25.00</td>
+            <td class="text-secondary text-xs">25 May 2026</td>
+            <td><span class="badge badge--danger badge--dot">Cancelled</span></td>
+            <td><div class="flex gap-xs">
+              <button class="btn btn--ghost btn--sm" onclick="openModal('modal-order')" title="View"><i class="ti ti-eye" aria-hidden="true"></i></button>
+            </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card__footer justify-between">
+      <span class="text-xs text-secondary">Showing 4 of 156 orders</span>
+      <div class="flex gap-xs">
+        <button class="btn btn--outline btn--sm" disabled>‹ Prev</button>
+        <button class="btn btn--outline btn--sm">Next ›</button>
+      </div>
+    </div>
+  </div>
+</div>

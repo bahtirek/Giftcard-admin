@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { Dashboard } from './dashboard/dashboard';
-import { AllAccounts } from './dashboard/account/all-accounts/all-accounts';
 import { MainBoard } from './dashboard/main-board/main-board';
 
 export const routes: Routes = [
@@ -8,9 +7,24 @@ export const routes: Routes = [
   {
     path: 'dashboard', component: Dashboard,
     children: [
-      { path: '', redirectTo: 'main-board', pathMatch: 'full' },
-      { path: 'main-board', component: MainBoard },
-      { path: 'all-accounts', component: AllAccounts }
+      /* { path: '', redirectTo: 'main-board', pathMatch: 'full' }, */
+      { path: '', component: MainBoard },
+      {
+        path: 'all-accounts',
+        loadComponent: () => import('./dashboard/account/all-accounts/all-accounts').then(c => c.AllAccounts)
+      },
+      {
+        path: 'all-gift-cards',
+        loadComponent: () => import('./dashboard/gift-card/all-gift-cards/all-gift-cards').then(c => c.AllGiftCards)
+      },
+      {
+        path: 'all-orders',
+        loadComponent: () => import('./dashboard/order/all-orders/all-orders').then(c => c.AllOrders)
+      },
+      {
+        path: 'settings',
+        loadComponent: () => import('./dashboard/settings/settings').then(c => c.Settings)
+      }
     ]
   },
 ];

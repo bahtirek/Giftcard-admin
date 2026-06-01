@@ -1,0 +1,54 @@
+<div class="view" id="view-settings">
+  <div class="mb-md">
+    <h1 class="text-xl font-semibold text-primary leading-snug">Settings</h1>
+    <p class="text-sm text-secondary mt-xs">Manage your portal preferences and account settings.</p>
+  </div>
+  <div class="grid-2 gap-md">
+    <div class="flex flex-col gap-md">
+      <div class="card">
+        <div class="card__header"><span class="card__title">Profile</span></div>
+        <div class="card__body flex flex-col gap-md">
+          <div class="grid-2 gap-md">
+            <div class="field"><label class="field__label">First name</label><input class="input" type="text" value="Alex" /></div>
+            <div class="field"><label class="field__label">Last name</label><input class="input" type="text" value="Doe" /></div>
+          </div>
+          <div class="field"><label class="field__label">Email</label><input class="input" type="email" value="alex.doe@gifthub.com" /></div>
+          <div class="field"><label class="field__label">Phone</label><input class="input" type="tel" value="+1 555 0100" /></div>
+        </div>
+        <div class="card__footer justify-end"><button class="btn btn--primary">Save changes</button></div>
+      </div>
+      <div class="card">
+        <div class="card__header"><span class="card__title">Security</span></div>
+        <div class="card__body flex flex-col gap-md">
+          <div class="field"><label class="field__label">Current password</label><input class="input" type="password" placeholder="••••••••" /></div>
+          <div class="field"><label class="field__label">New password</label><input class="input" type="password" placeholder="••••••••" /></div>
+          <div class="field"><label class="field__label">Confirm password</label><input class="input" type="password" placeholder="••••••••" /></div>
+        </div>
+        <div class="card__footer justify-end"><button class="btn btn--primary">Update password</button></div>
+      </div>
+    </div>
+    <div class="flex flex-col gap-md">
+      <div class="card">
+        <div class="card__header"><span class="card__title">Notifications</span></div>
+        <div class="card__body flex flex-col gap-md">
+          <label class="check-label"><input class="checkbox" type="checkbox" checked /><span>New order placed</span></label>
+          <label class="check-label"><input class="checkbox" type="checkbox" checked /><span>Order cancelled</span></label>
+          <label class="check-label"><input class="checkbox" type="checkbox" /><span>Low stock alert</span></label>
+          <label class="check-label"><input class="checkbox" type="checkbox" checked /><span>New account registered</span></label>
+          <label class="check-label"><input class="checkbox" type="checkbox" /><span>Weekly report</span></label>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card__header"><span class="card__title">Appearance</span></div>
+        <div class="card__body flex flex-col gap-md">
+          <div class="field"><label class="field__label">Theme</label>
+            <select class="select"><option>Light</option><option>Dark</option><option>System</option></select>
+          </div>
+          <div class="field"><label class="field__label">Language</label>
+            <select class="select"><option>English (US)</option><option>Spanish</option><option>French</option></select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
