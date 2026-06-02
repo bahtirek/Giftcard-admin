@@ -7,10 +7,11 @@ import { OrderModal } from './order/order-modal/order-modal';
 import { CancelOrderModal } from './order/cancel-order-modal/cancel-order-modal';
 import { RouterOutlet } from "@angular/router";
 import { Sidebar } from "./common/sidebar/sidebar";
+import { Header } from './common/header/header';
 
 @Component({
   selector: 'dashboard',
-  imports: [NewAccountModal, NewGiftcardModal, EditAccountModal, EditGiftcardModal, OrderModal, CancelOrderModal, RouterOutlet, Sidebar],
+  imports: [NewAccountModal, NewGiftcardModal, EditAccountModal, EditGiftcardModal, OrderModal, CancelOrderModal, RouterOutlet, Sidebar, Header],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
 })

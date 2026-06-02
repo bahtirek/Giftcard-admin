@@ -4,29 +4,7 @@
   <sidebar (openModalEvent)="openModal($event)" />
 
   <!-- ══════════ TOPBAR ══════════ -->
-  <header class="navbar" role="banner">
-    <button class="icon-btn hidden" id="menu-btn" aria-label="Open menu" onclick="document.getElementById('sidebar').classList.toggle('is-open')" style="display:none">
-      <i class="ti ti-menu-2" aria-hidden="true"></i>
-    </button>
-
-    <div class="search-box flex-1" style="max-inline-size:320px" role="search">
-      <i class="ti ti-search text-tertiary" aria-hidden="true"></i>
-      <input type="search" placeholder="Search accounts, cards, orders…" aria-label="Search" />
-    </div>
-
-    <div class="navbar__actions ms-auto">
-      <button class="icon-btn relative" aria-label="Notifications">
-        <i class="ti ti-bell" aria-hidden="true"></i>
-        <span class="notif-dot" aria-hidden="true"></span>
-      </button>
-      <button class="icon-btn" onclick="toggleTheme()" aria-label="Toggle theme" id="theme-btn">
-        <i class="ti ti-moon" aria-hidden="true"></i>
-      </button>
-      <button class="btn btn--primary" onclick="openModal('modal-giftcard')">
-        <i class="ti ti-plus" aria-hidden="true"></i>New Gift Card
-      </button>
-    </div>
-  </header>
+  <header> </header>
 
   <!-- ══════════ MAIN ══════════ -->
   <main class="main" id="main-content">
