@@ -5,11 +5,12 @@ import { EditAccountModal } from './account/edit-account-modal/edit-account-moda
 import { EditGiftcardModal } from './gift-card/edit-giftcard-modal/edit-giftcard-modal';
 import { OrderModal } from './order/order-modal/order-modal';
 import { CancelOrderModal } from './order/cancel-order-modal/cancel-order-modal';
-import { RouterLink, RouterOutlet } from "@angular/router";
+import { RouterOutlet } from "@angular/router";
+import { Sidebar } from "./common/sidebar/sidebar";
 
 @Component({
   selector: 'dashboard',
-  imports: [NewAccountModal, NewGiftcardModal, EditAccountModal, EditGiftcardModal, OrderModal, CancelOrderModal, RouterLink, RouterOutlet],
+  imports: [NewAccountModal, NewGiftcardModal, EditAccountModal, EditGiftcardModal, OrderModal, CancelOrderModal, RouterOutlet, Sidebar],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
 })

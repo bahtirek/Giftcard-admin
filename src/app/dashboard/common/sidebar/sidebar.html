@@ -1,0 +1,67 @@
+<div class="navbar__brand border-b px-md" style="block-size:52px;flex-shrink:0">
+  <div class="brand-icon" aria-hidden="true"><i class="ti ti-gift"></i></div>
+  <div>
+    <div class="text-sm font-semibold text-primary">GiftHub</div>
+    <div class="text-xs text-tertiary">Admin Portal</div>
+  </div>
+</div>
+
+<nav class="sidenav flex-1 overflow-auto mt-sm" aria-label="Sidebar">
+
+  <p class="sidenav__label" style="margin-block-start:0">Overview</p>
+  <button class="sidenav-link is-active" routerLink="/dashboard" routerLinkActive="is-active" >
+    <i class="ti ti-layout-dashboard" aria-hidden="true"></i>Dashboard
+  </button>
+
+  <p class="sidenav__label">Accounts</p>
+  <button class="sidenav-link" routerLink="all-accounts" routerLinkActive="is-active">
+    <i class="ti ti-building-store" aria-hidden="true"></i>All Accounts
+    <span class="sidenav-link__badge">24</span>
+  </button>
+  <button class="sidenav-link" (click)="openModal('isNewAccountModalOpen')">
+    <i class="ti ti-plus" aria-hidden="true"></i>New Account
+  </button>
+
+  <p class="sidenav__label">Gift Cards</p>
+  <button class="sidenav-link" routerLink="all-gift-cards" routerLinkActive="is-active">
+    <i class="ti ti-credit-card" aria-hidden="true"></i>All Gift Cards
+    <span class="sidenav-link__badge">87</span>
+  </button>
+  <button class="sidenav-link" (click)="openModal('isGiftcardModalOpen')">
+    <i class="ti ti-plus" aria-hidden="true"></i>New Gift Card
+  </button>
+
+  <!-- admin-only section -->
+  <p class="sidenav__label" id="admin-section-label">Orders</p>
+  <button class="sidenav-link" routerLink="all-orders" routerLinkActive="is-active">
+    <i class="ti ti-shopping-bag" aria-hidden="true"></i>All Orders
+    <span class="sidenav-link__badge">156</span>
+  </button>
+
+  <p class="sidenav__label">Settings</p>
+  <button class="sidenav-link" routerLink="settings" routerLinkActive="is-active">
+    <i class="ti ti-settings" aria-hidden="true"></i>Settings
+  </button>
+
+</nav>
+
+<div class="sidebar-footer">
+  <div class="user-row" id="user-row">
+    <div class="user-avatar role-admin" id="user-avatar">AD</div>
+    <div class="min-w-0">
+      <div class="text-sm font-medium text-primary truncate" id="user-name">Alex Doe</div>
+      <div class="text-xs text-tertiary" id="user-role-label">Administrator</div>
+    </div>
+    <div class="ms-auto flex gap-xs">
+      <span class="badge badge--brand" id="role-badge">Admin</span>
+    </div>
+  </div>
+  <div class="flex gap-xs mt-sm pb-sm">
+    <button class="btn btn--outline btn--sm flex-1" onclick="switchRole()">
+      <i class="ti ti-switch-horizontal" aria-hidden="true"></i>Switch role
+    </button>
+    <button class="btn btn--ghost btn--sm icon-btn" aria-label="Sign out" title="Sign out">
+      <i class="ti ti-logout" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>
