@@ -1,8 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-@import 'styles/ui.css';
-@import 'styles/common.scss';
-@import 'styles/sidebar.scss';
-@import 'styles/header.scss';
+@use 'styles/ui.css';
+@use 'styles/common.scss';
+@use 'styles/sidebar.scss';
+@use 'styles/header.scss';
 
 /* reset */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
