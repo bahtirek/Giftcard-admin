@@ -1,1 +1,16 @@
-<p>select works!</p>
+<div class="field" [ngClass]="{'is-invalid': inputFormField().invalid() && inputFormField().touched()}">
+  <label class="field__label" [for]="id()">{{label()}}
+    @if(required()) {
+      <span style="color:var(--color-danger)">*</span>
+    }
+  </label>
+  <div class="input-group">
+    <ng-content select="[prepend]"></ng-content>
+    <select class="select" [id]="id()" [formField]="inputFormField">
+      <option value="" disabled selected>{{placeholder()}}</option>
+      @for (opt of options(); track opt) {
+        <option [value]="opt.value">{{ opt.label }}</option>
+      }
+    </select>
+  </div>
+</div>

@@ -1,1 +1,17 @@
-<p>textarea works!</p>
+<div class="field" [ngClass]="{'is-invalid': inputFormField().invalid() && inputFormField().touched()}">
+  <label class="field__label" [for]="id()">{{label()}}
+    @if(required()) {
+      <span style="color:var(--color-danger)">*</span>
+    }
+  </label>
+  <div class="input-group">
+    <ng-content select="[prepend]"></ng-content>
+      <textarea
+        class="textarea"
+        [id]="id()"
+        [placeholder]="placeholder()"
+        [formField]="inputFormField"
+        [rows]="rows()"
+      ></textarea>
+  </div>
+</div>

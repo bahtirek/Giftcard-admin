@@ -1,5 +1,5 @@
 <div class="field" [ngClass]="{'is-invalid': inputFormField().invalid() && inputFormField().touched()}">
-  <label class="field__label" for="acc-name">{{label()}}
+  <label class="field__label" [for]="id()">{{label()}}
     @if(required()) {
       <span style="color:var(--color-danger)">*</span>
     }
