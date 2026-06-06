@@ -5,70 +5,51 @@
         [label]="'Business Name'"
         [placeholder]="'e.g. Starbucks Corp.'"
         [required]="true"
-      >
-      </app-input>
-
-        <div class="field">
-            <label class="field__label" for="acc-type">Business type</label>
-            <select class="select" id="acc-type" [formField]="accountForm.businessType">
-                <option>Restaurant</option>
-                <option>Retail</option>
-                <option>Grocery</option>
-                <option>Entertainment</option>
-                <option>Other</option>
-            </select>
-        </div>
+      />
+      <app-select
+        [inputFormField]="accountForm.businessType()"
+        [label]="'Business Type'"
+        [placeholder]="'Select business type'"
+        [required]="true"
+        [options]="options()"
+      />
     </div>
     <div class="grid-2 gap-md">
-        <div class="field">
-            <label class="field__label" for="acc-email">Contact email
-                <span style="color:var(--color-danger)">*</span>
-            </label>
-            <input
-                class="input"
-                id="acc-email"
-                type="email"
-                placeholder="contact@business.com"
-                [formField]="accountForm.email"
-            >
-        </div>
-        <div class="field">
-            <label class="field__label" for="acc-phone">Contact phone</label>
-            <input
-                class="input"
-                id="acc-phone"
-                type="tel"
-                placeholder="+1 555 0000"
-                [formField]="accountForm.phone"
-            >
-        </div>
+      <app-input
+        [inputFormField]="accountForm.businessName()"
+        [label]="'Contact email'"
+        [placeholder]="'contact@business.com'"
+        [required]="true"
+        [type]="'email'"
+      />
+
+      <app-input
+        [inputFormField]="accountForm.phone()"
+        [label]="'Contact phone'"
+        [placeholder]="'99 123 4567'"
+        [required]="true"
+        [type]="'tel'"
+      >
+      <span prepend class="input-group__addon">+998</span>
+    </app-input>
     </div>
     <app-input
       [inputFormField]="accountForm.website()"
       [label]="'Website'"
-      [placeholder]="'e.g. example.com'"
-      [required]="true"
+      [placeholder]="'example.com'"
     >
       <span prepend class="input-group__addon">https://</span>
     </app-input>
-    <div class="field">
-        <label class="field__label" for="acc-address">Address</label>
-        <input
-            class="input"
-            id="acc-address"
-            type="text"
-            placeholder="123 Main St, City, State"
-            [formField]="accountForm.address"
-        >
-    </div>
-    <div class="field">
-        <label class="field__label" for="acc-notes">Notes</label>
-        <textarea
-            class="textarea"
-            id="acc-notes"
-            rows="3"
-            placeholder="Internal notes about this account…"
-            [formField]="accountForm.notes"
-        ></textarea>
-    </div>
+
+    <app-input
+      [inputFormField]="accountForm.address()"
+      [label]="'Address'"
+      [placeholder]="'123 Main St, City, State'"
+      [required]="true"
+    />
+    <app-textarea
+      [inputFormField]="accountForm.notes()"
+      [label]="'Notes'"
+      [placeholder]="'Internal notes about this account…'"
+    />
 </div>
