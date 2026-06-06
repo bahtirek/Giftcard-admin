@@ -9,7 +9,7 @@ import { NgClass } from '@angular/common';
   templateUrl: './input.html',
   styleUrl: './input.scss',
 })
-export class Input {
+export class AppInput {
   inputFormField = input<any>();
   required = input<boolean>(false);
   label = input<string>('');
