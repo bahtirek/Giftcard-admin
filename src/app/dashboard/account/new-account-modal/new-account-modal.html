@@ -2,20 +2,8 @@
   <div modal-header>
     <div><h2 class="modal__title" id="modal-account-title">Create New Account</h2><p class="text-sm text-secondary mt-xs">Add a new business account to the platform.</p></div>
   </div>
-  <div modal-body class="flex flex-col gap-md">
-      <div class="grid-2 gap-md">
-        <div class="field"><label class="field__label" for="acc-name">Business name <span style="color:var(--color-danger)">*</span></label><input class="input" id="acc-name" type="text" placeholder="e.g. Starbucks Corp." /></div>
-        <div class="field"><label class="field__label" for="acc-type">Business type</label><select class="select" id="acc-type"><option>Restaurant</option><option>Retail</option><option>Grocery</option><option>Entertainment</option><option>Other</option></select></div>
-      </div>
-      <div class="grid-2 gap-md">
-        <div class="field"><label class="field__label" for="acc-email">Contact email <span style="color:var(--color-danger)">*</span></label><input class="input" id="acc-email" type="email" placeholder="contact@business.com" /></div>
-        <div class="field"><label class="field__label" for="acc-phone">Contact phone</label><input class="input" id="acc-phone" type="tel" placeholder="+1 555 0000" /></div>
-      </div>
-      <div class="field"><label class="field__label" for="acc-website">Website</label>
-        <div class="input-group"><span class="input-group__addon">https://</span><input class="input" id="acc-website" type="text" placeholder="example.com" /></div>
-      </div>
-      <div class="field"><label class="field__label" for="acc-address">Address</label><input class="input" id="acc-address" type="text" placeholder="123 Main St, City, State" /></div>
-      <div class="field"><label class="field__label" for="acc-notes">Notes</label><textarea class="textarea" id="acc-notes" rows="3" placeholder="Internal notes about this account…"></textarea></div>
+  <div modal-body>
+      <account-form></account-form>
   </div>
   <div modal-footer>
       <button class="btn btn--outline" (click)="closeModal()">Cancel</button>

@@ -1,0 +1,74 @@
+<div class="flex flex-col gap-md">
+    <div class="grid-2 gap-md">
+      <custom-input
+        [inputFormField]="accountForm.businessName()"
+        [label]="'Business Name'"
+        [placeholder]="'e.g. Starbucks Corp.'"
+        [required]="true"
+      >
+      </custom-input>
+
+        <div class="field">
+            <label class="field__label" for="acc-type">Business type</label>
+            <select class="select" id="acc-type" [formField]="accountForm.businessType">
+                <option>Restaurant</option>
+                <option>Retail</option>
+                <option>Grocery</option>
+                <option>Entertainment</option>
+                <option>Other</option>
+            </select>
+        </div>
+    </div>
+    <div class="grid-2 gap-md">
+        <div class="field">
+            <label class="field__label" for="acc-email">Contact email
+                <span style="color:var(--color-danger)">*</span>
+            </label>
+            <input
+                class="input"
+                id="acc-email"
+                type="email"
+                placeholder="contact@business.com"
+                [formField]="accountForm.email"
+            >
+        </div>
+        <div class="field">
+            <label class="field__label" for="acc-phone">Contact phone</label>
+            <input
+                class="input"
+                id="acc-phone"
+                type="tel"
+                placeholder="+1 555 0000"
+                [formField]="accountForm.phone"
+            >
+        </div>
+    </div>
+    <custom-input
+      [inputFormField]="accountForm.website()"
+      [label]="'Website'"
+      [placeholder]="'e.g. example.com'"
+      [required]="true"
+    >
+      <span prepend class="input-group__addon">https://</span>
+    </custom-input>
+    <div class="field">
+        <label class="field__label" for="acc-address">Address</label>
+        <input
+            class="input"
+            id="acc-address"
+            type="text"
+            placeholder="123 Main St, City, State"
+            [formField]="accountForm.address"
+        >
+    </div>
+    <div class="field">
+        <label class="field__label" for="acc-notes">Notes</label>
+        <textarea
+            class="textarea"
+            id="acc-notes"
+            rows="3"
+            placeholder="Internal notes about this account…"
+            [formField]="accountForm.notes"
+        ></textarea>
+    </div>
+</div>

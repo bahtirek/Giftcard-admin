@@ -1,9 +1,10 @@
 import { Component, input, output } from '@angular/core';
 import { Modal } from '../../../common/modal/modal';
+import { AccountForm } from "../account-form/account-form";
 
 @Component({
   selector: 'new-account-modal',
-  imports: [Modal],
+  imports: [Modal, AccountForm],
   templateUrl: './new-account-modal.html',
   styleUrl: './new-account-modal.scss',
 })
