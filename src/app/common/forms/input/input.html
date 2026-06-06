@@ -1,1 +1,25 @@
-<p>input works!</p>
+<div class="field" [ngClass]="{'is-invalid': inputFormField().invalid() && inputFormField().touched()}">
+  <label class="field__label" for="acc-name">{{label()}}
+    @if(required()) {
+      <span style="color:var(--color-danger)">*</span>
+    }
+  </label>
+  <div class="input-group">
+    <ng-content select="[prepend]"></ng-content>
+    <input
+      class="input"
+      [id]="id()"
+      [type]="type()"
+      [placeholder]="placeholder()"
+      [formField]="inputFormField"
+    >
+    <ng-content select="[append]"></ng-content>
+  </div>
+  @if (inputFormField().invalid() && inputFormField().touched()) {
+    <div class="field__error">
+      @for (error of inputFormField().errors(); track error.kind) {
+        <div>{{error.message}}</div>
+      }
+    </div>
+  }
+</div>

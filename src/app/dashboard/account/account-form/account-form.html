@@ -1,12 +1,12 @@
 <div class="flex flex-col gap-md">
     <div class="grid-2 gap-md">
-      <custom-input
+      <app-input
         [inputFormField]="accountForm.businessName()"
         [label]="'Business Name'"
         [placeholder]="'e.g. Starbucks Corp.'"
         [required]="true"
       >
-      </custom-input>
+      </app-input>
 
         <div class="field">
             <label class="field__label" for="acc-type">Business type</label>
@@ -43,14 +43,14 @@
             >
         </div>
     </div>
-    <custom-input
+    <app-input
       [inputFormField]="accountForm.website()"
       [label]="'Website'"
       [placeholder]="'e.g. example.com'"
       [required]="true"
     >
       <span prepend class="input-group__addon">https://</span>
-    </custom-input>
+    </app-input>
     <div class="field">
         <label class="field__label" for="acc-address">Address</label>
         <input
