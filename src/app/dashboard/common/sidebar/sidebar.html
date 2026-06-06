@@ -9,7 +9,7 @@
 <nav class="sidenav flex-1 overflow-auto mt-sm" aria-label="Sidebar">
 
   <p class="sidenav__label" style="margin-block-start:0">Overview</p>
-  <button class="sidenav-link is-active" routerLink="/dashboard" routerLinkActive="is-active" >
+  <button class="sidenav-link" routerLink="/dashboard" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact:true}">
     <i class="ti ti-layout-dashboard" aria-hidden="true"></i>Dashboard
   </button>
 
