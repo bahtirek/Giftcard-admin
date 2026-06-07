@@ -1,4 +1,4 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, input, signal, ChangeDetectionStrategy } from '@angular/core';
 import { uniqueId } from '../../../helpers/uniqueid';
 import { FormField } from '@angular/forms/signals';
 import { NgClass } from '@angular/common';
@@ -8,6 +8,7 @@ import { Option } from '../../../interfaces/options';
   selector: 'app-select',
   imports: [FormField, NgClass],
   templateUrl: './select.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './select.scss',
 })
 export class Select {

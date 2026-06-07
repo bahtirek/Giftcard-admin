@@ -1,4 +1,4 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, input, signal, ChangeDetectionStrategy } from '@angular/core';
 import { uniqueId } from '../../../helpers/uniqueid';
 import { FormField } from '@angular/forms/signals';
 import { NgClass } from '@angular/common';
@@ -7,6 +7,7 @@ import { NgClass } from '@angular/common';
   selector: 'app-textarea',
   imports: [FormField, NgClass],
   templateUrl: './textarea.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './textarea.scss',
 })
 export class Textarea {

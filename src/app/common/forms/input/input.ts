@@ -1,4 +1,4 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, input, signal, ChangeDetectionStrategy } from '@angular/core';
 import { uniqueId } from '../../../helpers/uniqueid';
 import { FormField } from '@angular/forms/signals';
 import { NgClass } from '@angular/common';
@@ -7,6 +7,7 @@ import { NgClass } from '@angular/common';
   selector: 'app-input',
   imports: [FormField, NgClass],
   templateUrl: './input.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './input.scss',
 })
 export class AppInput {

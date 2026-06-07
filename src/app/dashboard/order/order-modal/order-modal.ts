@@ -1,10 +1,11 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, output, ChangeDetectionStrategy } from '@angular/core';
 import { Modal } from '../../../common/modal/modal';
 
 @Component({
   selector: 'order-modal',
   imports: [Modal],
   templateUrl: './order-modal.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './order-modal.scss',
 })
 export class OrderModal {

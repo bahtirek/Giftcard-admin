@@ -1,10 +1,11 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, output, ChangeDetectionStrategy } from '@angular/core';
 import { Modal } from '../../../common/modal/modal';
 
 @Component({
   selector: 'new-giftcard-modal',
   imports: [Modal],
   templateUrl: './new-giftcard-modal.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './new-giftcard-modal.scss',
 })
 export class NewGiftcardModal {

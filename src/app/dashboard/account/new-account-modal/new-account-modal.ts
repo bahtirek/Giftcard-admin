@@ -1,11 +1,12 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, output, ChangeDetectionStrategy } from '@angular/core';
 import { Modal } from '../../../common/modal/modal';
-import { AccountForm } from "../account-form/account-form";
+import { AccountForm } from '../account-form/account-form';
 
 @Component({
   selector: 'new-account-modal',
   imports: [Modal, AccountForm],
   templateUrl: './new-account-modal.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './new-account-modal.scss',
 })
 export class NewAccountModal {
