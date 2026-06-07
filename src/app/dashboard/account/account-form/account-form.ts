@@ -1,6 +1,7 @@
-import { Component, effect, signal } from '@angular/core';
+import { validate, FormRoot } from '@angular/forms/signals';
+import { Component, effect, output, signal } from '@angular/core';
 import { Account, accountSchema, initialAccountData } from './account-form-interface';
-import { form } from '@angular/forms/signals';
+import { FieldTree, form } from '@angular/forms/signals';
 import { AppInput } from "../../../common/forms/input/input";
 import { Option } from '../../../interfaces/options';
 import { Select } from "../../../common/forms/select/select";
@@ -8,7 +9,7 @@ import { Textarea } from "../../../common/forms/textarea/textarea";
 
 @Component({
   selector: 'account-form',
-  imports: [AppInput, Select, Textarea],
+  imports: [AppInput, Select, Textarea, FormRoot],
   templateUrl: './account-form.html',
   styleUrl: './account-form.scss',
 })
@@ -30,4 +31,11 @@ export class AccountForm {
   eff = effect(() => {
     console.log('Account123 Model Updated:', this.accountModel());
   });
+
+  validateForm() {
+    const validationResult = this.accountForm().invalid()
+    console.log('Validation Result:', validationResult);
+  }
+
+  //accountFormEvent = output<any>(this.accountForm);
 }

@@ -24,6 +24,10 @@ export const routes: Routes = [
       {
         path: 'settings',
         loadComponent: () => import('./dashboard/settings/settings').then(c => c.Settings)
+      },
+      {
+        path: 'create-account',
+        loadComponent: () => import('./dashboard/account/create-account/create-account').then(c => c.CreateAccount)
       }
     ]
   },

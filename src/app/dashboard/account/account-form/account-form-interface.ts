@@ -1,12 +1,20 @@
 import { email, form, minLength, required, schema, SchemaPath, validate } from "@angular/forms/signals";
 
+export interface Address {
+  addressLineOne: string;
+  addressLineTwo: string;
+  city: string;
+  state: string;
+  zipCode: string;
+}
+
 export interface Account {
   businessName: string;
   businessType: string;
   phone: string;
   email: string;
   website: string;
-  address: string;
+  address: Address;
   notes: string;
 }
 
@@ -16,7 +24,13 @@ export const initialAccountData: Account = {
   phone: '',
   email: '',
   website: '',
-  address: '',
+  address: {
+    addressLineOne: '',
+    addressLineTwo: '',
+    city: '',
+    state: '',
+    zipCode: ''
+  },
   notes: ''
 };
 
@@ -28,9 +42,12 @@ export const accountSchema = schema<Account>((fieldPath) => {
   required(fieldPath.email, {message: 'Email is required'}),
   minLength(fieldPath.email, 5, {message: 'Email must be at least 5 characters'}),
   required(fieldPath.phone, {message: 'Phone is required'}),
-  required(fieldPath.address, {message: 'Address is required'}),
-  url(fieldPath.website, {message: 'Website is required'}),
-  phoneNumber(fieldPath.phone, {message: 'Phone is required'})
+  required(fieldPath.address.addressLineOne, {message: 'Address is required'}),
+  required(fieldPath.address.city, {message: 'City is required'}),
+  required(fieldPath.address.state, {message: 'State is required'}),
+  required(fieldPath.address.zipCode, {message: 'Zip Code is required'})
+  //url(fieldPath.website, {message: 'Website is required'})
+  //phoneNumber(fieldPath.phone, {message: 'Phone is required'})
 });
 
 function url(path: SchemaPath<string>, options?: {message?: string}) {
