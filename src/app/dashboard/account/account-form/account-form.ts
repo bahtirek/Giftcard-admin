@@ -1,7 +1,6 @@
-import { validate, FormRoot } from '@angular/forms/signals';
-import { Component, effect, output, signal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, effect, signal, ChangeDetectionStrategy, output } from '@angular/core';
 import { Account, accountSchema, initialAccountData } from './account-form-interface';
-import { FieldTree, form } from '@angular/forms/signals';
+import { form } from '@angular/forms/signals';
 import { AppInput } from '../../../common/forms/input/input';
 import { Option } from '../../../interfaces/options';
 import { Select } from '../../../common/forms/select/select';
@@ -9,12 +8,13 @@ import { Textarea } from '../../../common/forms/textarea/textarea';
 
 @Component({
   selector: 'account-form',
-  imports: [AppInput, Select, Textarea, FormRoot],
+  imports: [AppInput, Select, Textarea],
   templateUrl: './account-form.html',
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './account-form.scss',
 })
 export class AccountForm {
+
   accountModel = signal<Account>(initialAccountData);
 
   accountForm = form(this.accountModel, accountSchema);
@@ -28,14 +28,12 @@ export class AccountForm {
     { value: 'Other', label: 'Other' },
   ]);
 
-  eff = effect(() => {
-    console.log('Account123 Model Updated:', this.accountModel());
-  });
-
   validateForm() {
-    const validationResult = this.accountForm().invalid();
-    console.log('Validation Result:', validationResult);
+    this.accountForm().markAsTouched();
+    if (this.accountForm().valid()) {
+      this.submitAccount.emit(this.accountModel());
+    }
   }
 
-  //accountFormEvent = output<any>(this.accountForm);
+  submitAccount = output<Account>();
 }
