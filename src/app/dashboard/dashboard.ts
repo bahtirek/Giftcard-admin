@@ -1,5 +1,4 @@
 import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
-import { NewAccountModal } from './account/new-account-modal/new-account-modal';
 import { NewGiftcardModal } from './gift-card/new-giftcard-modal/new-giftcard-modal';
 import { EditAccountModal } from './account/edit-account-modal/edit-account-modal';
 import { EditGiftcardModal } from './gift-card/edit-giftcard-modal/edit-giftcard-modal';
@@ -12,7 +11,6 @@ import { Header } from './common/header/header';
 @Component({
   selector: 'dashboard',
   imports: [
-    NewAccountModal,
     NewGiftcardModal,
     EditAccountModal,
     EditGiftcardModal,
