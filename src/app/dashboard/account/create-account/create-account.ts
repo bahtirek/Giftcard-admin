@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy, ViewChild, inject } from '@angular/
 import { AccountForm } from '../account-form/account-form';
 import { Account } from '../account-form/account-form-interface';
 import { Location } from '@angular/common';
+import { LoaderService } from '../../../common/loader/loader.service';
 
 @Component({
   selector: 'create-account',
@@ -13,14 +14,24 @@ import { Location } from '@angular/common';
 export class CreateAccount {
   @ViewChild(AccountForm) childRef!: AccountForm;
   private location = inject(Location);
+  private loading = inject(LoaderService);
 
   onSubmitButtonClick() {
     this.childRef?.validateForm();
   }
 
-  onAccountSubmitEvent(account: Account) {
+  async onAccountSubmitEvent(account: Account) {
     console.log('Received Account Data in Parent Component:', account);
-    // Here you can handle the submitted account data, e.g., send it to a server or update the UI.
+    this.loading.show();
+    try {
+      // Simulate an API call
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      console.log('Account created successfully');
+    } catch (error) {
+      console.error('Error creating account:', error);
+    } finally {
+      this.loading.hide();
+    }
   }
 
   onCancel() {
