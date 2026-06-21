@@ -2,7 +2,7 @@ import { HttpClient, HttpContext, HttpHeaders, HttpParams } from '@angular/commo
 import { inject, Service } from '@angular/core';
 import { Account, AccountResponse } from './account-form-interface';
 import { API_URL } from '../../../app.config.tokens';
-import { SHOW_LOADER } from '../../../common/loader/loader-context.token';
+import { SHOW_LOADER } from '../../../core/loader/loader-context.token';
 
 @Service()
 export class AccountService {
