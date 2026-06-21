@@ -34,57 +34,7 @@
     <!-- accounts table -->
     <div class="card">
         <div class="table-wrapper no-border">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Business</th>
-                        <th>Type</th>
-                        <th>Locations</th>
-                        <th>Cards</th>
-                        <th>Total Sales</th>
-                        <th>Status</th>
-                        <th>Created</th>
-                        <th>
-                            <span class="sr-only">Actions</span>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                  @for (account of accounts(); track account.id){
-                    <tr>
-                        <td>
-                            <div class="flex items-center gap-sm">
-                                <div style="font-size:1.25rem">☕</div>
-                                <div>
-                                    <div class="font-medium">{{account.businessName}}</div>
-                                    <div class="text-xs text-tertiary">{{account.email}}</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="text-secondary">{{account.businessType}}</td>
-                        <td>{{account.locations || '--'}}</td>
-                        <td>{{account.cards || '--'}}</td>
-                        <td class="font-medium">{{account.totalSales || '--'}}</td>
-                        <td>
-                            <span class="badge badge--success badge--dot">{{account.status}}</span>
-                        </td>
-                        <td class="text-secondary text-xs">{{account.createdAt}}</td>
-                        <td>
-                            <div class="flex gap-xs">
-                                <button class="btn btn--ghost btn--sm" onclick="openModal('modal-account-edit')">
-                                    <i class="ti ti-edit" aria-hidden="true"></i>
-                                </button>
-                                <button class="btn btn--ghost btn--sm">
-                                    <i class="ti ti-eye" aria-hidden="true"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                  } @empty {
-                    <div class="p-lg">No accounts found</div>
-                  }
-                </tbody>
-            </table>
+            <app-accounts-table [accounts]="accounts()" />
         </div>
         <div class="card__footer justify-between">
             <span class="text-xs text-secondary">Showing 4 of 24 accounts</span>
