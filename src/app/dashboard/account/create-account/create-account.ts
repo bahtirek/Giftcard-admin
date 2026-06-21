@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, ViewChild, inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewChild, inject, effect } from '@angular/core';
 import { AccountForm } from '../account-form/account-form';
 import { Account } from '../account-form/account-form-interface';
 import { Location } from '@angular/common';
@@ -13,6 +13,7 @@ import { AccountService } from '../account.service';
 })
 export class CreateAccount {
   @ViewChild(AccountForm) childRef!: AccountForm;
+
   private location = inject(Location);
   private accountService = inject(AccountService)
 
@@ -21,15 +22,11 @@ export class CreateAccount {
   }
 
   async onAccountSubmitEvent(account: Account) {
-    console.log('Received Account Data in Parent Component:', account);
+    this.accountService.postAccount(account, () => this.onPostComplete())
+  }
 
-    this.accountService.postAccount(account).subscribe({
-      next: (response) => {
-        console.log(response);
-
-        this.location.back()
-      },
-    })
+  onPostComplete ()  {
+    this.location.back();
   }
 
   onCancel() {

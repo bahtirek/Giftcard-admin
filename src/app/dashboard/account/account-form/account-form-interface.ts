@@ -16,6 +16,8 @@ export interface Account {
   website: string;
   address: Address;
   notes: string;
+  status?: string;
+  createdAt?: number;
 }
 
 export interface AccountResponse {
@@ -27,7 +29,11 @@ export interface AccountResponse {
   website: string;
   address: Address;
   notes: string;
-  createdAt?: string;
+  createdAt?: number;
+  locations?: number;
+  cards: number;
+  totalSales?: number;
+  status?: string;
 }
 
 export const initialAccountData: Account = {
