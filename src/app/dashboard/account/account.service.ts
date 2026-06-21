@@ -29,6 +29,21 @@ export class AccountService {
     })
   }
 
+  patchAccount(account: AccountResponse, onComplteCallback: () => void) {
+    account.updatedAt = Date.now();
+    account.status = AccountStatusEnum.Active;
+    const headers = new HttpHeaders().set('Content-Type', 'application/json')
+
+    this.http.patch<AccountResponse>( `${this.baseUrl}/accounts/${account.id}`, account, {
+      headers,
+      context: new HttpContext().set(SHOW_LOADER, true)
+    }).subscribe({
+      complete: () => {
+        onComplteCallback()
+      },
+    })
+  }
+
   getAllAccounts() {
     this.http.get<AccountResponse[]>( `${this.baseUrl}/accounts`, {
       context: new HttpContext().set(SHOW_LOADER, true)

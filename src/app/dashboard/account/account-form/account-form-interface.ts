@@ -18,6 +18,7 @@ export interface Account {
   notes: string;
   status?: string;
   createdAt?: number;
+  updatedAt?: number;
 }
 
 export interface AccountResponse {
@@ -34,6 +35,7 @@ export interface AccountResponse {
   cards: number;
   totalSales?: number;
   status?: string;
+  updatedAt?:number
 }
 
 export const initialAccountData: Account = {

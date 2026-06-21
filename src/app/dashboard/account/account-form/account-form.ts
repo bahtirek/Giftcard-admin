@@ -1,5 +1,5 @@
-import { Component, effect, signal, ChangeDetectionStrategy, output } from '@angular/core';
-import { Account, accountSchema, initialAccountData } from './account-form-interface';
+import { Component, effect, signal, ChangeDetectionStrategy, output, input, OnInit } from '@angular/core';
+import { Account, AccountResponse, accountSchema, initialAccountData } from './account-form-interface';
 import { form } from '@angular/forms/signals';
 import { AppInput } from '../../../common/forms/input/input';
 import { Option } from '../../../interfaces/options';
@@ -13,7 +13,15 @@ import { Textarea } from '../../../common/forms/textarea/textarea';
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './account-form.scss',
 })
-export class AccountForm {
+export class AccountForm implements OnInit{
+  ngOnInit(): void {
+    if(this.account()?.id) {
+      const editingAccount: Account = this.account() as Account;
+      this.accountModel.set(editingAccount)
+    }
+  }
+
+  account = input<AccountResponse>()
 
   accountModel = signal<Account>(initialAccountData);
 

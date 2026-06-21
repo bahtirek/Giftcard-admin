@@ -1,10 +1,44 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewChild, inject } from '@angular/core';
+import { AccountForm } from '../account-form/account-form';
+import { AccountService } from '../account.service';
+import { Account, AccountResponse } from '../account-form/account-form-interface';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'edit-account',
-  imports: [],
+  imports: [AccountForm],
   templateUrl: './edit-account.html',
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './edit-account.scss',
 })
-export class EditAccount {}
+export class EditAccount {
+  constructor() {
+    const router = inject(Router);
+    const currentNavigation = router.currentNavigation();
+    this.account = currentNavigation?.extras.state?.['account'];
+    if(!this.account) router.navigate(['/dashboard/all-accounts'])
+  }
+
+  @ViewChild(AccountForm) childRef!: AccountForm;
+
+  private location = inject(Location);
+  private accountService = inject(AccountService);
+  account: AccountResponse;
+
+  onSubmitButtonClick() {
+    this.childRef?.validateForm();
+  }
+
+  async onAccountSubmitEvent(account: Account) {
+    this.accountService.patchAccount(account as AccountResponse, () => this.onPostComplete())
+  }
+
+  onPostComplete ()  {
+    this.location.back();
+  }
+
+  onCancel() {
+    this.location.back();
+  }
+}

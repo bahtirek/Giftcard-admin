@@ -28,6 +28,10 @@ export const routes: Routes = [
       {
         path: 'create-account',
         loadComponent: () => import('./dashboard/account/create-account/create-account').then(c => c.CreateAccount)
+      },
+      {
+        path: 'edit-account',
+        loadComponent: () => import('./dashboard/account/edit-account/edit-account').then(c => c.EditAccount)
       }
     ]
   },

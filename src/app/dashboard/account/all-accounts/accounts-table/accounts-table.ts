@@ -1,6 +1,7 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { BusinessType } from './business-type/business-type';
 import { AccountResponse } from '../../account-form/account-form-interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-accounts-table',
@@ -10,4 +11,11 @@ import { AccountResponse } from '../../account-form/account-form-interface';
 })
 export class AccountsTable {
   accounts = input<AccountResponse[]>()
+  private router = inject(Router)
+
+  onAccountEditClick(account: AccountResponse){
+    this.router.navigate(['dashboard/edit-account'], {
+      state: { account: account }
+    });
+  }
 }

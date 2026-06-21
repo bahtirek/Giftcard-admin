@@ -35,7 +35,7 @@
             <td class="text-secondary text-xs">{{account.createdAt}}</td>
             <td>
                 <div class="flex gap-xs">
-                    <button class="btn btn--ghost btn--sm" onclick="openModal('modal-account-edit')">
+                    <button class="btn btn--ghost btn--sm" (click)="onAccountEditClick(account)">
                         <i class="ti ti-edit" aria-hidden="true"></i>
                     </button>
                     <button class="btn btn--ghost btn--sm">
