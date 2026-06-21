@@ -2,7 +2,6 @@ import { Component, ChangeDetectionStrategy, ViewChild, inject } from '@angular/
 import { AccountForm } from '../account-form/account-form';
 import { Account } from '../account-form/account-form-interface';
 import { Location } from '@angular/common';
-import { LoaderService } from '../../../core/loader/loader.service';
 import { AccountService } from '../account-form/account-form.service';
 
 @Component({
@@ -15,7 +14,6 @@ import { AccountService } from '../account-form/account-form.service';
 export class CreateAccount {
   @ViewChild(AccountForm) childRef!: AccountForm;
   private location = inject(Location);
-  private loading = inject(LoaderService);
   private accountService = inject(AccountService)
 
   onSubmitButtonClick() {
@@ -29,6 +27,7 @@ export class CreateAccount {
       next: (response) => {
         console.log(response);
 
+        this.location.back()
       },
     })
   }
