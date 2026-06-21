@@ -1,6 +1,6 @@
 import { HttpClient, HttpContext, HttpHeaders, HttpParams } from '@angular/common/http';
 import { computed, effect, inject, Service, signal } from '@angular/core';
-import { AccountModel, Account } from './account-form/account-form-interface';
+import { AccountModel, Account } from './account-interface';
 import { API_URL } from '../../app.config.tokens';
 import { SHOW_LOADER } from '../../core/loader/loader-context.token';
 import { rxResource } from '@angular/core/rxjs-interop';

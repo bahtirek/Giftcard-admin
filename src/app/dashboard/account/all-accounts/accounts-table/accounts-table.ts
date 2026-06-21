@@ -1,6 +1,6 @@
 import { Component, inject, input } from '@angular/core';
 import { BusinessType } from './business-type/business-type';
-import { Account } from '../../account-form/account-form-interface';
+import { Account } from '../../account-interface';
 import { Router } from '@angular/router';
 
 @Component({

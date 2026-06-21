@@ -1,5 +1,5 @@
 import { Component, effect, signal, ChangeDetectionStrategy, output, input, OnInit } from '@angular/core';
-import { AccountModel, Account, accountSchema, initialAccountData } from './account-form-interface';
+import { AccountModel, Account, accountSchema, initialAccountData } from '../account-interface';
 import { form } from '@angular/forms/signals';
 import { AppInput } from '../../../common/forms/input/input';
 import { Option } from '../../../interfaces/options';

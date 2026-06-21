@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, ViewChild, inject } from '@angular/core';
 import { AccountForm } from '../account-form/account-form';
 import { AccountService } from '../account.service';
-import { AccountModel, Account } from '../account-form/account-form-interface';
+import { AccountModel, Account } from '../account-interface';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 

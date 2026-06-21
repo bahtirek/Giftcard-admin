@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, ViewChild, inject, effect } from '@angular/core';
 import { AccountForm } from '../account-form/account-form';
-import { Account } from '../account-form/account-form-interface';
+import { Account } from '../account-interface';
 import { Location } from '@angular/common';
 import { AccountService } from '../account.service';
 
