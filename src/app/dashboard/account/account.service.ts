@@ -1,6 +1,6 @@
 import { HttpClient, HttpContext, HttpHeaders, HttpParams } from '@angular/common/http';
 import { computed, effect, inject, Service, signal } from '@angular/core';
-import { Account, AccountResponse } from './account-form/account-form-interface';
+import { AccountModel, Account } from './account-form/account-form-interface';
 import { API_URL } from '../../app.config.tokens';
 import { SHOW_LOADER } from '../../core/loader/loader-context.token';
 import { rxResource } from '@angular/core/rxjs-interop';
@@ -11,13 +11,13 @@ export class AccountService {
   private http = inject(HttpClient);
   private baseUrl = inject(API_URL);
 
-  accounts = signal<AccountResponse[]>([]);
+  accounts = signal<Account[]>([]);
 
-  postAccount(account: Account, onComplteCallback: () => void) {
+  postAccount(account: AccountModel, onComplteCallback: () => void) {
     account.createdAt = Date.now();
     account.status = AccountStatusEnum.Active;
 
-    this.http.post<AccountResponse>( `${this.baseUrl}/accounts`, account, {
+    this.http.post<Account>( `${this.baseUrl}/accounts`, account, {
       context: new HttpContext().set(SHOW_LOADER, true)
     }).subscribe({
       next: (response) => {
@@ -29,12 +29,12 @@ export class AccountService {
     })
   }
 
-  patchAccount(account: AccountResponse, onComplteCallback: () => void) {
+  patchAccount(account: Account, onComplteCallback: () => void) {
     account.updatedAt = Date.now();
     account.status = AccountStatusEnum.Active;
     const headers = new HttpHeaders().set('Content-Type', 'application/json')
 
-    this.http.patch<AccountResponse>( `${this.baseUrl}/accounts/${account.id}`, account, {
+    this.http.patch<Account>( `${this.baseUrl}/accounts/${account.id}`, account, {
       headers,
       context: new HttpContext().set(SHOW_LOADER, true)
     }).subscribe({
@@ -45,7 +45,7 @@ export class AccountService {
   }
 
   getAllAccounts() {
-    this.http.get<AccountResponse[]>( `${this.baseUrl}/accounts`, {
+    this.http.get<Account[]>( `${this.baseUrl}/accounts`, {
       context: new HttpContext().set(SHOW_LOADER, true)
     }).subscribe({
       next: (response) => {
@@ -57,7 +57,7 @@ export class AccountService {
   exampleResponse = computed(() => this.accountsResource.value())
 
   private accountsResource = rxResource({
-    stream: () => this.http.get<AccountResponse[]>( `${this.baseUrl}/accounts`)
+    stream: () => this.http.get<Account[]>( `${this.baseUrl}/accounts`)
   })
 
 

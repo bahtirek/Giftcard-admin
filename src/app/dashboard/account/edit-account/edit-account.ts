@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, ViewChild, inject } from '@angular/core';
 import { AccountForm } from '../account-form/account-form';
 import { AccountService } from '../account.service';
-import { Account, AccountResponse } from '../account-form/account-form-interface';
+import { AccountModel, Account } from '../account-form/account-form-interface';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -24,14 +24,14 @@ export class EditAccount {
 
   private location = inject(Location);
   private accountService = inject(AccountService);
-  account: AccountResponse;
+  account: Account;
 
   onSubmitButtonClick() {
     this.childRef?.validateForm();
   }
 
-  async onAccountSubmitEvent(account: Account) {
-    this.accountService.patchAccount(account as AccountResponse, () => this.onPostComplete())
+  async onAccountSubmitEvent(account: AccountModel) {
+    this.accountService.patchAccount(account as Account, () => this.onPostComplete())
   }
 
   onPostComplete ()  {

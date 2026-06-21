@@ -8,7 +8,7 @@ export interface Address {
   zipCode: string;
 }
 
-export interface Account {
+export interface AccountModel {
   businessName: string;
   businessType: string;
   phone: string;
@@ -21,7 +21,7 @@ export interface Account {
   updatedAt?: number;
 }
 
-export interface AccountResponse {
+export interface Account {
   id: string;
   businessName: string;
   businessType: string;
@@ -38,7 +38,7 @@ export interface AccountResponse {
   updatedAt?:number
 }
 
-export const initialAccountData: Account = {
+export const initialAccountData: AccountModel = {
   businessName: '',
   businessType: '',
   phone: '',
@@ -55,7 +55,7 @@ export const initialAccountData: Account = {
 };
 
 
-export const accountSchema = schema<Account>((fieldPath) => {
+export const accountSchema = schema<AccountModel>((fieldPath) => {
   required(fieldPath.businessName, {message: 'Business name is required'}),
   required(fieldPath.businessType, {message: 'Business type is required'}),
   email(fieldPath.email, {message: 'Email is required'}),
