@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy, ViewChild, inject } from '@angular/
 import { AccountForm } from '../account-form/account-form';
 import { Account } from '../account-form/account-form-interface';
 import { Location } from '@angular/common';
-import { AccountService } from '../account-form/account-form.service';
+import { AccountService } from '../account.service';
 
 @Component({
   selector: 'create-account',
