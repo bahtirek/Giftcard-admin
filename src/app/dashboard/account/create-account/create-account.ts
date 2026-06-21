@@ -3,6 +3,7 @@ import { AccountForm } from '../account-form/account-form';
 import { Account } from '../account-form/account-form-interface';
 import { Location } from '@angular/common';
 import { LoaderService } from '../../../common/loader/loader.service';
+import { AccountService } from '../account-form/account-form.service';
 
 @Component({
   selector: 'create-account',
@@ -15,6 +16,7 @@ export class CreateAccount {
   @ViewChild(AccountForm) childRef!: AccountForm;
   private location = inject(Location);
   private loading = inject(LoaderService);
+  private accountService = inject(AccountService)
 
   onSubmitButtonClick() {
     this.childRef?.validateForm();
@@ -22,16 +24,13 @@ export class CreateAccount {
 
   async onAccountSubmitEvent(account: Account) {
     console.log('Received Account Data in Parent Component:', account);
-    this.loading.show();
-    try {
-      // Simulate an API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      console.log('Account created successfully');
-    } catch (error) {
-      console.error('Error creating account:', error);
-    } finally {
-      this.loading.hide();
-    }
+
+    this.accountService.postAccount(account).subscribe({
+      next: (response) => {
+        console.log(response);
+
+      },
+    })
   }
 
   onCancel() {

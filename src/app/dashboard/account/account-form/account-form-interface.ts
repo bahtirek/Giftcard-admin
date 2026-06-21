@@ -18,6 +18,18 @@ export interface Account {
   notes: string;
 }
 
+export interface AccountResponse {
+  id: string;
+  businessName: string;
+  businessType: string;
+  phone: string;
+  email: string;
+  website: string;
+  address: Address;
+  notes: string;
+  createdAt?: string;
+}
+
 export const initialAccountData: Account = {
   businessName: '',
   businessType: '',
