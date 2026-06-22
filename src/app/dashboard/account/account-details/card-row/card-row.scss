@@ -1,0 +1,25 @@
+.card-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-default);
+  transition: box-shadow var(--transition-base), border-color var(--transition-base)
+}
+
+.card-row:hover {
+  box-shadow: var(--shadow-sm);
+  border-color: var(--border-strong)
+}
+
+.card-thumb {
+  inline-size: 44px;
+  block-size: 44px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0
+}

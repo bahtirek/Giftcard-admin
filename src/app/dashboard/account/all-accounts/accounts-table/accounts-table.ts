@@ -18,4 +18,10 @@ export class AccountsTable {
       state: { account: account }
     });
   }
+
+  onAccountViewClick(id: string){
+    console.log('clicked');
+
+    this.router.navigate(['dashboard/all-accounts/account-details/1'])
+  }
 }

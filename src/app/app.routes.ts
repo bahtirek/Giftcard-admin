@@ -14,6 +14,10 @@ export const routes: Routes = [
         loadComponent: () => import('./dashboard/account/all-accounts/all-accounts').then(c => c.AllAccounts)
       },
       {
+        path: 'all-accounts/account-details/:id',
+        loadComponent: () => import('./dashboard/account/account-details/account-details').then(c => c.AccountDetails)
+      },
+      {
         path: 'all-gift-cards',
         loadComponent: () => import('./dashboard/gift-card/all-gift-cards/all-gift-cards').then(c => c.AllGiftCards)
       },

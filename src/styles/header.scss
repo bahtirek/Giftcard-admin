@@ -1,4 +1,32 @@
-.icon-btn{inline-size:32px;block-size:32px;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;color:var(--text-secondary);cursor:pointer;border:none;background:transparent;transition:background-color var(--transition-base)}
-.icon-btn:hover{background-color:var(--bg-subtle)}
-.icon-btn i{font-size:18px}
-.notif-dot{position:absolute;top:5px;right:5px;inline-size:7px;block-size:7px;border-radius:var(--radius-full);background-color:var(--color-danger);border:2px solid var(--bg-elevated)}
+.icon-btn {
+  inline-size: 32px;
+  block-size: 32px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  transition: background-color var(--transition-base)
+}
+
+.icon-btn:hover {
+  background-color: var(--bg-subtle)
+}
+
+.icon-btn i {
+  font-size: 18px
+}
+
+.notif-dot {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  inline-size: 7px;
+  block-size: 7px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-danger);
+  border: 2px solid var(--bg-elevated)
+}

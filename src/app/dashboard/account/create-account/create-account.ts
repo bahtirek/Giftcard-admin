@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, ViewChild, inject, effect } from '@angular/core';
 import { AccountForm } from '../account-form/account-form';
-import { Account } from '../account-interface';
+import { Account, AccountModel } from '../account-interface';
 import { Location } from '@angular/common';
 import { AccountService } from '../account.service';
 
@@ -21,7 +21,7 @@ export class CreateAccount {
     this.childRef?.validateForm();
   }
 
-  async onAccountSubmitEvent(account: Account) {
+  async onAccountSubmitEvent(account: AccountModel) {
     this.accountService.postAccount(account, () => this.onPostComplete())
   }
 
