@@ -1,5 +1,5 @@
-import { Component, input, output, ChangeDetectionStrategy } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, input, output, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'sidebar',
@@ -12,12 +12,17 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   },
 })
 export class Sidebar {
+  private router = inject(Router)
   openModal(modalId: string) {
     this.openModalEvent.emit(modalId);
   }
 
   switchRole() {
     // Logic to switch user role
+  }
+
+  goToNewGiftCard(){
+    this.router.navigate(['dashboard/create-gift-card'])
   }
 
   openModalEvent = output<string>();

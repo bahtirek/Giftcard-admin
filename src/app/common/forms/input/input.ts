@@ -17,4 +17,5 @@ export class AppInput {
   placeholder = input<string>('');
   type = input<string>('text');
   id = signal<string>(uniqueId());
+  accept = signal<any>('')
 }

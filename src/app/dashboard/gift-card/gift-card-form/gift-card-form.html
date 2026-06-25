@@ -1,0 +1,91 @@
+<div class="flex flex-col gap-md pt-md">
+    <div class="grid-2 gap-md">
+      <app-input
+        [inputFormField]="giftCardForm.name()"
+        [label]="'Business Name'"
+        [placeholder]="'e.g. Starbucks Corp.'"
+        [required]="true"
+      />
+      <app-select
+        [inputFormField]="giftCardForm.type()"
+        [label]="'Business Type'"
+        [placeholder]="'Select business type'"
+        [required]="true"
+        [options]="options()"
+      />
+    </div>
+    <div class="grid-2 gap-md">
+      <app-input
+        [inputFormField]="giftCardForm?.email()"
+        [label]="'Contact email'"
+        [placeholder]="'contact@business.com'"
+        [required]="true"
+        [type]="'email'"
+      />
+
+      <app-input
+        [inputFormField]="giftCardForm?.phone()"
+        [label]="'Contact phone'"
+        [placeholder]="'99 123 4567'"
+        [required]="true"
+        [type]="'tel'"
+      >
+      <span prepend class="input-group__addon">+998</span>
+    </app-input>
+    </div>
+    <app-input
+      [inputFormField]="giftCardForm?.website()"
+      [label]="'Website'"
+      [placeholder]="'example.com'"
+    >
+      <span prepend class="input-group__addon">https://</span>
+    </app-input>
+
+    <app-input
+      [inputFormField]="giftCardForm.address.addressLineOne()"
+      [label]="'Address Line 1'"
+      [placeholder]="'123 Main St'"
+      [required]="true"
+    />
+    <!-- <div class="grid-2 gap-md"> -->
+      <app-input
+        [inputFormField]="giftCardForm.address.addressLineTwo()"
+        [label]="'Address Line 2'"
+        [placeholder]="'Apt 4B'"
+      />
+      <app-input
+        [inputFormField]="giftCardForm.address.city()"
+        [label]="'City'"
+        [placeholder]="'City'"
+        [required]="true"
+      />
+    <!-- </div> -->
+    <div class="grid-2 gap-md">
+      <app-input
+        [inputFormField]="giftCardForm.address.state()"
+        [label]="'State'"
+        [placeholder]="'State'"
+        [required]="true"
+      />
+      <app-input
+        [inputFormField]="giftCardForm.address.zipCode()"
+        [label]="'Zip Code'"
+        [placeholder]="'Zip Code'"
+        [required]="true"
+      />
+    </div>
+    <app-textarea
+      [inputFormField]="giftCardForm.description()"
+      [label]="'Notes'"
+      [placeholder]="'Internal notes about this giftCard…'"
+    />
+    <app-multi-file-input
+      [inputFormField]="giftCardForm.imageFiles"
+      [label]="'Image'"
+      [placeholder]="'Image'"
+      [existingImages]="existingImages"
+      (filesChanged)="onFilesChanged($event)"
+      (existingFilesChanged)="onExistingFilesChanged($event)"
+      (existingFileRemoved)="onExistingFileRemoved($event)"
+    />
+</div>

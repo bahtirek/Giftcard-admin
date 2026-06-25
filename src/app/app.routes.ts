@@ -36,6 +36,10 @@ export const routes: Routes = [
       {
         path: 'edit-account',
         loadComponent: () => import('./dashboard/account/edit-account/edit-account').then(c => c.EditAccount)
+      },
+      {
+        path: 'create-gift-card',
+        loadComponent: () => import('./dashboard/gift-card/create-gift-card/create-gift-card').then(c => c.CreateGiftCard)
       }
     ]
   },

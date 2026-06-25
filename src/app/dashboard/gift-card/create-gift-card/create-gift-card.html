@@ -1,0 +1,17 @@
+<div class="view flex items-start justify-center">
+  <div class="w-full max-w-2xl">
+  <div class="mb-md">
+    <h1 class="text-xl font-semibold text-primary leading-snug">New Gift Card</h1>
+    <p class="text-sm text-secondary mt-xs">Add a new gift card for a store or location.</p>
+  </div>
+  <div class="card">
+    <div class="card__body">
+      <app-gift-card-form (submitGiftCard)="onGiftCardSubmitEvent($event)"></app-gift-card-form>
+    </div>
+    <div class="card__footer flex justify-end gap-md">
+      <button class="btn btn--outline" (click)="onCancel()">Cancel</button>
+      <button class="btn btn--primary" (click)="onSubmitButtonClick()">Create GiftCard</button>
+    </div>
+  </div>
+  </div>
+</div>

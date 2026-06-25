@@ -1,0 +1,113 @@
+<!-- <div class="field">
+  <label class="field__label" [for]="id()">{{label()}}
+    @if(required()) {
+      <span style="color:var(--color-danger)">*</span>
+    }
+  </label>
+  <div class="input-group">
+    <ng-content select="[prepend]"></ng-content>
+    <input
+      class="input"
+      [id]="id()"
+      type="file"
+      [placeholder]="placeholder()"
+      (change)="onFileSelect($event)"
+      multiple
+    >
+    <ng-content select="[append]"></ng-content>
+  </div>
+</div>
+
+<div class="field"><label class="field__label" for="gc-img">Card image</label>
+  <label class="file-upload" id="gc-img-dropzone" for="gc-img">
+    <input class="sr-only" id="gc-img" type="file" accept="image/png,image/jpeg" onchange="handleFileSelect(this,'gc-img-dropzone')" />
+    <div class="file-upload__empty">
+      <i class="ti ti-photo-plus" aria-hidden="true"></i>
+      <span class="file-upload__title">Click to upload or drag and drop</span>
+      <span class="file-upload__hint">PNG or JPG, recommended 800&times;500px, up to 2MB</span>
+    </div>
+    <div class="file-upload__filled">
+      <div class="file-upload__thumb"><img alt="" /></div>
+      <div class="flex-1 min-w-0">
+        <p class="file-upload__filename truncate"></p>
+        <p class="file-upload__filesize"></p>
+      </div>
+      <button type="button" class="file-upload__remove" onclick="removeFile(event,'gc-img-dropzone','gc-img')" aria-label="Remove image" title="Remove image">
+        <i class="ti ti-trash" aria-hidden="true"></i>
+      </button>
+    </div>
+  </label>
+</div> -->
+
+
+<div class="field">
+  <label class="field__label" [attr.for]="id()">{{ label() }}
+    @if(required()) {
+      <span style="color:var(--color-danger)">*</span>
+    }
+  </label>
+</div>
+
+<div class="stack">
+  <label
+    class="file-upload gap-md"
+    [class.has-file]="hasFile"
+    [class.has-error]="hasError"
+    [class.is-dragover]="isDragover"
+    [class.is-disabled]="disabled()"
+    [attr.for]="id()"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave($event)"
+    (drop)="onDrop($event)"
+  >
+    <input
+      class="sr-only"
+      type="file"
+      [id]="id()"
+      [accept]="acceptAttr"
+      [disabled]="disabled()"
+      (change)="onInputChange($event)"
+      multiple
+    />
+
+    <!-- Empty state -->
+    <div class="file-upload__empty">
+      <i class="ti ti-photo-plus" aria-hidden="true"></i>
+      <span class="file-upload__title">Click to upload or drag and drop</span>
+      <span class="file-upload__hint">{{ hint() }}</span>
+    </div>
+
+  </label>
+  <div class="file-upload__filled">
+    <div class="file-upload__thumb">
+      @if(previewUrl){
+        <img [src]="previewUrl" alt="" />
+      }
+      @if(!previewUrl){
+        <i class="ti ti-photo" aria-hidden="true"></i>
+      }
+    </div>
+    <div class="flex-1 min-w-0">
+      <p class="file-upload__filename truncate">{{ fileName }}</p>
+      @if(fileSizeLabel){
+        <p class="file-upload__filesize">{{ fileSizeLabel }}</p>
+      }
+    </div>
+    <button
+      type="button"
+      class="file-upload__remove"
+      (click)="onRemove($event)"
+      [disabled]="disabled()"
+      aria-label="Remove file"
+      title="Remove file"
+    >
+      <i class="ti ti-trash" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>
+
+@if(hasError && errorMessage){
+  <p class="field__error" role="alert">
+    {{ errorMessage }}
+  </p>
+}

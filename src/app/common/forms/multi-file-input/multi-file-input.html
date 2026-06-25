@@ -1,0 +1,80 @@
+<div class="field">
+  <label class="field__label" [attr.for]="id()">{{ label() }}
+    @if(required()) {
+      <span style="color:var(--color-danger)">*</span>
+    }
+  </label>
+</div>
+
+<div
+  class="file-upload-multi"
+  [class.is-dragover]="isDragover"
+  [class.is-disabled]="isDisabled()"
+  (dragover)="onDragOver($event)"
+  (dragleave)="onDragLeave($event)"
+  (drop)="onDrop($event)"
+>
+  <div class="file-upload-multi__grid">
+
+    <!-- Existing + newly added files -->
+    @for(item of items; track item.id){
+      <div class="file-upload-multi__tile">
+        <div class="file-upload-multi__preview">
+          @if(item.previewUrl){
+            <img [src]="item.previewUrl" [alt]="item.name" />
+          }
+          @if(!item.previewUrl){
+            <i class="ti ti-photo" aria-hidden="true"></i>
+          }
+        </div>
+        <button
+          type="button"
+          class="file-upload-multi__remove"
+          (click)="onRemove($event, item)"
+          [disabled]="isDisabled()"
+          [attr.aria-label]="'Remove ' + item.name"
+          [title]="'Remove ' + item.name"
+        >
+          <i class="ti ti-x" aria-hidden="true"></i>
+        </button>
+        <span class="file-upload-multi__filename truncate" [title]="item.name">{{ item.name }}</span>
+        @if(item.sizeLabel){
+          <span class="file-upload-multi__filesize">{{ item.sizeLabel }}</span>
+        }
+      </div>
+    }
+
+    <!-- Add more tile -->
+     @if(canAddMore()){
+       <label
+         class="file-upload-multi__add"
+         [class.is-disabled]="!canAddMore()"
+         [attr.for]="id()"
+       >
+         <input
+           class="sr-only"
+           type="file"
+           [id]="id()"
+           [accept]="acceptAttr"
+           [disabled]="isDisabled()"
+           multiple
+           (change)="onInputChange($event)"
+         />
+         <i class="ti ti-plus" aria-hidden="true"></i>
+         <span class="file-upload-multi__add-label">Add</span>
+       </label>
+    }
+  </div>
+
+  <p class="file-upload-multi__hint">{{ hint() }}
+    @if(maxFiles()){
+      <span> &middot; {{ items.length }}/{{ maxFiles() }} added</span>
+    }
+  </p>
+</div>
+
+@if(errorMessage){
+  <p class="field__error" role="alert">
+    {{ errorMessage }}
+  </p>
+}
