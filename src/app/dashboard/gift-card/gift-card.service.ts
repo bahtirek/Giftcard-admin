@@ -74,4 +74,8 @@ export class GiftCardService {
       },
     });
   }
+
+  getGiftCardById(giftCardId: string) {
+    return this.http.get<GiftCard>( `${this.baseUrl}/gift-cards/${giftCardId}`)
+  }
 }

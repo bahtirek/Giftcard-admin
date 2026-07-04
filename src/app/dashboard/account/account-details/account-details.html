@@ -2,7 +2,7 @@
     <div class="flex flex-col gap-md p-md" style="max-inline-size:1280px;margin-inline:auto">
 
       <!-- ── Account hero ── -->
-      <app-account-hero />
+      <app-account-hero [account]="account.value()" />
 
       <!-- ── Stat tiles ── -->
       <app-account-stats />
@@ -12,17 +12,19 @@
         <div class="flex flex-col gap-md">
 
           <div class="flex justify-between items-center mb-xs">
-            <span class="text-sm font-semibold text-primary">12 Gift Cards</span>
+            <span class="text-sm font-semibold text-primary">{{ account.value()?.giftCards?.length }} Gift Cards</span>
             <button class="btn btn--outline btn--sm" (click)="onAddCardButtonClicked()"><i class="ti ti-plus" aria-hidden="true"></i>Add Card</button>
           </div>
 
-          <app-card-row />
+          @for(giftCardId of account.value()?.giftCards; track giftCardId) {
+            <app-card-row [giftCardId]="giftCardId" (onGiftCardEditEvent)="onGiftCardEditEvent($event)"/>
+          }
 
           <app-orders-table />
 
           <app-account-activity />
 
-          <app-business-info />
+          <!-- <app-business-info [account]="account.value()" /> -->
         </div>
 
         <!-- side: contacts + quick info -->

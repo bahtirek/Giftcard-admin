@@ -2,23 +2,23 @@
   <div class="account-logo" aria-hidden="true">☕</div>
   <div class="flex-1 min-w-0">
     <div class="flex items-center gap-sm flex-wrap">
-      <h1 class="text-xl font-semibold text-primary">Starbucks Corp.</h1>
+      <h1 class="text-xl font-semibold text-primary">{{ account()?.businessName}}</h1>
       <span class="badge badge--success badge--dot">Active</span>
-      <span class="badge badge--neutral">Restaurant</span>
+      <span class="badge badge--neutral">{{ account()?.businessType }}</span>
     </div>
-    <p class="text-sm text-secondary mt-xs">Premium coffeehouse chain partner since January 2024. Annual contract renewal due Jan 2027.</p>
+    <p class="text-sm text-secondary mt-xs">{{ account()?.notes }}</p>
     <div class="flex gap-lg mt-sm flex-wrap">
       <div class="flex items-center gap-xs text-xs text-tertiary">
-        <i class="ti ti-mail" aria-hidden="true"></i>contact@starbucks.com
+        <i class="ti ti-mail" aria-hidden="true"></i>{{ account()?.email }}
       </div>
       <div class="flex items-center gap-xs text-xs text-tertiary">
-        <i class="ti ti-phone" aria-hidden="true"></i>+1 555 4200
+        <i class="ti ti-phone" aria-hidden="true"></i>{{ account()?.phone }}
       </div>
       <div class="flex items-center gap-xs text-xs text-tertiary">
-        <i class="ti ti-world" aria-hidden="true"></i>starbucks.com
+        <i class="ti ti-world" aria-hidden="true"></i>{{ account()?.website }}
       </div>
       <div class="flex items-center gap-xs text-xs text-tertiary">
-        <i class="ti ti-calendar" aria-hidden="true"></i>Joined Jan 12, 2024
+        <i class="ti ti-calendar" aria-hidden="true"></i>Joined {{ account()?.createdAt | date: 'MMM d, y' }}
       </div>
     </div>
   </div>
