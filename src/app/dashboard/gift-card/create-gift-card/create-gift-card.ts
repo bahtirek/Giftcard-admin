@@ -3,6 +3,7 @@ import { GiftCardForm } from "../gift-card-form/gift-card-form";
 import { GiftCardService } from '../gift-card.service';
 import { GiftCardModel } from '../gift-card.interface';
 import { Location } from '@angular/common';
+import { AccountService } from '../../account/account.service';
 
 @Component({
   selector: 'app-create-gift-card',
@@ -11,17 +12,20 @@ import { Location } from '@angular/common';
   styleUrl: './create-gift-card.scss',
 })
 export class CreateGiftCard {
-  @ViewChild(GiftCardForm) childRef!: GiftCardForm;
+  @ViewChild(GiftCardForm) giftCardFromComponentRef!: GiftCardForm;
+  accountService = inject(AccountService);
+  account = this.accountService.currentAccount;
 
   private location = inject(Location);
   private giftCardService = inject(GiftCardService)
 
+
   onSubmitButtonClick() {
-    this.childRef?.validateForm();
+    this.giftCardFromComponentRef?.validateForm();
   }
 
   async onGiftCardSubmitEvent(giftCard: GiftCardModel) {
-    this.giftCardService.postGiftCard(giftCard, () => this.onPostComplete())
+    this.giftCardService.onGiftCardSubmit(giftCard, this.account.value()!, () => this.onPostComplete())
   }
 
   onPostComplete ()  {

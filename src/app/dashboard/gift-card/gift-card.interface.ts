@@ -15,19 +15,20 @@ export interface GeoPosition {
 }
 
 export interface GiftCard {
+  id: string;
   name: string;
   type: string;
   phone: string;
   email: string;
   website: string;
   description: string;
-  images: existingImages[];
+  images: existingImage[];
   amounts: string[];
   address: Address;
   createdAt?: number;
   status?: string;
   updatedAt?:number;
-  geoPosition?: GeoPosition
+  geoPosition?: GeoPosition;
 }
 
 export interface GiftCardModel {
@@ -42,10 +43,13 @@ export interface GiftCardModel {
   amount2: string;
   amount3: string;
   address: Address;
-  geoPosition?: GeoPosition
+  geoPosition?: GeoPosition;
+  status?: string;
+  createdAt?:number;
+  images?: existingImage[];
 }
 
-export interface existingImages {
+export interface existingImage {
   id: string;
   url: string;
   name: string;
@@ -73,7 +77,8 @@ export const initialGiftCardData: GiftCardModel = {
   geoPosition: {
     lat: '',
     long: ''
-  }
+  },
+  status: 'Active'
 };
 
 export const giftCardSchema = schema<GiftCardModel>((fieldPath) => {
