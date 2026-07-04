@@ -1,0 +1,22 @@
+<div class="field" [ngClass]="{'is-invalid': inputFormField().invalid() && inputFormField().touched()}">
+  <div class="flex items-center gap-sm">
+    <input
+      class="checkbox"
+      [id]="id()"
+      [type]="'checkbox'"
+      [formField]="inputFormField"
+    >
+    <label class="field__label" [for]="id()">{{label()}}
+      @if(required()) {
+        <span style="color:var(--color-danger)">*</span>
+      }
+    </label>
+  </div>
+  @if (inputFormField().invalid() && inputFormField().touched()) {
+    <div class="field__error">
+      @for (error of inputFormField().errors(); track error.kind) {
+        <div>{{error.message}}</div>
+      }
+    </div>
+  }
+</div>
