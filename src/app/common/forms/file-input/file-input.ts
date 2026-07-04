@@ -1,11 +1,9 @@
 import { ChangeDetectorRef, Component, input, output, signal } from '@angular/core';
 import { uniqueId } from '../../../helpers/uniqueid';
-import { FormField } from '@angular/forms/signals';
-import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-file-input',
-  imports: [NgClass],
+  imports: [],
   templateUrl: './file-input.html',
   styleUrl: './file-input.scss',
 })
