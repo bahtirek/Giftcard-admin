@@ -32,7 +32,7 @@ export interface Account {
   notes: string;
   createdAt?: number;
   locations?: number;
-  cards: number;
+  giftCards: string[];
   totalSales?: number;
   status?: string;
   updatedAt?:number

@@ -20,8 +20,6 @@ export class AccountsTable {
   }
 
   onAccountViewClick(id: string){
-    console.log('clicked');
-
-    this.router.navigate(['dashboard/all-accounts/account-details/1'])
+    this.router.navigate(['dashboard/all-accounts/account-details', id])
   }
 }
