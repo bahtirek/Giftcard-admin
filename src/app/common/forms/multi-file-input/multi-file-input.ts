@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, computed, input, output, Signal, signal } from '@angular/core';
 import { uniqueId } from '../../../helpers/uniqueid';
-import { existingImages } from '../../../dashboard/gift-card/gift-card.interface';
+import { existingImage } from '../../../dashboard/gift-card/gift-card.interface';
 export interface UploadedFileItem {
   /** Stable id for *ngFor tracking and removal. */
   id: string;
@@ -22,7 +22,6 @@ export interface UploadedFileItem {
 export class MultiFileInput {
   constructor(private cdr: ChangeDetectorRef) {}
 
-  private onChange: (value: File[]) => void = () => {};
   private onTouched: () => void = () => {};
   inputFormField = input<any>();
   required = input<boolean>(false);
@@ -34,7 +33,7 @@ export class MultiFileInput {
   maxSizeBytes = input<number>(2 * 1024 * 1024);
   hint = input<string>('PNG or JPG, recommended 800x500px, up to 2MB')
   maxFiles = input<number>(6);
-  existingImages = input<existingImages[]>()
+  existingImage = input<existingImage[]>()
 
   errorChange = output<string>()
   fileSelected = output<File>()
@@ -43,7 +42,7 @@ export class MultiFileInput {
   imageFiles = input<File[]>()
 
   /** Emits the list of remaining existing files (after any removals) whenever it changes. */
-  existingFilesChanged = output<existingImages[]>();
+  existingFilesChanged = output<existingImage[]>();
   existingFileRemoved= output<string>();
 
   isDragover = false;
@@ -57,8 +56,8 @@ export class MultiFileInput {
   items: UploadedFileItem[] = [];
 
   ngOnInit(): void {
-    if(this.existingImages() && this.existingImages()!.length > 0) {
-      this.items = this.existingImages()!.map((f) => ({
+    if(this.existingImage() && this.existingImage()!.length > 0) {
+      this.items = this.existingImage()!.map((f) => ({
         id: f.id || uniqueId(),
         file: null,
         name: f.name,
@@ -178,9 +177,8 @@ export class MultiFileInput {
       .filter((i) => i.isExisting)
       .map((i) => ({ name: i.name, url: i.previewUrl ?? '', sizeLabel: i.sizeLabel }));
 
-    this.onChange(newFiles);
     this.filesChanged.emit(newFiles);
-    this.existingFilesChanged.emit(remainingExisting as existingImages[]);
+    this.existingFilesChanged.emit(remainingExisting as existingImage[]);
   }
 
   private validate(file: File): string | null {
