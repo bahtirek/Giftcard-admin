@@ -1,5 +1,5 @@
 import { Component, effect, signal, untracked, output, input, OnInit, inject } from '@angular/core';
-import { GiftCardModel, initialGiftCardData, GiftCard, giftCardSchema, existingImage } from '../gift-card.interface';
+import { GiftCardModel, initialGiftCardData, GiftCard, giftCardSchema, ExistingImage, UploadedFileItem } from '../gift-card.interface';
 import { form } from '@angular/forms/signals';
 import { Option } from '../../../interfaces/options';
 import { AppInput } from '../../../common/forms/input/input';
@@ -24,11 +24,23 @@ export class GiftCardForm implements OnInit {
       this.giftCardModel.set({...initialGiftCardData, type: this.account()?.businessType!});
     }
   }
+
+  editingCardWatchEffect = effect(() => {
+    if(!this.giftCard()) return;
+    untracked(() => this.setEditingGiftCardModel());
+  });
+
+  setEditingGiftCardModel() {
+    const editingGiftCard: GiftCardModel = this.giftCard()! as GiftCardModel;
+    this.giftCardModel.set({...editingGiftCard});
+    this.existingImages.set(this.giftCard()!.images);
+  }
+
   router = inject(Router)
 
   account = input<Account>();
 
-  giftCard = input<GiftCard>()
+  giftCard = input<GiftCard | null>();
 
   giftCardModel = signal<GiftCardModel>(initialGiftCardData);
 
@@ -37,6 +49,8 @@ export class GiftCardForm implements OnInit {
   addressCheckboxModel = signal<{checkbox: boolean}>({checkbox: false})
 
   addressCheckboxForm = form(this.addressCheckboxModel)
+
+  existingImages = signal<ExistingImage[]>([]);
 
   options = signal<Option[]>([
     { value: 'Restaurant', label: 'Restaurant' },
@@ -57,12 +71,12 @@ export class GiftCardForm implements OnInit {
 
   submitGiftCard = output<GiftCardModel>();
 
-  onFilesChanged(event: File[]){
+  onFilesChanged(event: UploadedFileItem[]){
     console.log(event);
     this.giftCardModel.set({...this.giftCardModel(), imageFiles: event});
   }
 
-  onExistingFilesChanged(event: existingImage[]){
+  onExistingFilesChanged(event: ExistingImage[]){
     console.log(event);
   }
 

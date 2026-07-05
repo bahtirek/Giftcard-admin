@@ -1,17 +1,6 @@
-import { ChangeDetectorRef, Component, computed, input, output, Signal, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, computed, effect, input, output, Signal, signal } from '@angular/core';
 import { uniqueId } from '../../../helpers/uniqueid';
-import { existingImage } from '../../../dashboard/gift-card/gift-card.interface';
-export interface UploadedFileItem {
-  /** Stable id for *ngFor tracking and removal. */
-  id: string;
-  /** The raw File object — null for pre-existing files loaded via inputs. */
-  file: File | null;
-  name: string;
-  sizeLabel: string;
-  previewUrl: string | null;
-  /** True if this came from existingFiles rather than a fresh user selection. */
-  isExisting: boolean;
-}
+import { ExistingImage, UploadedFileItem } from '../../../dashboard/gift-card/gift-card.interface';
 
 @Component({
   selector: 'app-multi-file-input',
@@ -33,16 +22,16 @@ export class MultiFileInput {
   maxSizeBytes = input<number>(2 * 1024 * 1024);
   hint = input<string>('PNG or JPG, recommended 800x500px, up to 2MB')
   maxFiles = input<number>(6);
-  existingImage = input<existingImage[]>()
+  existingImages = input<ExistingImage[]>()
 
   errorChange = output<string>()
   fileSelected = output<File>()
   fileRemoved = output<void>()
-  filesChanged = output<File[]>();
+  filesChanged = output<UploadedFileItem[]>();
   imageFiles = input<File[]>()
 
   /** Emits the list of remaining existing files (after any removals) whenever it changes. */
-  existingFilesChanged = output<existingImage[]>();
+  existingFilesChanged = output<ExistingImage[]>();
   existingFileRemoved= output<string>();
 
   isDragover = false;
@@ -54,19 +43,6 @@ export class MultiFileInput {
   previewUrl: string | null = null;
 
   items: UploadedFileItem[] = [];
-
-  ngOnInit(): void {
-    if(this.existingImage() && this.existingImage()!.length > 0) {
-      this.items = this.existingImage()!.map((f) => ({
-        id: f.id || uniqueId(),
-        file: null,
-        name: f.name,
-        sizeLabel: f.sizeLabel ?? '',
-        previewUrl: f.url,
-        isExisting: true,
-      }));
-    }
-  }
 
   get remainingSlots(): number {
     return Math.max(0, this.maxFiles() - this.items.length);
@@ -177,8 +153,8 @@ export class MultiFileInput {
       .filter((i) => i.isExisting)
       .map((i) => ({ name: i.name, url: i.previewUrl ?? '', sizeLabel: i.sizeLabel }));
 
-    this.filesChanged.emit(newFiles);
-    this.existingFilesChanged.emit(remainingExisting as existingImage[]);
+    this.filesChanged.emit(this.items);
+    this.existingFilesChanged.emit(remainingExisting as ExistingImage[]);
   }
 
   private validate(file: File): string | null {
@@ -212,4 +188,18 @@ export class MultiFileInput {
     if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} KB`;
     return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
   }
+
+  existingImagesWatchEffect = effect(() => {
+    if(!this.existingImages()) return;
+    if(this.existingImages()!.length === 0) return;
+
+    this.items = this.existingImages()!.map((f) => ({
+      id: f.id || uniqueId(),
+      file: null,
+      name: f.name,
+      sizeLabel: f.sizeLabel ?? '',
+      previewUrl: f.url,
+      isExisting: true,
+    }));
+  });
 }

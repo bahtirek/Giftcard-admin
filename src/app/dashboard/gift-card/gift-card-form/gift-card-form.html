@@ -74,7 +74,7 @@
     [inputFormField]="giftCardForm.imageFiles"
     [label]="'Image'"
     [placeholder]="'Image'"
-    [existingImage]="[]"
+    [existingImages]="existingImages()"
     (filesChanged)="onFilesChanged($event)"
     (existingFilesChanged)="onExistingFilesChanged($event)"
     (existingFileRemoved)="onExistingFileRemoved($event)"
