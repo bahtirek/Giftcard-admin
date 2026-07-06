@@ -31,7 +31,7 @@ export class EditAccount {
   }
 
   async onAccountSubmitEvent(account: AccountModel) {
-    this.accountService.patchAccount(account as Account, () => this.onPostComplete())
+    this.accountService.putAccount(account as Account, () => this.onPostComplete())
   }
 
   onPostComplete ()  {

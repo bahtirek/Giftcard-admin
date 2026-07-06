@@ -5,11 +5,13 @@ import { API_URL } from '../../app.config.tokens';
 import { SHOW_LOADER } from '../../core/loader/loader-context.token';
 import { uniqueId } from '../../helpers/uniqueid';
 import { Account } from '../account/account-interface';
+import { AccountService } from '../account/account.service';
 
 @Service()
 export class GiftCardService {
   private http = inject(HttpClient);
   private baseUrl = inject(API_URL);
+  accountService = inject(AccountService);
 
   giftCards = signal<GiftCard[]>([]);
 
@@ -50,22 +52,9 @@ export class GiftCardService {
       context: new HttpContext().set(SHOW_LOADER, true)
     }).subscribe({
       next: (response) => {
-        this.patchAccount(account, response.id, onCompleteCallback);
+        this.accountService.patchAccountGiftCards(account, response.id, onCompleteCallback);
       }
     })
-  }
-
-  patchAccount(account: Account, giftCardId: string, onCompleteCallback: () => void) {
-    this.http.patch(`${this.baseUrl}/accounts/${account.id}`, {
-      giftCards: [...account.giftCards || [], giftCardId]
-    }).subscribe({
-      next: (response) => {
-        console.log('Account updated with new gift card:', response);
-      },
-      complete: () => {
-        onCompleteCallback()
-      },
-    });
   }
 
   getGiftCardById(giftCardId: string) {

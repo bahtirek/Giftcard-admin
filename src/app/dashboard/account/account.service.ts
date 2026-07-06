@@ -36,12 +36,12 @@ export class AccountService {
     })
   }
 
-  patchAccount(account: Account, onComplteCallback: () => void) {
+  putAccount(account: Account, onComplteCallback: () => void) {
     account.updatedAt = Date.now();
     account.status = AccountStatusEnum.Active;
     const headers = new HttpHeaders().set('Content-Type', 'application/json')
 
-    this.http.patch<Account>( `${this.baseUrl}/accounts/${account.id}`, account, {
+    this.http.put<Account>( `${this.baseUrl}/accounts/${account.id}`, account, {
       headers,
       context: new HttpContext().set(SHOW_LOADER, true)
     }).subscribe({
@@ -68,6 +68,21 @@ export class AccountService {
   })
 
   currentAccount = httpResource<Account>(() => `${this.baseUrl}/accounts/${this.accountId()}`)
+
+
+  patchAccountGiftCards(account: Account, giftCardId: string, onCompleteCallback: () => void) {
+    this.http.patch(`${this.baseUrl}/accounts/${account.id}`, {
+      giftCards: [...account.giftCards || [], giftCardId]
+    }).subscribe({
+      next: (response) => {
+        console.log('Account updated with new gift card:', response);
+      },
+      complete: () => {
+        this.currentAccount.reload(); // Refresh the current account resource to get the updated data
+        onCompleteCallback();
+      },
+    });
+  }
 
 /*   currentAccount = computed(() => this.currentAccountResource.value());
 
