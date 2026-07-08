@@ -32,4 +32,8 @@ export class AccountDetails {
   onGiftCardEditEvent(giftCardId: string) {
     this.router.navigate(['dashboard/edit-gift-card', giftCardId]);
   }
+
+  onGiftCardViewEvent(giftCardId: string) {
+    this.router.navigate(['dashboard/gift-card-details', giftCardId]);
+  }
 }

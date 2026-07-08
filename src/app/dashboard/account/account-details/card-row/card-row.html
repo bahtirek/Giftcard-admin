@@ -10,7 +10,7 @@
     <div class="text-xs text-tertiary mt-xs">{{ giftCard()?.address?.state }} {{ giftCard()?.address?.zipCode }}</div>
   </div>
   <div class="flex gap-xs">
-    <button class="btn btn--ghost btn--sm" title="View"><i class="ti ti-eye" aria-hidden="true"></i></button>
+    <button class="btn btn--ghost btn--sm" title="View" (click)="onGiftCardViewButtonClick()"><i class="ti ti-eye" aria-hidden="true"></i></button>
     <button class="btn btn--ghost btn--sm" title="Edit" (click)="onGiftCardEditButtonClick()"><i class="ti ti-edit" aria-hidden="true"></i></button>
   </div>
 </div>

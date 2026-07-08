@@ -27,7 +27,7 @@
             </td>
             <td class="text-secondary">{{account.businessType}}</td>
             <td>{{account.locations || '--'}}</td>
-            <td>{{account.cards || '--'}}</td>
+            <td>{{account?.giftCards?.length || '--'}}</td>
             <td class="font-medium">{{account.totalSales || '--'}}</td>
             <td>
                 <span class="badge badge--success badge--dot">{{account.status}}</span>

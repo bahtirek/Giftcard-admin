@@ -17,7 +17,7 @@
           </div>
 
           @for(giftCardId of account.value()?.giftCards; track giftCardId) {
-            <app-card-row [giftCardId]="giftCardId" (onGiftCardEditEvent)="onGiftCardEditEvent($event)"/>
+            <app-card-row [giftCardId]="giftCardId" (onGiftCardEditEvent)="onGiftCardEditEvent($event)" (onGiftCardViewEvent)="onGiftCardViewEvent($event)" />
           }
 
           <app-orders-table />

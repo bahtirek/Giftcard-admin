@@ -1,0 +1,69 @@
+.chart-area {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  block-size: 120px
+}
+
+.bar-group {
+  flex: 1;
+  display: flex;
+  align-items: flex-end
+}
+
+.bar {
+  flex: 1;
+  border-radius: 3px 3px 0 0;
+  background-color: var(--color-brand);
+  transition: filter .15s
+}
+
+.bar:hover {
+  filter: brightness(.88)
+}
+
+.chart-labels {
+  display: flex;
+  gap: 6px;
+  padding-block-start: var(--space-sm);
+  border-block-start: 1px solid var(--border-subtle);
+  margin-block-start: var(--space-sm)
+}
+
+.chart-label {
+  flex: 1;
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+  text-align: center
+}
+
+.content-split {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: var(--space-md)
+}
+
+@media(max-width:1024px) {
+  .content-split {
+    grid-template-columns: 1fr
+  }
+}
+
+.amount-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--border-default);
+  font-weight: 600;
+  font-size: var(--text-base);
+  background-color: var(--bg-subtle);
+  color: var(--text-primary)
+}
+
+.amount-pill--active {
+  border-color: var(--color-brand);
+  background-color: var(--color-brand-subtle);
+  color: var(--color-brand)
+}

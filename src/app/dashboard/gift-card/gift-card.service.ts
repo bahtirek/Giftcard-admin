@@ -1,11 +1,12 @@
 import { inject, Service, signal } from '@angular/core';
 import { ExistingImage, GiftCard, GiftCardModel } from './gift-card.interface';
-import { HttpClient, HttpContext } from '@angular/common/http';
+import { HttpClient, HttpContext, httpResource } from '@angular/common/http';
 import { API_URL } from '../../app.config.tokens';
 import { SHOW_LOADER } from '../../core/loader/loader-context.token';
 import { uniqueId } from '../../helpers/uniqueid';
 import { Account } from '../account/account-interface';
 import { AccountService } from '../account/account.service';
+import { rxResource } from '@angular/core/rxjs-interop';
 
 @Service()
 export class GiftCardService {
@@ -14,6 +15,15 @@ export class GiftCardService {
   accountService = inject(AccountService);
 
   giftCards = signal<GiftCard[]>([]);
+  giftCardId = signal<string>('');
+
+  setGiftCardId(id: string | undefined) {
+    if (id) {
+      this.giftCardId.set(id);
+    }
+  }
+
+  currentGiftCard = httpResource<GiftCard>(() => `${this.baseUrl}/gift-cards/${this.giftCardId()}`)
 
   tempImages: ExistingImage[] = []
 

@@ -1,0 +1,58 @@
+    <div class="gc-hero">
+
+      <!-- live preview card -->
+      <!-- <div class="file-upload-multi__grid">
+        @for(item of giftCard()?.images; track item.id){
+            <div class="file-upload-multi__preview">
+            @if(item.url){
+              <img [src]="item.url" [alt]="item.name" />
+            }
+          </div>
+          }
+
+      </div> -->
+      <app-image-gallery [images]="giftCard()?.images || []" />
+
+      <!-- info panel -->
+      <div class="flex flex-col gap-sm card">
+        <div class="flex items-center gap-sm flex-wrap card__header">
+          <h1 class="text-xl font-semibold text-primary">{{ giftCard()?.name }}</h1>
+          <span class="badge badge--success badge--dot" id="status-badge">{{ giftCard()?.status }}</span>
+        </div>
+<!--         <a href="#" class="text-sm text-brand flex items-center gap-xs" style="text-decoration:none">
+          <i class="ti ti-building-store" aria-hidden="true"></i>Starbucks Corp. <i class="ti ti-chevron-right" style="font-size:.85em" aria-hidden="true"></i>
+        </a> -->
+        <div class="card__body">
+        <p class="text-sm text-secondary leading-relaxed mt-xs">{{ giftCard()?.description }}</p>
+
+        <div class="mt-sm">
+          <div class="gc-info-row">
+            <span class="text-sm text-secondary">Location address</span>
+            <span class="text-sm font-medium text-right">{{ giftCard()?.address?.addressLineOne }} {{ giftCard()?.address?.city }}</span>
+          </div>
+          <div class="gc-info-row">
+            <span class="text-sm text-secondary">Preset amounts</span>
+            <span class="text-sm font-medium">${{ giftCard()?.amount1}} &nbsp;·&nbsp; ${{ giftCard()?.amount2 }} &nbsp;·&nbsp; ${{ giftCard()?.amount3 }}</span>
+          </div>
+          <div class="gc-info-row">
+            <span class="text-sm text-secondary">Custom amount range</span>
+            <span class="text-sm font-medium">$10.00 – $500.00</span>
+          </div>
+          <div class="gc-info-row">
+            <span class="text-sm text-secondary">Created</span>
+            <span class="text-sm font-medium">{{ giftCard()?.createdAt | date:'shortDate' }} by Alex Doe</span>
+          </div>
+          <div class="gc-info-row">
+            <span class="text-sm text-secondary">Last updated</span>
+            <span class="text-sm font-medium">{{ giftCard()?.updatedAt | date:'shortDate' }} by Alex Doe</span>
+          </div>
+        </div>
+
+      </div>
+      <div class="flex gap-md mt-sm flex-wrap card__footer">
+        <button class="btn btn--outline btn--sm"><i class="ti ti-copy" aria-hidden="true"></i>Duplicate</button>
+        <button class="btn btn--outline btn--sm"><i class="ti ti-share" aria-hidden="true"></i>Preview link</button>
+        <button class="btn btn--danger-outline btn--sm" onclick="openModal('modal-delete')"><i class="ti ti-trash" aria-hidden="true"></i>Delete</button>
+      </div>
+      </div>
+    </div>
