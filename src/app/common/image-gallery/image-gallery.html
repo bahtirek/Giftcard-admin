@@ -1,0 +1,44 @@
+<div class="thumbnail-grid">
+  @for (img of images(); track img.id; let i = $index) {
+    <button
+      type="button"
+      class="thumbnail-btn card"
+      (click)="open(i)"
+      [attr.aria-label]="'Expand image: ' + img.name"
+    >
+      <img [src]="img.url" [alt]="img.name" class="thumbnail-img" loading="lazy" />
+    </button>
+  }
+</div>
+
+@if (isOpen()) {
+  <div
+    class="viewer-backdrop"
+    (click)="onBackdropClick($event)"
+    role="dialog"
+    aria-modal="true"
+  >
+    <button type="button" class="close-btn" (click)="close()" aria-label="Close viewer">
+      &times;
+    </button>
+
+    @if (images().length > 1) {
+      <button type="button" class="nav-btn nav-prev" (click)="prev()" aria-label="Previous image">
+        &#8249;
+      </button>
+    }
+
+    @if (activeImage(); as img) {
+      <figure class="viewer-content">
+        <img [src]="img.url" [alt]="img.name" class="viewer-img" />
+        <figcaption class="viewer-caption">{{ img.name }}</figcaption>
+      </figure>
+    }
+
+    @if (images().length > 1) {
+      <button type="button" class="nav-btn nav-next" (click)="next()" aria-label="Next image">
+        &#8250;
+      </button>
+    }
+  </div>
+}
