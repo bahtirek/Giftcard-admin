@@ -51,7 +51,8 @@ export const initialAccountData: AccountModel = {
     state: '',
     zipCode: ''
   },
-  notes: ''
+  notes: '',
+  status: 'Inactive'
 };
 
 
