@@ -5,6 +5,7 @@ import { AppInput } from '../../../common/forms/input/input';
 import { Option } from '../../../interfaces/options';
 import { Select } from '../../../common/forms/select/select';
 import { Textarea } from '../../../common/forms/textarea/textarea';
+import { StatusOptions } from '../../../interfaces/status';
 
 @Component({
   selector: 'account-form',
@@ -20,6 +21,8 @@ export class AccountForm implements OnInit{
       this.accountModel.set(editingAccount)
     }
   }
+
+  statusOptions = signal<any>(StatusOptions)
 
   account = input<Account>()
 

@@ -1,17 +1,24 @@
 <div class="flex flex-col gap-md pt-md">
+    <app-input
+      [inputFormField]="accountForm.businessName()"
+      [label]="'Business Name'"
+      [placeholder]="'e.g. Starbucks Corp.'"
+      [required]="true"
+    />
     <div class="grid-2 gap-md">
-      <app-input
-        [inputFormField]="accountForm.businessName()"
-        [label]="'Business Name'"
-        [placeholder]="'e.g. Starbucks Corp.'"
-        [required]="true"
-      />
       <app-select
         [inputFormField]="accountForm.businessType()"
         [label]="'Business Type'"
         [placeholder]="'Select business type'"
         [required]="true"
         [options]="options()"
+      />
+      <app-select
+        [inputFormField]="accountForm?.status()"
+        [label]="'Status'"
+        [placeholder]="'Status'"
+        [required]="true"
+        [options]="statusOptions()"
       />
     </div>
     <div class="grid-2 gap-md">

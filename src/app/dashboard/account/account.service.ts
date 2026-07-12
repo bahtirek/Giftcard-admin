@@ -4,7 +4,7 @@ import { AccountModel, Account } from './account-interface';
 import { API_URL } from '../../app.config.tokens';
 import { SHOW_LOADER } from '../../core/loader/loader-context.token';
 import { rxResource } from '@angular/core/rxjs-interop';
-import { AccountStatusEnum } from './account-status.enum';
+import { StatusEnum } from '../../interfaces/status';
 
 @Service()
 export class AccountService {
@@ -22,7 +22,7 @@ export class AccountService {
 
   postAccount(account: AccountModel, onComplteCallback: () => void) {
     account.createdAt = Date.now();
-    account.status = AccountStatusEnum.Active;
+    account.status = StatusEnum.Active;
 
     this.http.post<Account>( `${this.baseUrl}/accounts`, account, {
       context: new HttpContext().set(SHOW_LOADER, true)
@@ -38,7 +38,7 @@ export class AccountService {
 
   putAccount(account: Account, onComplteCallback: () => void) {
     account.updatedAt = Date.now();
-    account.status = AccountStatusEnum.Active;
+    account.status = StatusEnum.Active;
     const headers = new HttpHeaders().set('Content-Type', 'application/json')
 
     this.http.put<Account>( `${this.baseUrl}/accounts/${account.id}`, account, {

@@ -9,6 +9,7 @@ import { Checkbox } from "../../../common/forms/checkbox/checkbox";
 import { Account } from '../../account/account-interface';
 import { Router } from '@angular/router';
 import { Select } from '../../../common/forms/select/select';
+import { StatusOptions } from '../../../interfaces/status';
 
 @Component({
   selector: 'app-gift-card-form',
@@ -35,6 +36,8 @@ export class GiftCardForm implements OnInit {
     this.giftCardModel.set({...editingGiftCard});
     this.existingImages.set(this.giftCard()!.images);
   }
+
+  statusOptions = signal<any>(StatusOptions)
 
   router = inject(Router)
 
