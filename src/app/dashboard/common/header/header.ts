@@ -1,4 +1,6 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Location } from '@angular/common';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'header',
@@ -10,4 +12,10 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
     class: 'navbar',
   },
 })
-export class Header {}
+export class Header {
+  protected location = inject(Location);
+
+  protected back() {
+    this.location.back();
+  }
+}

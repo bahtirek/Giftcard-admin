@@ -1,6 +1,8 @@
-<button class="icon-btn hidden" id="menu-btn" aria-label="Open menu" onclick="document.getElementById('sidebar').classList.toggle('is-open')" style="display:none">
-  <i class="ti ti-menu-2" aria-hidden="true"></i>
+<button class="btn btn--ghost text-brand p-xs p-xs" (click)="back()">
+  <i aria-hidden="true" class="ti ti-chevron-left"></i>
+  Back
 </button>
+<!-- <button class="btn btn--ghost btn--sm p-xs"><i aria-hidden="true" class="ti ti-arrow-left"></i>Back</button> -->
 
 <div class="search-box flex-1" style="max-inline-size:320px" role="search">
   <i class="ti ti-search text-tertiary" aria-hidden="true"></i>
