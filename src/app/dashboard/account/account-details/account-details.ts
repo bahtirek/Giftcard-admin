@@ -29,10 +29,6 @@ export class AccountDetails {
     this.router.navigate(['dashboard/create-gift-card']);
   }
 
-  onGiftCardEditEvent(giftCardId: string) {
-    this.router.navigate(['dashboard/edit-gift-card', giftCardId]);
-  }
-
   onGiftCardViewEvent(giftCardId: string) {
     this.router.navigate(['dashboard/gift-card-details', giftCardId]);
   }

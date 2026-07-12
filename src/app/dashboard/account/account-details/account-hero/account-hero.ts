@@ -13,7 +13,21 @@ export class AccountHero {
   router = inject(Router);
   account = input<Account>();
 
+
   onAddCardButtonClicked() {
     this.router.navigate(['dashboard/create-gift-card']);
+  }
+
+  onAccountEditButtonClick() {
+    this.router.navigate(['dashboard/edit-account'], {
+      state: { account: this.account() }
+    });
+  }
+
+    onAccountEditClick(account: Account){
+  }
+
+  onAccountDeleteButtonClick() {
+
   }
 }

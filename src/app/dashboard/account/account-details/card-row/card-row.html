@@ -1,16 +1,12 @@
-<div class="card-row">
+<div class="card-row cursor-pointer" (click)="onGiftCardViewButtonClick()">
   <div class="card-thumb self-start" style="background:var(--color-brand-subtle)" aria-hidden="true">☕</div>
   <div class="flex-1 min-w-0">
-    <div class="flex items-center gap-sm">
+    <div class="flex items-center gap-sm justify-between mb-sm">
       <span class="font-medium truncate">{{ giftCard()?.name }}</span>
-      <span class="badge badge--success">{{ giftCard()?.status }}</span>
+      <span class="badge badge--success badge--dot">{{ giftCard()?.status }}</span>
     </div>
     <div class="text-xs text-tertiary mt-xs">{{ giftCard()?.address?.addressLineOne }} {{ giftCard()?.address?.addressLineTwo }}</div>
-    <div class="text-xs text-tertiary mt-xs">{{ giftCard()?.address?.city }}</div>
-    <div class="text-xs text-tertiary mt-xs">{{ giftCard()?.address?.state }} {{ giftCard()?.address?.zipCode }}</div>
-  </div>
-  <div class="flex gap-xs">
-    <button class="btn btn--ghost btn--sm" title="View" (click)="onGiftCardViewButtonClick()"><i class="ti ti-eye" aria-hidden="true"></i></button>
-    <button class="btn btn--ghost btn--sm" title="Edit" (click)="onGiftCardEditButtonClick()"><i class="ti ti-edit" aria-hidden="true"></i></button>
+    <div class="text-xs text-tertiary mt-xs">{{ giftCard()?.address?.city }} {{ giftCard()?.address?.state }} {{ giftCard()?.address?.zipCode }}</div>
+    <!-- <div class="text-xs text-tertiary mt-xs">{{ giftCard()?.address?.state }} {{ giftCard()?.address?.zipCode }}</div> -->
   </div>
 </div>

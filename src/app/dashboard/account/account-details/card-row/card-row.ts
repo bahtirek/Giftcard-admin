@@ -12,7 +12,6 @@ export class CardRow {
   giftCardId = input<string>();
   giftCardService = inject(GiftCardService);
   giftCard = signal<GiftCard | null>(null);
-  onGiftCardEditEvent = output<string>();
   onGiftCardViewEvent = output<string>();
 
   ngOnInit(): void {
@@ -29,11 +28,6 @@ export class CardRow {
         this.giftCard.set(giftCard);
       },
     });
-  }
-
-  onGiftCardEditButtonClick() {
-    console.log('Edit button clicked for gift card:', this.giftCard()?.name);
-    this.onGiftCardEditEvent.emit(this.giftCardId()!);
   }
 
   onGiftCardViewButtonClick() {

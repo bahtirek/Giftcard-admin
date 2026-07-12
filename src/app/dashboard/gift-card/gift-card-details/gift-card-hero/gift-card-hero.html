@@ -26,33 +26,32 @@
         <p class="text-sm text-secondary leading-relaxed mt-xs">{{ giftCard()?.description }}</p>
 
         <div class="mt-sm">
-          <div class="gc-info-row">
+          <div class="details-info-row">
             <span class="text-sm text-secondary">Location address</span>
             <span class="text-sm font-medium text-right">{{ giftCard()?.address?.addressLineOne }} {{ giftCard()?.address?.city }}</span>
           </div>
-          <div class="gc-info-row">
+          <div class="details-info-row">
             <span class="text-sm text-secondary">Preset amounts</span>
             <span class="text-sm font-medium">${{ giftCard()?.amount1}} &nbsp;·&nbsp; ${{ giftCard()?.amount2 }} &nbsp;·&nbsp; ${{ giftCard()?.amount3 }}</span>
           </div>
-          <div class="gc-info-row">
+          <div class="details-info-row">
             <span class="text-sm text-secondary">Custom amount range</span>
             <span class="text-sm font-medium">$10.00 – $500.00</span>
           </div>
-          <div class="gc-info-row">
+          <div class="details-info-row">
             <span class="text-sm text-secondary">Created</span>
             <span class="text-sm font-medium">{{ giftCard()?.createdAt | date:'shortDate' }} by Alex Doe</span>
           </div>
-          <div class="gc-info-row">
+          <div class="details-info-row">
             <span class="text-sm text-secondary">Last updated</span>
             <span class="text-sm font-medium">{{ giftCard()?.updatedAt | date:'shortDate' }} by Alex Doe</span>
           </div>
         </div>
 
       </div>
-      <div class="flex gap-md mt-sm flex-wrap card__footer">
-        <button class="btn btn--outline btn--sm"><i class="ti ti-copy" aria-hidden="true"></i>Duplicate</button>
-        <button class="btn btn--outline btn--sm"><i class="ti ti-share" aria-hidden="true"></i>Preview link</button>
-        <button class="btn btn--danger-outline btn--sm" onclick="openModal('modal-delete')"><i class="ti ti-trash" aria-hidden="true"></i>Delete</button>
+      <div class="flex gap-md mt-sm flex-wrap card__footer justify-end">
+        <button class="btn btn--primary-outline btn--sm" (click)="onGiftCardEditButtonClick()"><i class="ti ti-edit" aria-hidden="true"></i>Edit</button>
+        <button class="btn btn--danger-outline btn--sm" (click)="onGiftCardDeleteButtonClick()"><i class="ti ti-trash" aria-hidden="true"></i>Delete</button>
       </div>
       </div>
     </div>

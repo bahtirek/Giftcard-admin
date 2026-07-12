@@ -1344,6 +1344,12 @@ kbd {
   border-color: var(--color-brand)
 }
 
+.btn--primary-outline {
+  background-color: rgba(0, 0, 0, 0);
+  color: var(--color-brand);
+  border-color: var(--color-brand)
+}
+
 .btn--primary:hover:not(:disabled):not(.is-disabled) {
   background-color: var(--color-brand-hover);
   border-color: var(--color-brand-hover)
@@ -3903,6 +3909,10 @@ input[disabled]~.check-label {
 
 .p-xs {
   padding: .25rem
+}
+
+.p-none {
+  padding: 0;
 }
 
 .p-sm {

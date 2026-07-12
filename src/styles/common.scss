@@ -44,3 +44,14 @@
   font-weight: var(--font-semibold);
   flex-shrink: 0
 }
+
+.details-info-row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding-block: var(--space-sm)
+}
+
+.details-info-row+.details-info-row {
+  border-block-start: 1px solid var(--border-subtle)
+}

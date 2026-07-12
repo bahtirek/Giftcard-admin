@@ -15,7 +15,7 @@
     </thead>
     <tbody>
       @for (account of accounts(); track account.id){
-        <tr>
+        <tr (click)="onAccountViewClick(account.id)" class="cursor-pointer">
             <td>
                 <div class="flex items-center gap-sm">
                   <app-business-type [businessType]="account.businessType" />
@@ -33,7 +33,7 @@
                 <span class="badge badge--success badge--dot">{{account.status}}</span>
             </td>
             <td class="text-secondary text-xs">{{account.createdAt}}</td>
-            <td>
+            <!-- <td>
                 <div class="flex gap-xs">
                     <button class="btn btn--ghost btn--sm" (click)="onAccountEditClick(account)">
                         <i class="ti ti-edit" aria-hidden="true"></i>
@@ -42,7 +42,7 @@
                         <i class="ti ti-eye" aria-hidden="true"></i>
                     </button>
                 </div>
-            </td>
+            </td> -->
         </tr>
       } @empty {
         <div class="p-lg">No accounts found</div>

@@ -13,12 +13,6 @@ export class AccountsTable {
   accounts = input<Account[]>()
   private router = inject(Router)
 
-  onAccountEditClick(account: Account){
-    this.router.navigate(['dashboard/edit-account'], {
-      state: { account: account }
-    });
-  }
-
   onAccountViewClick(id: string){
     this.router.navigate(['dashboard/all-accounts/account-details', id])
   }

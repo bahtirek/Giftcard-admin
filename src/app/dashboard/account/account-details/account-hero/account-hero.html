@@ -1,29 +1,57 @@
-<div class="account-hero">
-  <div class="account-logo" aria-hidden="true">☕</div>
-  <div class="flex-1 min-w-0">
-    <div class="flex items-center gap-sm flex-wrap">
+<div class="">
+  <!-- <div class="account-logo" aria-hidden="true">☕</div> -->
+  <div class="flex-1 min-w-0 card">
+    <div class="flex items-center justify-between gap-sm flex-wrap card__header">
       <h1 class="text-xl font-semibold text-primary">{{ account()?.businessName}}</h1>
-      <span class="badge badge--success badge--dot">Active</span>
-      <span class="badge badge--neutral">{{ account()?.businessType }}</span>
-    </div>
-    <p class="text-sm text-secondary mt-xs">{{ account()?.notes }}</p>
-    <div class="flex gap-lg mt-sm flex-wrap">
-      <div class="flex items-center gap-xs text-xs text-tertiary">
-        <i class="ti ti-mail" aria-hidden="true"></i>{{ account()?.email }}
-      </div>
-      <div class="flex items-center gap-xs text-xs text-tertiary">
-        <i class="ti ti-phone" aria-hidden="true"></i>{{ account()?.phone }}
-      </div>
-      <div class="flex items-center gap-xs text-xs text-tertiary">
-        <i class="ti ti-world" aria-hidden="true"></i>{{ account()?.website }}
-      </div>
-      <div class="flex items-center gap-xs text-xs text-tertiary">
-        <i class="ti ti-calendar" aria-hidden="true"></i>Joined {{ account()?.createdAt | date: 'MMM d, y' }}
+      <div>
+        <span class="badge badge--success badge--dot mr-md">Active</span>
+        <span class="badge badge--neutral">{{ account()?.businessType }}</span>
       </div>
     </div>
-  </div>
-  <div class="flex gap-xs flex-wrap">
-    <button class="btn btn--outline btn--sm"><i class="ti ti-mail" aria-hidden="true"></i>Contact</button>
-    <button class="btn btn--outline btn--sm" (click)="onAddCardButtonClicked()"><i class="ti ti-plus" aria-hidden="true"></i>Add Card</button>
+    <div class="card__body">
+      <p class="text-sm text-secondary mt-xs">{{ account()?.notes }}</p>
+              <div class="mt-sm">
+          <div class="details-info-row">
+            <span class="text-sm text-secondary">Address</span>
+            <span class="text-sm font-medium text-right">{{ account()?.address?.addressLineOne }} {{ account()?.address?.city }}</span>
+          </div>
+          @if(account()?.address?.addressLineTwo) {
+            <div class="details-info-row">
+              <span class="text-sm text-secondary">Address Line Two</span>
+              <span class="text-sm font-medium text-right">{{ account()?.address?.addressLineTwo }} {{ account()?.address?.city }}</span>
+            </div>
+          }
+          <div class="details-info-row">
+            <span class="text-sm text-secondary">City</span>
+            <span class="text-sm font-medium text-right">{{ account()?.address?.city }}</span>
+          </div>
+          @if(account()?.address?.state) {
+          <div class="details-info-row">
+            <span class="text-sm text-secondary">State</span>
+            <span class="text-sm font-medium text-right">{{ account()?.address?.state }}</span>
+          </div>
+        }
+        @if(account()?.address?.zipCode) {
+          <div class="details-info-row">
+            <span class="text-sm text-secondary">Zip</span>
+            <span class="text-sm font-medium text-right">{{ account()?.address?.zipCode }}</span>
+          </div>
+        }
+          <div class="details-info-row">
+            <span class="text-sm text-secondary">Created</span>
+            <span class="text-sm font-medium">{{ account()?.createdAt | date:'shortDate' }} by Alex Doe</span>
+          </div>
+          @if(account()?.updatedAt) {
+          <div class="details-info-row">
+            <span class="text-sm text-secondary">Last updated</span>
+            <span class="text-sm font-medium">{{ account()?.updatedAt | date:'shortDate' }} by Alex Doe</span>
+          </div>
+        }
+        </div>
+    </div>
+    <div class="flex gap-md flex-wrap card__footer justify-end">
+      <button class="btn btn--primary-outline btn--sm" (click)="onAccountEditButtonClick()"><i class="ti ti-edit" aria-hidden="true"></i>Edit</button>
+      <button class="btn btn--danger-outline btn--sm" (click)="onAccountDeleteButtonClick()"><i class="ti ti-trash" aria-hidden="true"></i>Delete</button>
+    </div>
   </div>
 </div>
