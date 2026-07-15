@@ -1,14 +1,12 @@
 import { Component, inject, input } from '@angular/core';
 import { GiftCardHero } from './gift-card-hero/gift-card-hero';
-import { GiftCardStats } from './gift-card-stats/gift-card-stats';
-import { GiftCardOverview } from './gift-card-overview/gift-card-overview';
 import { GiftCardOrders } from './gift-card-orders/gift-card-orders';
 import { Router } from '@angular/router';
 import { GiftCardService } from '../gift-card.service';
 
 @Component({
   selector: 'app-gift-card-details',
-  imports: [GiftCardHero, GiftCardStats, GiftCardOverview, GiftCardOrders],
+  imports: [GiftCardHero, GiftCardOrders],
   templateUrl: './gift-card-details.html',
   styleUrl: './gift-card-details.scss',
 })
