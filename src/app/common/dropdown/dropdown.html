@@ -1,0 +1,69 @@
+<div class="dropdown">
+  @if (!hasCustomTrigger()) {
+    <button
+      type="button"
+      class="dropdown__trigger"
+      [class.dropdown__trigger--disabled]="disabled()"
+      [attr.aria-haspopup]="'listbox'"
+      [attr.aria-expanded]="open()"
+      [attr.aria-disabled]="disabled()"
+      [disabled]="disabled()"
+      (click)="toggleDropdown()"
+      (keydown)="handleTriggerKeydown($event)"
+    >
+      <span class="dropdown__trigger-label" [class.dropdown__trigger-label--placeholder]="!selectedOption()">
+        @if (selectedOption(); as opt) {
+          {{ opt.label }}
+        } @else {
+          {{ placeholder() }}
+        }
+      </span>
+
+      <svg
+        class="dropdown__chevron"
+        [class.dropdown__chevron--open]="open()"
+        viewBox="0 0 20 20"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+  }
+
+  <!-- Projected custom trigger, e.g. <button appDropdownTrigger>...</button> -->
+  <ng-content select="[appDropdownTrigger]" />
+
+  @if (open()) {
+    <ul
+      class="dropdown__panel"
+      role="listbox"
+      tabindex="0"
+      (keydown)="onPanelKeydown($event)"
+    >
+      @for (option of options(); track option.value; let i = $index) {
+        <li
+          class="dropdown__option"
+          [class.dropdown__option--active]="i === activeIndex()"
+          [class.dropdown__option--selected]="option.value === value()"
+          [class.dropdown__option--disabled]="option.disabled"
+          role="option"
+          [attr.aria-selected]="option.value === value()"
+          [attr.aria-disabled]="option.disabled ?? false"
+          (click)="select(option)"
+          (mouseenter)="onOptionHover(i)"
+        >
+          <span class="dropdown__option-label">{{ option.label }}</span>
+
+          @if (option.value === value()) {
+            <svg class="dropdown__check" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M4 10.5L8 14.5L16 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          }
+        </li>
+      } @empty {
+        <li class="dropdown__empty">No options available</li>
+      }
+    </ul>
+  }
+</div>
