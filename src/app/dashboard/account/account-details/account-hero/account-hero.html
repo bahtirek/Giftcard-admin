@@ -4,8 +4,8 @@
     <div class="flex items-center justify-between gap-sm flex-wrap card__header">
       <h1 class="text-xl font-semibold text-primary">{{ account()?.businessName}}</h1>
       <div>
-        <span class="badge badge--success badge--dot mr-md">Active</span>
-        <span class="badge badge--neutral">{{ account()?.businessType }}</span>
+        <app-status-menu [defaultOption]="account()?.status"/>
+        <span class="badge badge--brand">{{ account()?.businessType }}</span>
       </div>
     </div>
     <div class="card__body">

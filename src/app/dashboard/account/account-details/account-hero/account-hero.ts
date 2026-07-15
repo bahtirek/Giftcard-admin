@@ -2,10 +2,11 @@ import { Component, inject, input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Account } from '../../account-interface';
 import { DatePipe } from '@angular/common';
+import { StatusMenu } from "../../../../common/status-menu/status-menu";
 
 @Component({
   selector: 'app-account-hero',
-  imports: [DatePipe],
+  imports: [DatePipe, StatusMenu],
   templateUrl: './account-hero.html',
   styleUrl: './account-hero.scss',
 })
