@@ -8,6 +8,6 @@ export enum StatusEnum {
 
 export const StatusOptions: Option[] = [
   { value: 'Active', label: 'Active' },
-  { value: 'Inactive', label: 'Inactive' },
   { value: 'Pending', label: 'Pending' },
+  { value: 'Inactive', label: 'Inactive' },
 ]

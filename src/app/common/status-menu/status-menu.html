@@ -1,0 +1,3 @@
+    <app-dropdown [options]="statusOptions()" [(value)]="selectedStatus">
+      <span appDropdownTrigger class="badge badge--dot mr-md cursor-pointer" [ngClass]="badgeClass()">{{ selectedStatus() }}</span>
+    </app-dropdown>
