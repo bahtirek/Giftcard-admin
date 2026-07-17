@@ -1,3 +1,16 @@
-    <app-dropdown [options]="statusOptions()" [(value)]="selectedStatus">
-      <span appDropdownTrigger class="badge badge--dot mr-md cursor-pointer" [ngClass]="badgeClass()">{{ selectedStatus() }}</span>
-    </app-dropdown>
+<app-dropdown [options]="statusOptions()" (valueChange)="onStatusValueChanged($event)" [value]="currentStatus()">
+  <span appDropdownTrigger class="badge badge--dot mr-md cursor-pointer" [ngClass]="badgeClass()">{{ currentStatus() }}</span>
+</app-dropdown>
+
+<modal (modalCloseEvent)="closeModal()" [isModalOpen]="isModalOpen()">
+  <div modal-header>
+    <div><h2 class="modal__title" id="modal-giftcard-edit-title">Status update</h2></div>
+  </div>
+  <div modal-body class="">
+    Updating "{{name()}}" {{typeToUpdate()}} status to <span class="strong" >{{currentStatus()}}</span>
+  </div>
+  <div modal-footer>
+      <button class="btn btn--danger-outline ml-md" (click)="closeModal()">Cancel</button>
+      <button class="btn btn--primary ml-md" (click)="onUpdateButtonClicked()" >Update</button>
+  </div>
+</modal>

@@ -84,6 +84,20 @@ export class AccountService {
     });
   }
 
+  patchAccountStatus(status: string, onCompleteCallback: () => void) {
+    this.http.patch(`${this.baseUrl}/accounts/${this.accountId()}`, {status: status}, {
+      context: new HttpContext().set(SHOW_LOADER, true),
+    }).subscribe({
+      next: (response) => {
+        console.log('Account satus updated:', response);
+      },
+      complete: () => {
+        this.currentAccount.reload(); // Refresh the current account resource to get the updated data
+        onCompleteCallback();
+      },
+    });
+  }
+
 /*   currentAccount = computed(() => this.currentAccountResource.value());
 
   private currentAccountResource = rxResource({

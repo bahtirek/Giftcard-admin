@@ -15,7 +15,6 @@ export class CardRow {
   onGiftCardViewEvent = output<string>();
 
   ngOnInit(): void {
-    console.log('giftCardId:', this.giftCardId);
     if(this.giftCardId() !== undefined) {
       this.getGiftCardById(this.giftCardId()!);
     }
@@ -24,14 +23,12 @@ export class CardRow {
   getGiftCardById(giftCardId: string) {
     this.giftCardService.getGiftCardById(giftCardId).subscribe({
       next: (giftCard) => {
-        console.log('Gift Card:', giftCard);
         this.giftCard.set(giftCard);
       },
     });
   }
 
   onGiftCardViewButtonClick() {
-    console.log('View button clicked for gift card:', this.giftCard()?.name);
     this.onGiftCardViewEvent.emit(this.giftCardId()!);
   }
 }

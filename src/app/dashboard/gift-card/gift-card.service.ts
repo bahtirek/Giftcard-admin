@@ -117,4 +117,18 @@ export class GiftCardService {
       }
     })
   }
+
+  patchGiftCardStatus(status: string, onCompleteCallback: () => void) {
+    this.http.patch(`${this.baseUrl}/gift-cards/${this.giftCardId()}`, {status: status}, {
+      context: new HttpContext().set(SHOW_LOADER, true),
+    }).subscribe({
+      next: (response) => {
+        console.log('Account satus updated:', response);
+      },
+      complete: () => {
+        this.currentGiftCard.reload(); // Refresh the current account resource to get the updated data
+        onCompleteCallback();
+      },
+    });
+  }
 }

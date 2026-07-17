@@ -1,3 +1,4 @@
+import { StatusMenu } from './../../../../common/status-menu/status-menu';
 import { Component, input, inject } from '@angular/core';
 import { GiftCard } from '../../gift-card.interface';
 import { DatePipe } from '@angular/common';
@@ -6,7 +7,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gift-card-hero',
-  imports: [DatePipe, ImageGallery],
+  imports: [DatePipe, ImageGallery, StatusMenu],
   templateUrl: './gift-card-hero.html',
   styleUrl: './gift-card-hero.scss',
 })

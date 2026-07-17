@@ -25,9 +25,6 @@ export class AccountHero {
     });
   }
 
-    onAccountEditClick(account: Account){
-  }
-
   onAccountDeleteButtonClick() {
 
   }
