@@ -1789,7 +1789,7 @@ kbd {
   position: absolute;
   top: calc(100% + var(--space-xs));
   inset-inline-start: 0;
-  index: var(--dropdown);
+  z-index: var(--dropdown);
   min-inline-size: 11rem;
   padding-block: var(--space-xs);
   list-style: none;
@@ -1941,7 +1941,7 @@ kbd {
 .modal {
   position: fixed;
   inset: 0;
-  index: var(--modal);
+  z-index: var(--modal);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1985,7 +1985,7 @@ kbd {
   border-radius: var(--component-radius);
   box-shadow: var(--shadow-xl);
   position: relative;
-  index: 1;
+  z-index: 1;
   inline-size: 100%;
   max-inline-size: 32rem;
   max-block-size: calc(100vh - var(--space-xl));
@@ -2313,7 +2313,7 @@ kbd {
   border-block-end: 1px solid var(--border-subtle);
   position: sticky;
   top: 0;
-  index: var(--sticky)
+  z-index: var(--sticky)
 }
 
 .navbar__brand {
@@ -5006,43 +5006,43 @@ input[disabled]~.check-label {
 }
 
 .below {
-  index: -1
+  z-index: -1
 }
 
 .base {
-  index: 0
+  z-index: 0
 }
 
 .raised {
-  index: 10
+  z-index: 10
 }
 
 .dropdown {
-  index: 100
+  z-index: 100
 }
 
 .sticky {
-  index: 200
+  z-index: 200
 }
 
 .overlay {
-  index: 300
+  z-index: 300
 }
 
 .modal {
-  index: 400
+  z-index: 400
 }
 
 .popover {
-  index: 500
+  z-index: 500
 }
 
 .toast {
-  index: 600
+  z-index: 600
 }
 
 .tooltip {
-  index: 700
+  z-index: 700
 }
 
 .float-left {
