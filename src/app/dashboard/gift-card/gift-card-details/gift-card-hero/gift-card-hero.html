@@ -17,7 +17,9 @@
       <div class="flex flex-col gap-sm card">
         <div class="flex items-center gap-sm flex-wrap card__header">
           <h1 class="text-xl font-semibold text-primary">{{ giftCard()?.name }}</h1>
-          <app-status-menu [defaultOption]="giftCard()?.status" [typeToUpdate]="'gift card'" [name]="giftCard()?.name!" />
+          @if(giftCard()?.status){
+            <app-status-menu [defaultOption]="giftCard()?.status" [typeToUpdate]="'gift card'" [name]="giftCard()?.name!" />
+          }
         </div>
 <!--         <a href="#" class="text-sm text-brand flex items-center gap-xs" style="text-decoration:none">
           <i class="ti ti-building-store" aria-hidden="true"></i>Starbucks Corp. <i class="ti ti-chevron-right" style="font-size:.85em" aria-hidden="true"></i>

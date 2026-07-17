@@ -4,7 +4,9 @@
     <div class="flex items-center justify-between gap-sm flex-wrap card__header">
       <h1 class="text-xl font-semibold text-primary">{{ account()?.businessName}}</h1>
       <div>
-        <app-status-menu [defaultOption]="account()?.status" [typeToUpdate]="'account'" [name]="account()?.businessName!" />
+        @if(account()?.status) {
+          <app-status-menu [defaultOption]="account()?.status" [typeToUpdate]="'account'" [name]="account()?.businessName!" />
+        }
         <span class="badge badge--brand">{{ account()?.businessType }}</span>
       </div>
     </div>
