@@ -7,10 +7,11 @@ import { NgClass } from '@angular/common';
 import { Modal } from '../modal/modal';
 import { AccountService } from '../../dashboard/account/account.service';
 import { GiftCardService } from '../../dashboard/gift-card/gift-card.service';
+import { StatusBadgeDirective } from '../../directives/status-badge.directive';
 
 @Component({
   selector: 'app-status-menu',
-  imports: [Dropdown, DropdownTriggerDirective, NgClass, Modal],
+  imports: [Dropdown, DropdownTriggerDirective, NgClass, Modal, StatusBadgeDirective],
   templateUrl: './status-menu.html',
   styleUrl: './status-menu.scss',
 })
@@ -29,16 +30,6 @@ export class StatusMenu {
   typeToUpdate = input<string>("")
   name = input<string>("")
   onStatusSelectedEvent = output<string>()
-
-  badgeClass: Signal<string> = computed(() => {
-    if (this.currentStatus() === "Active") {
-      return "badge--success"
-    } else if (this.currentStatus() === "Pending") {
-      return "badge--warning"
-    } else {
-      return ""
-    }
-  })
 
   onStatusValueChanged(event: string | number | boolean | null | undefined){
     this.isModalOpen.set(true);

@@ -3,7 +3,7 @@
   <div class="flex-1 min-w-0">
     <div class="flex items-center gap-sm justify-between mb-sm">
       <span class="font-medium truncate">{{ giftCard()?.name }}</span>
-      <span class="badge badge--success badge--dot">{{ giftCard()?.status }}</span>
+      <span class="badge badge--dot" [appStatusBadge]="giftCard()?.status!">{{ giftCard()?.status }}</span>
     </div>
     <div class="text-xs text-tertiary mt-xs">{{ giftCard()?.address?.addressLineOne }} {{ giftCard()?.address?.addressLineTwo }}</div>
     <div class="text-xs text-tertiary mt-xs">{{ giftCard()?.address?.city }} {{ giftCard()?.address?.state }} {{ giftCard()?.address?.zipCode }}</div>

@@ -1,5 +1,5 @@
 <app-dropdown [options]="statusOptions()" (valueChange)="onStatusValueChanged($event)" [value]="currentStatus()">
-  <span appDropdownTrigger class="badge badge--dot mr-md cursor-pointer" [ngClass]="badgeClass()">{{ currentStatus() }}</span>
+  <span appDropdownTrigger class="badge badge--dot mr-md cursor-pointer" [appStatusBadge]="currentStatus()!">{{ currentStatus() }}</span>
 </app-dropdown>
 
 <modal (modalCloseEvent)="closeModal()" [isModalOpen]="isModalOpen()">

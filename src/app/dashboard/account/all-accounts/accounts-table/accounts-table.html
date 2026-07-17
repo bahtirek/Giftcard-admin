@@ -30,7 +30,7 @@
             <td>{{account?.giftCards?.length || '--'}}</td>
             <td class="font-medium">{{account.totalSales || '--'}}</td>
             <td>
-                <span class="badge badge--success badge--dot">{{account.status}}</span>
+                <span class="badge badge--dot" [appStatusBadge]="account.status!">{{account.status}}</span>
             </td>
             <td class="text-secondary text-xs">{{account.createdAt}}</td>
             <!-- <td>

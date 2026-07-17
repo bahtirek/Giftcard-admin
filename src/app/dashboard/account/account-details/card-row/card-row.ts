@@ -1,10 +1,11 @@
 import { Component, inject, input, output, signal } from '@angular/core';
 import { GiftCardService } from '../../../gift-card/gift-card.service';
 import { GiftCard } from '../../../gift-card/gift-card.interface';
+import { StatusBadgeDirective } from '../../../../directives/status-badge.directive';
 
 @Component({
   selector: 'app-card-row',
-  imports: [],
+  imports: [StatusBadgeDirective],
   templateUrl: './card-row.html',
   styleUrl: './card-row.scss',
 })
