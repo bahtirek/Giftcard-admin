@@ -4,7 +4,7 @@
     <div class="flex items-center justify-between gap-sm flex-wrap card__header">
       <div class="flex gap-md">
         <h1 class="text-xl font-semibold text-primary">{{ account()?.businessName}}</h1>
-        <span class="badge badge--brand">{{ account()?.businessType }}</span>
+        <span class="badge badge--brand self-center">{{ account()?.businessType }}</span>
       </div>
       <app-status-menu [defaultOption]="status()" [typeToUpdate]="'account'" [name]="account()?.businessName!" (onStatusSelectedEvent)="onStatusSelectedEvent($event)" />
     </div>
