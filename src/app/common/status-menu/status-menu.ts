@@ -1,35 +1,28 @@
 import { StatusOptions } from './../../interfaces/status';
-import { Component, computed, effect, input, output, Signal, signal, inject } from '@angular/core';
+import { Component, input, output, signal } from '@angular/core';
 import { Dropdown } from '../dropdown/dropdown';
 import { DropdownTriggerDirective } from '../dropdown/dropdown-trigger.directive';
 import { Option } from '../../interfaces/options';
-import { NgClass } from '@angular/common';
 import { Modal } from '../modal/modal';
-import { AccountService } from '../../dashboard/account/account.service';
-import { GiftCardService } from '../../dashboard/gift-card/gift-card.service';
 import { StatusBadgeDirective } from '../../directives/status-badge.directive';
 
 @Component({
   selector: 'app-status-menu',
-  imports: [Dropdown, DropdownTriggerDirective, NgClass, Modal, StatusBadgeDirective],
+  imports: [Dropdown, DropdownTriggerDirective, Modal, StatusBadgeDirective],
   templateUrl: './status-menu.html',
   styleUrl: './status-menu.scss',
 })
+
 export class StatusMenu {
-  ngOnInit(){
-    this.currentStatus.set(this.defaultOption())
-  }
-
-  accountService = inject(AccountService);
-  giftCardService = inject(GiftCardService)
-
-  selectedStatus: string | number | boolean | null | undefined = null;
   defaultOption = input<string | null>();
-  statusOptions = signal<Option[]> (StatusOptions);
-  currentStatus = signal<string | null | undefined>(null);
   typeToUpdate = input<string>("")
   name = input<string>("")
+
   onStatusSelectedEvent = output<string>()
+
+  statusOptions = signal<Option[]> (StatusOptions);
+  selectedStatus: string | number | boolean | null | undefined = null;
+
 
   onStatusValueChanged(event: string | number | boolean | null | undefined){
     this.isModalOpen.set(true);
@@ -60,16 +53,12 @@ export class StatusMenu {
   }
 
   updateAccountStatus(status: string){
-    this.accountService.patchAccountStatus(status, ()=>{
-      this.currentStatus.set(status)
-    })
+    this.onStatusSelectedEvent.emit(status)
     this.closeModal()
   }
 
   updateGiftCardStatus(status: string){
-    this.giftCardService.patchGiftCardStatus(status, ()=>{
-      this.currentStatus.set(status)
-    })
+    this.onStatusSelectedEvent.emit(status)
     this.closeModal()
   }
 }

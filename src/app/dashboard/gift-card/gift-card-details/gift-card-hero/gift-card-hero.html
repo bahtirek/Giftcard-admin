@@ -1,29 +1,12 @@
     <div class="gc-hero">
-
-      <!-- live preview card -->
-      <!-- <div class="file-upload-multi__grid">
-        @for(item of giftCard()?.images; track item.id){
-            <div class="file-upload-multi__preview">
-            @if(item.url){
-              <img [src]="item.url" [alt]="item.name" />
-            }
-          </div>
-          }
-
-      </div> -->
       <app-image-gallery [images]="giftCard()?.images || []" />
 
       <!-- info panel -->
       <div class="flex flex-col gap-sm card">
         <div class="flex items-center gap-sm flex-wrap card__header">
           <h1 class="text-xl font-semibold text-primary">{{ giftCard()?.name }}</h1>
-          @if(giftCard()?.status){
-            <app-status-menu [defaultOption]="giftCard()?.status" [typeToUpdate]="'gift card'" [name]="giftCard()?.name!" />
-          }
+          <app-status-menu [defaultOption]="status()" [typeToUpdate]="'gift card'" [name]="giftCard()?.name!" (onStatusSelectedEvent)="onStatusSelectedEvent($event)" />
         </div>
-<!--         <a href="#" class="text-sm text-brand flex items-center gap-xs" style="text-decoration:none">
-          <i class="ti ti-building-store" aria-hidden="true"></i>Starbucks Corp. <i class="ti ti-chevron-right" style="font-size:.85em" aria-hidden="true"></i>
-        </a> -->
         <div class="card__body">
         <p class="text-sm text-secondary leading-relaxed mt-xs">{{ giftCard()?.description }}</p>
 
@@ -57,3 +40,5 @@
       </div>
       </div>
     </div>
+
+    <app-delete-gift-card-modal [name]="giftCard()?.name" [isModalOpen]="isModalOpen()" (onGiftCardDeleteEvent)="onGiftCardDeleteEvent()" />

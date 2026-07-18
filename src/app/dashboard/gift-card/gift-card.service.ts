@@ -6,7 +6,6 @@ import { SHOW_LOADER } from '../../core/loader/loader-context.token';
 import { uniqueId } from '../../helpers/uniqueid';
 import { Account } from '../account/account-interface';
 import { AccountService } from '../account/account.service';
-import { rxResource } from '@angular/core/rxjs-interop';
 
 @Service()
 export class GiftCardService {
@@ -74,8 +73,6 @@ export class GiftCardService {
   onGiftCardEditSubmit(giftCard: GiftCardModel, giftCardId: string, account: Account, onCompleteCallback: () => void) {
     const formData = new FormData();
 
-
-    // Append multiple files
     giftCard.imageFiles.forEach((file) => {
       if(file.file && file.file.name && !file.isExisting) {
         formData.append('files', file.file, file.name);
@@ -120,6 +117,20 @@ export class GiftCardService {
 
   patchGiftCardStatus(status: string, onCompleteCallback: () => void) {
     this.http.patch(`${this.baseUrl}/gift-cards/${this.giftCardId()}`, {status: status}, {
+      context: new HttpContext().set(SHOW_LOADER, true),
+    }).subscribe({
+      next: (response) => {
+        console.log('Account satus updated:', response);
+      },
+      complete: () => {
+        this.currentGiftCard.reload(); // Refresh the current account resource to get the updated data
+        onCompleteCallback();
+      },
+    });
+  }
+
+  deleteGiftCard(onCompleteCallback: ()=> void) {
+    this.http.delete(`${this.baseUrl}/gift-cards/${this.giftCardId()}`, {
       context: new HttpContext().set(SHOW_LOADER, true),
     }).subscribe({
       next: (response) => {
