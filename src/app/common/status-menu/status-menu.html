@@ -1,5 +1,5 @@
 <app-dropdown [options]="statusOptions()" (valueChange)="onStatusValueChanged($event)" [value]="defaultOption()">
-  <span appDropdownTrigger class="badge badge--dot mr-md cursor-pointer" [appStatusBadge]="defaultOption()!">{{ defaultOption() }}</span>
+  <span appDropdownTrigger class="badge badge--dot cursor-pointer" [appStatusBadge]="defaultOption()!">{{ defaultOption() }}</span>
 </app-dropdown>
 
 <modal (modalCloseEvent)="closeModal()" [isModalOpen]="isModalOpen()">

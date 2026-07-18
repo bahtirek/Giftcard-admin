@@ -2,11 +2,11 @@
   <!-- <div class="account-logo" aria-hidden="true">☕</div> -->
   <div class="flex-1 min-w-0 card">
     <div class="flex items-center justify-between gap-sm flex-wrap card__header">
-      <h1 class="text-xl font-semibold text-primary">{{ account()?.businessName}}</h1>
-      <div>
-        <app-status-menu [defaultOption]="status()" [typeToUpdate]="'account'" [name]="account()?.businessName!" (onStatusSelectedEvent)="onStatusSelectedEvent($event)" />
+      <div class="flex gap-md">
+        <h1 class="text-xl font-semibold text-primary">{{ account()?.businessName}}</h1>
         <span class="badge badge--brand">{{ account()?.businessType }}</span>
       </div>
+      <app-status-menu [defaultOption]="status()" [typeToUpdate]="'account'" [name]="account()?.businessName!" (onStatusSelectedEvent)="onStatusSelectedEvent($event)" />
     </div>
     <div class="card__body">
       <p class="text-sm text-secondary mt-xs">{{ account()?.notes }}</p>
