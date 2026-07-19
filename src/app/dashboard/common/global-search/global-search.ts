@@ -1,8 +1,6 @@
-import { GiftCard } from './../../gift-card/gift-card.interface';
 import { Component, input, output, signal } from '@angular/core';
 import { uniqueId } from '../../../helpers/uniqueid';
-import { Option } from '../../../interfaces/options';
-import { form, FormField, required, schema } from '@angular/forms/signals';
+import { FormField } from '@angular/forms/signals';
 import { NgClass } from '@angular/common';
 import { Account } from '../../account/account-interface';
 
