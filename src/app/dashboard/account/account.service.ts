@@ -1,10 +1,11 @@
 import { HttpClient, HttpContext, HttpHeaders, HttpParams, httpResource } from '@angular/common/http';
-import { computed, effect, inject, Service, signal } from '@angular/core';
+import { computed, inject, Service, signal } from '@angular/core';
 import { AccountModel, Account } from './account-interface';
 import { API_URL } from '../../app.config.tokens';
 import { SHOW_LOADER } from '../../core/loader/loader-context.token';
-import { rxResource } from '@angular/core/rxjs-interop';
+import { rxResource, toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { StatusEnum } from '../../interfaces/status';
+import { debounceTime } from 'rxjs';
 
 @Service()
 export class AccountService {
@@ -18,6 +19,10 @@ export class AccountService {
     if (id) {
       this.accountId.set(id);
     }
+  }
+
+  resetAccountId () {
+    this.accountId.set('')
   }
 
   postAccount(account: AccountModel, onComplteCallback: () => void) {
@@ -134,4 +139,20 @@ export class AccountService {
       params
     });
   }
+
+  /* Account Search  */
+
+  accountsSearchQuery = signal<string>('');
+
+  setAccountsSearchQuery(query: string) {
+    if (query) {
+      this.accountsSearchQuery.set(query);
+    }
+  }
+
+  debouncedAccountsSearchQuery = toSignal(
+    toObservable(this.accountsSearchQuery).pipe(debounceTime(300))
+  )
+
+  accountsSearchResults = httpResource<Account[]>(() => `${this.baseUrl}/accounts?businessName_like=${this.debouncedAccountsSearchQuery()}`)
 }

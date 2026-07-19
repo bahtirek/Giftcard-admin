@@ -1,5 +1,6 @@
-import { Component, input, output, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Component, output, ChangeDetectionStrategy, inject } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { AccountService } from '../../account/account.service';
 
 @Component({
   selector: 'sidebar',
@@ -11,8 +12,11 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
     class: 'sidebar',
   },
 })
+
 export class Sidebar {
   private router = inject(Router)
+  private accountService = inject(AccountService)
+
   openModal(modalId: string) {
     this.openModalEvent.emit(modalId);
   }
@@ -22,6 +26,7 @@ export class Sidebar {
   }
 
   goToNewGiftCard(){
+    this.accountService.resetAccountId();
     this.router.navigate(['dashboard/create-gift-card'])
   }
 

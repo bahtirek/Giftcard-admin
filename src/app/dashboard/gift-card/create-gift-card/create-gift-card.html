@@ -4,14 +4,31 @@
     <h1 class="text-xl font-semibold text-primary leading-snug">New Gift Card</h1>
     <p class="text-sm text-secondary mt-xs">Add a new gift card for a store or location.</p>
   </div>
-  <div class="card">
-    <div class="card__body">
-      <app-gift-card-form (submitGiftCard)="onGiftCardSubmitEvent($event)" [account]="account.value()"></app-gift-card-form>
+  @if(account.value()?.id) {
+    <div class="card">
+      <div class="card__body">
+        <app-gift-card-form (submitGiftCard)="onGiftCardSubmitEvent($event)" [account]="account.value()"></app-gift-card-form>
+      </div>
+      <div class="card__footer flex justify-end gap-md">
+        <button class="btn btn--outline" (click)="onCancel()">Cancel</button>
+        <button class="btn btn--primary" (click)="onSubmitButtonClick()">Create GiftCard</button>
+      </div>
     </div>
-    <div class="card__footer flex justify-end gap-md">
-      <button class="btn btn--outline" (click)="onCancel()">Cancel</button>
-      <button class="btn btn--primary" (click)="onSubmitButtonClick()">Create GiftCard</button>
+  } @else {
+    <div>
+      <app-global-search
+      [label]="'Select an account'"
+      [inputFormField]="queryForm.query()"
+      [options]="accountsSearchResults.value() || []"
+      [required]="true"
+      [placeholder]="'Starbucks Co'"
+      (onInputChangeEvent)="onInputChangeEvent($event)"
+      />
+      <div class="mt-md flex justify-end gap-md">
+        <button class="btn btn--outline" (click)="onReset()">Reset</button>
+        <button class="btn btn--primary" (click)="onAccountSelectButtonClick()">Select account</button>
+      </div>
     </div>
-  </div>
+  }
   </div>
 </div>
