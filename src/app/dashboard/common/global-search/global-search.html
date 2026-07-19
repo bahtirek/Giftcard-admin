@@ -1,0 +1,32 @@
+<div class="field" [ngClass]="{'is-invalid': inputFormField().invalid() && inputFormField().touched()}">
+  <label class="field__label" [for]="id()">{{label()}}
+    @if(required()) {
+      <span style="color:var(--color-danger)">*</span>
+    }
+  </label>
+  <div class="input-group">
+    <ng-content select="[prepend]"></ng-content>
+    <input
+      class="input"
+      type="text"
+      [id]="id()"
+      [placeholder]="placeholder()"
+      list="searchResults"
+      (input)="onInputChange($event)"
+      [formField]="inputFormField"
+    >
+    <ng-content select="[append]"></ng-content>
+  </div>
+    @if (inputFormField().invalid() && inputFormField().touched()) {
+    <div class="field__error">
+      @for (error of inputFormField().errors(); track error.kind) {
+        <div>{{error.message}}</div>
+      }
+    </div>
+  }
+</div>
+<datalist id="searchResults">
+  @for (opt of options(); track opt) {
+    <option [value]="opt.businessName" [attr.data-id]="opt.id"></option>
+  }
+</datalist>
