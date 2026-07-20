@@ -6,7 +6,7 @@
       (click)="open(i)"
       [attr.aria-label]="'Expand image: ' + img.name"
     >
-      <img [src]="img.url" [alt]="img.name" class="thumbnail-img" loading="lazy" />
+      <img [src]="img.url" [alt]="img.name" class="thumbnail-img" loading="eager" />
     </button>
   }
 </div>

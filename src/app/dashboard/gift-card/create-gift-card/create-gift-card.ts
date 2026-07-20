@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal, ViewChild } from '@angular/core';
+import { Component, inject, signal, ViewChild } from '@angular/core';
 import { GiftCardForm } from "../gift-card-form/gift-card-form";
 import { GiftCardService } from '../gift-card.service';
 import { GiftCardModel } from '../gift-card.interface';
@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { AccountService } from '../../account/account.service';
 import { GlobalSearch } from "../../common/global-search/global-search";
 import { form, required } from '@angular/forms/signals';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-gift-card',
@@ -15,11 +16,12 @@ import { form, required } from '@angular/forms/signals';
 })
 export class CreateGiftCard {
   @ViewChild(GiftCardForm) giftCardFromComponentRef!: GiftCardForm;
-  accountService = inject(AccountService);
-  account = this.accountService.currentAccount;
-
   private location = inject(Location);
   private giftCardService = inject(GiftCardService)
+  private accountService = inject(AccountService);
+  private router = inject(Router)
+  account = this.accountService.currentAccount;
+
 
   onSubmitButtonClick() {
     this.giftCardFromComponentRef?.validateForm();
@@ -30,7 +32,7 @@ export class CreateGiftCard {
   }
 
   onPostComplete ()  {
-    this.location.back();
+    this.router.navigate(['dashboard/gift-card-details', this.accountService.accountId()])
   }
 
   onCancel() {

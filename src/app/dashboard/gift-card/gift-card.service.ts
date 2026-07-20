@@ -62,6 +62,7 @@ export class GiftCardService {
     }).subscribe({
       next: (response) => {
         this.accountService.patchAccountGiftCards(account, response.id, onCompleteCallback);
+        this.setGiftCardId(response.id)
       }
     })
   }
