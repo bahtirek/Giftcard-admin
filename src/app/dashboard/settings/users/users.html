@@ -7,10 +7,11 @@
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Role</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr (click)="openUserDetails('id')" class="cursor-pointer">
                     <td>
                         <div class="flex items-center gap-sm">
                             <div class="c-avatar" style="background:#dbeafe;color:#1e40af">JL</div>
@@ -22,6 +23,9 @@
                     <td class="text-secondary">mom@email.com</td>
                     <td class="font-medium">1561561561</td>
                     <td class="text-secondary text-xs">Sales person</td>
+                    <td class="text-secondary text-xs">
+                      <span class="badge badge--dot" [appStatusBadge]="'Active'">Active</span>
+                    </td>
                 </tr>
             </tbody>
         </table>

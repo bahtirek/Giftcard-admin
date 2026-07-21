@@ -1,6 +1,7 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { Profile } from './profile/profile';
 import { Users } from "./users/users";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'settings',
@@ -10,7 +11,8 @@ import { Users } from "./users/users";
   styleUrl: './settings.scss',
 })
 export class Settings {
+  router = inject(Router)
   onAddUserButtonClicked(){
-
+    this.router.navigate(['/dashboard/add-user'])
   }
 }
