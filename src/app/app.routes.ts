@@ -55,7 +55,7 @@ export const routes: Routes = [
       },
       {
         path: 'add-user',
-        loadComponent: () => import('./dashboard/settings/add-user/add-user').then(c => c.AddUser)
+        loadComponent: () => import('./dashboard/settings/users/add-user/add-user').then(c => c.AddUser)
       }
     ]
   },
