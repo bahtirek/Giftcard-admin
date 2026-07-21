@@ -48,6 +48,14 @@ export const routes: Routes = [
       {
         path: 'gift-card-details/:id',
         loadComponent: () => import('./dashboard/gift-card/gift-card-details/gift-card-details').then(c => c.GiftCardDetails)
+      },
+      {
+        path: 'update-profile',
+        loadComponent: () => import('./dashboard/settings/update-profile/update-profile').then(c => c.UpdateProfile)
+      },
+      {
+        path: 'add-user',
+        loadComponent: () => import('./dashboard/settings/add-user/add-user').then(c => c.AddUser)
       }
     ]
   },

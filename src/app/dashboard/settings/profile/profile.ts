@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -8,6 +9,7 @@ import { Component, signal } from '@angular/core';
   styleUrl: './profile.scss',
 })
 export class Profile {
+  router = inject(Router)
   profile = signal({
     firstName: 'John',
     lastName: 'Doe',
@@ -20,6 +22,6 @@ export class Profile {
   })
 
   onGiftCardEditButtonClick(){
-
+    this.router.navigate(['/dashboard/update-profile'])
   }
 }

@@ -1,14 +1,10 @@
-<div class="card">
-  <div class="card__header"><span class="card__title">Profile</span></div>
-  <div class="card__body flex flex-col gap-md">
-    <div class="grid-2 gap-md">
-      <div class="field"><label class="field__label">First name</label><input class="input" type="text" value="Alex" /></div>
-      <div class="field"><label class="field__label">Last name</label><input class="input" type="text" value="Doe" /></div>
+<div class="view flex items-start justify-center">
+  <div class="w-full max-w-2xl">
+    <div class="mb-md">
+      <h1 class="text-xl font-semibold text-primary leading-snug">Update profile</h1>
+      <p class="text-sm text-secondary mt-xs">Update profile and security settings</p>
     </div>
-    <div class="grid-2 gap-md">
-      <div class="field"><label class="field__label">Email</label><input class="input" type="email" value="alex.doe@gifthub.com" /></div>
-      <div class="field"><label class="field__label">Phone</label><input class="input" type="tel" value="+1 555 0100" /></div>
-    </div>
+    <app-profile-form />
+    <app-password-form />
   </div>
-  <div class="card__footer justify-end"><button class="btn btn--primary">Save changes</button></div>
 </div>

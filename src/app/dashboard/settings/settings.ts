@@ -9,4 +9,8 @@ import { Users } from "./users/users";
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './settings.scss',
 })
-export class Settings {}
+export class Settings {
+  onAddUserButtonClicked(){
+
+  }
+}
