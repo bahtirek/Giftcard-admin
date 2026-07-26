@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-profile-form',
+  selector: 'app-user-form',
   imports: [],
-  templateUrl: './profile-form.html',
-  styleUrl: './profile-form.scss',
+  templateUrl: './user-form.html',
+  styleUrl: './user-form.scss',
 })
-export class ProfileForm {
+export class UserForm {
   onSaveButtonClick(){
 
   }

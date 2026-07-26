@@ -5,36 +5,36 @@ import { SHOW_LOADER } from '../../core/loader/loader-context.token';
 import { rxResource, toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { StatusEnum } from '../../interfaces/status';
 import { debounceTime } from 'rxjs';
-import { ProfileModel, Profile } from './settings.interface';
+import { UserModel, User } from './settings.interface';
 
 @Service()
-export class ProfileService {
+export class UserService {
   private http = inject(HttpClient);
   private baseUrl = inject(API_URL);
 
-  profiles = signal<Profile[]>([]);
-  profileId = signal<string>('');
+  users = signal<User[]>([]);
+  userId = signal<string>('');
 
-  setProfileId(id: string | undefined) {
+  setUserId(id: string | undefined) {
     if (id) {
-      this.profileId.set(id);
+      this.userId.set(id);
     }
   }
 
-  resetProfileId () {
-    this.profileId.set('')
+  resetUserId () {
+    this.userId.set('')
   }
 
-  postProfile(profile: Profile, onComplteCallback: () => void) {
-    profile.createdAt = Date.now();
-    profile.status = StatusEnum.Active;
+  postUser(user: User, onComplteCallback: () => void) {
+    user.createdAt = Date.now();
+    user.status = StatusEnum.Active;
 
-    this.http.post<Profile>( `${this.baseUrl}/users`, profile, {
+    this.http.post<User>( `${this.baseUrl}/users`, user, {
       context: new HttpContext().set(SHOW_LOADER, true)
     }).subscribe({
       next: (response) => {
-        this.profiles.update(value => [...value, response])
-        this.profileId.set(response.id)
+        this.users.update(value => [...value, response])
+        this.userId.set(response.id)
       },
       complete: () => {
         onComplteCallback()
@@ -42,12 +42,12 @@ export class ProfileService {
     })
   }
 
-  putProfile(profile: Profile, onComplteCallback: () => void) {
-    profile.updatedAt = Date.now();
-    profile.status = StatusEnum.Active;
+  putUser(user: User, onComplteCallback: () => void) {
+    user.updatedAt = Date.now();
+    user.status = StatusEnum.Active;
     const headers = new HttpHeaders().set('Content-Type', 'application/json')
 
-    this.http.put<Profile>( `${this.baseUrl}/users/${profile.id}`, profile, {
+    this.http.put<User>( `${this.baseUrl}/users/${user.id}`, user, {
       headers,
       context: new HttpContext().set(SHOW_LOADER, true)
     }).subscribe({
@@ -57,50 +57,50 @@ export class ProfileService {
     })
   }
 
-  getAllProfiles() {
-    this.http.get<Profile[]>( `${this.baseUrl}/users`, {
+  getAllUsers() {
+    this.http.get<User[]>( `${this.baseUrl}/users`, {
       context: new HttpContext().set(SHOW_LOADER, true)
     }).subscribe({
       next: (response) => {
-        this.profiles.set(response)
+        this.users.set(response)
       },
     })
   }
 
-  private profilesResource = rxResource({
-    stream: () => this.http.get<Profile[]>( `${this.baseUrl}/users`)
+  private usersResource = rxResource({
+    stream: () => this.http.get<User[]>( `${this.baseUrl}/users`)
   })
 
-  currentProfile = httpResource<Profile>(() => `${this.baseUrl}/users/${this.profileId()}`)
+  currentUser = httpResource<User>(() => `${this.baseUrl}/users/${this.userId()}`)
 
 
-  patchProfileStatus(status: string, onCompleteCallback: () => void) {
-    this.http.patch(`${this.baseUrl}/users/${this.profileId()}`, {status: status}, {
+  patchUserStatus(status: string, onCompleteCallback: () => void) {
+    this.http.patch(`${this.baseUrl}/users/${this.userId()}`, {status: status}, {
       context: new HttpContext().set(SHOW_LOADER, true),
     }).subscribe({
       next: (response) => {
-        console.log('Profile satus updated:', response);
+        console.log('User satus updated:', response);
       },
       complete: () => {
-        this.currentProfile.reload(); // Refresh the current profile resource to get the updated data
+        this.currentUser.reload(); // Refresh the current user resource to get the updated data
         onCompleteCallback();
       },
     });
   }
 
-  /* Profile Search  */
+  /* User Search  */
 
-  profilesSearchQuery = signal<string>('');
+  usersSearchQuery = signal<string>('');
 
-  setProfilesSearchQuery(query: string) {
+  setUsersSearchQuery(query: string) {
     if (query) {
-      this.profilesSearchQuery.set(query);
+      this.usersSearchQuery.set(query);
     }
   }
 
-  debouncedProfilesSearchQuery = toSignal(
-    toObservable(this.profilesSearchQuery).pipe(debounceTime(300))
+  debouncedUsersSearchQuery = toSignal(
+    toObservable(this.usersSearchQuery).pipe(debounceTime(300))
   )
 
-  profilesSearchResults = httpResource<Profile[]>(() => `${this.baseUrl}/users?businessName_like=${this.debouncedProfilesSearchQuery()}`)
+  usersSearchResults = httpResource<User[]>(() => `${this.baseUrl}/users?businessName_like=${this.debouncedUsersSearchQuery()}`)
 }

@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, computed, inject, input, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { StatusBadgeDirective } from '../../../../directives/status-badge.directive';
-import { Profile } from '../../settings.interface';
+import { User } from '../../settings.interface';
 import { Location } from '@angular/common';
 
 @Component({
@@ -17,7 +17,7 @@ export class UserDetails {
   location = inject(Location)
   userData = input<string>()
 
-  user = computed<Profile>(() => {
+  user = computed<User>(() => {
     console.log(this.userData());
 
     const rawJson = this.userData();

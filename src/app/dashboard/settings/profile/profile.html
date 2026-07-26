@@ -2,7 +2,7 @@
 <div class="gc-hero">
   <div class="flex flex-col gap-sm card">
     <div class="flex items-center gap-sm flex-wrap card__header">
-      <h1 class="text-xl font-semibold text-primary">Profile</h1>
+      <h1 class="text-xl font-semibold text-primary">User</h1>
 
     </div>
     <div class="card__body">
@@ -10,33 +10,33 @@
     <div class="mt-sm">
       <div class="details-info-row">
         <span class="text-sm text-secondary">First name</span>
-        <span class="text-sm font-medium text-right">{{profile()?.firstName}}</span>
+        <span class="text-sm font-medium text-right">{{user()?.firstName}}</span>
       </div>
       <div class="details-info-row">
         <span class="text-sm text-secondary">Last name</span>
-        <span class="text-sm font-medium">{{profile()?.lastName}}</span>
+        <span class="text-sm font-medium">{{user()?.lastName}}</span>
       </div>
       <div class="details-info-row">
         <span class="text-sm text-secondary">Email</span>
-        <span class="text-sm font-medium">{{profile()?.email}}</span>
+        <span class="text-sm font-medium">{{user()?.email}}</span>
       </div>
       <div class="details-info-row">
         <span class="text-sm text-secondary">Phone</span>
-        <span class="text-sm font-medium">{{profile()?.phone}}</span>
+        <span class="text-sm font-medium">{{user()?.phone}}</span>
       </div>
       <div class="details-info-row">
         <span class="text-sm text-secondary">Created</span>
-        <span class="text-sm font-medium">{{ profile()?.createdAt | date:'shortDate' }} by {{profile()?.createdBy}}</span>
+        <span class="text-sm font-medium">{{ user()?.createdAt | date:'shortDate' }} by {{user()?.createdBy}}</span>
       </div>
       <div class="details-info-row">
         <span class="text-sm text-secondary">Last updated</span>
-        <span class="text-sm font-medium">{{ profile()?.updatedAt | date:'shortDate' }} by {{profile()?.updatedBy}}</span>
+        <span class="text-sm font-medium">{{ user()?.updatedAt | date:'shortDate' }} by {{user()?.updatedBy}}</span>
       </div>
     </div>
 
   </div>
   <div class="flex gap-md mt-sm flex-wrap card__footer justify-end">
-    <button class="btn btn--primary-outline btn--sm" (click)="onGiftCardEditButtonClick()"><i class="ti ti-edit" aria-hidden="true"></i>Update profile</button>
+    <button class="btn btn--primary-outline btn--sm" (click)="onGiftCardEditButtonClick()"><i class="ti ti-edit" aria-hidden="true"></i>Update user</button>
     <!-- <button class="btn btn--primary-outline btn--sm" (click)="onGiftCardEditButtonClick()"><i class="ti ti-edit" aria-hidden="true"></i>Update password</button> -->
     <!-- <button class="btn btn--danger-outline btn--sm" (click)="onGiftCardDeleteButtonClick()"><i class="ti ti-trash" aria-hidden="true"></i>Delete</button> -->
   </div>

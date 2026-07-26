@@ -50,8 +50,8 @@ export const routes: Routes = [
         loadComponent: () => import('./dashboard/gift-card/gift-card-details/gift-card-details').then(c => c.GiftCardDetails)
       },
       {
-        path: 'update-profile',
-        loadComponent: () => import('./dashboard/settings/update-profile/update-profile').then(c => c.UpdateProfile)
+        path: 'update-user',
+        loadComponent: () => import('./dashboard/settings/update-user/update-user').then(c => c.UpdateUser)
       },
       {
         path: 'add-user',

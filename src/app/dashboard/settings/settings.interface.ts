@@ -1,6 +1,6 @@
 import { email, minLength, required, schema } from "@angular/forms/signals";
 
-export interface Profile {
+export interface User {
   id: string,
   firstName: string,
   lastName: string,
@@ -14,7 +14,7 @@ export interface Profile {
   updatedAt?: number,
 }
 
-export interface ProfileModel {
+export interface UserModel {
   firstName: string,
   lastName: string,
   email: string,
@@ -23,7 +23,7 @@ export interface ProfileModel {
   status: string,
 }
 
-export const initialProfileData = {
+export const initialUserData = {
   firstName: '',
   lastName: '',
   email: '',
@@ -33,7 +33,7 @@ export const initialProfileData = {
 }
 
 
-export const profileSchema = schema<ProfileModel>((fieldPath) => {
+export const userSchema = schema<UserModel>((fieldPath) => {
   required(fieldPath.firstName, {message: 'First name is required'}),
   required(fieldPath.lastName, {message: 'Last name is required'}),
   email(fieldPath.email, {message: 'Email is required'}),

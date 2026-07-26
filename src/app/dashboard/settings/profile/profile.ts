@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class Profile {
   router = inject(Router)
-  profile = signal({
+  user = signal({
     firstName: 'John',
     lastName: 'Doe',
     email: 'john.deo.@example.com',
@@ -22,6 +22,6 @@ export class Profile {
   })
 
   onGiftCardEditButtonClick(){
-    this.router.navigate(['/dashboard/update-profile'])
+    this.router.navigate(['/dashboard/update-user'])
   }
 }

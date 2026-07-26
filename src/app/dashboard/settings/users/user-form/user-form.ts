@@ -3,7 +3,7 @@ import { AppInput } from '../../../../common/forms/input/input';
 import { Select } from '../../../../common/forms/select/select';
 import { Option } from '../../../../interfaces/options';
 import { StatusOptions } from '../../../../interfaces/status';
-import { ProfileModel, Profile, initialProfileData, profileSchema } from '../../settings.interface';
+import { UserModel, User, initialUserData, userSchema } from '../../settings.interface';
 import { form } from '@angular/forms/signals';
 
 @Component({
@@ -14,20 +14,20 @@ import { form } from '@angular/forms/signals';
 })
 export class UserForm {
   ngOnInit(): void {
-    if(this.profile()?.id) {
-      const editingProfile: ProfileModel = this.profile() as ProfileModel;
-      this.profileModel.set(editingProfile)
+    if(this.user()?.id) {
+      const editingUser: UserModel = this.user() as UserModel;
+      this.userModel.set(editingUser)
     }
   }
 
 
-  profile = input<Profile>()
-  submitProfile = output<ProfileModel>();
+  user = input<User>()
+  submitUser = output<UserModel>();
 
-  profileModel = signal<ProfileModel>(initialProfileData);
+  userModel = signal<UserModel>(initialUserData);
   statusOptions = signal<any>(StatusOptions)
 
-  profileForm = form(this.profileModel, profileSchema);
+  userForm = form(this.userModel, userSchema);
 
   rolesOptions = signal<Option[]>([
     { value: 'Admin', label: 'Admin' },
@@ -36,9 +36,9 @@ export class UserForm {
   ]);
 
   validateForm() {
-    this.profileForm().markAsTouched();
-    if (this.profileForm().valid()) {
-      this.submitProfile.emit(this.profileModel());
+    this.userForm().markAsTouched();
+    if (this.userForm().valid()) {
+      this.submitUser.emit(this.userModel());
     }
   }
 }

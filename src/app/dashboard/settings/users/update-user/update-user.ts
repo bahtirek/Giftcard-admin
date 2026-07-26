@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { UserForm } from "../user-form/user-form";
-import { initialProfileData, ProfileModel } from '../../settings.interface';
-import { Profile } from '../../profile/profile';
+import { initialUserData, UserModel } from '../../settings.interface';
+import { User } from '../../user/user';
 
 @Component({
   selector: 'app-update-user',
@@ -11,13 +11,13 @@ import { Profile } from '../../profile/profile';
 })
 export class UpdateUser {
 
-  //profile = signal<Profile>({})
+  //user = signal<User>({})
 
   onSubmitButtonClick(){
 
   }
 
-  onProfileSubmitEvent(event: ProfileModel) {
+  onUserSubmitEvent(event: UserModel) {
 
   }
 

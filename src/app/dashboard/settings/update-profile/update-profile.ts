@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { ProfileForm } from "./profile-form/profile-form";
+import { UserForm } from "./user-form/user-form";
 import { PasswordForm } from "./password-form/password-form";
 
 @Component({
-  selector: 'app-update-profile',
-  imports: [ProfileForm, PasswordForm],
-  templateUrl: './update-profile.html',
-  styleUrl: './update-profile.scss',
+  selector: 'app-update-user',
+  imports: [UserForm, PasswordForm],
+  templateUrl: './update-user.html',
+  styleUrl: './update-user.scss',
 })
-export class UpdateProfile {
+export class UpdateUser {
   onSaveButtonClick(){
 
   }

@@ -1,13 +1,13 @@
 <div class="flex flex-col gap-md pt-md">
   <div class="grid-2 gap-md">
     <app-input
-      [inputFormField]="profileForm.firstName()"
+      [inputFormField]="userForm.firstName()"
       [label]="'First Name'"
       [placeholder]="'e.g. Starbucks Corp.'"
       [required]="true"
     />
     <app-input
-      [inputFormField]="profileForm.lastName()"
+      [inputFormField]="userForm.lastName()"
       [label]="'Last Name'"
       [placeholder]="'e.g. Starbucks Corp.'"
       [required]="true"
@@ -15,13 +15,13 @@
   </div>
   <div class="grid-2 gap-md">
     <app-input
-      [inputFormField]="profileForm.email()"
+      [inputFormField]="userForm.email()"
       [label]="'Email'"
       [placeholder]="'example@example.com'"
       [required]="true"
     />
     <app-input
-      [inputFormField]="profileForm.phone()"
+      [inputFormField]="userForm.phone()"
       [label]="'Phone'"
       [placeholder]="'1561561561'"
       [required]="true"
@@ -29,14 +29,14 @@
   </div>
   <div class="grid-2 gap-md">
     <app-select
-      [inputFormField]="profileForm.role()"
+      [inputFormField]="userForm.role()"
       [label]="'Role'"
       [placeholder]="'Role'"
       [required]="true"
       [options]="rolesOptions()"
     />
     <app-select
-      [inputFormField]="profileForm.status()"
+      [inputFormField]="userForm.status()"
       [label]="'Status'"
       [placeholder]="'Status'"
       [required]="true"

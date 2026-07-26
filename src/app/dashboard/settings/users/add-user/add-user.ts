@@ -1,8 +1,8 @@
 import { Component, ViewChild, inject, ChangeDetectionStrategy, } from '@angular/core';
 import { UserForm } from "../user-form/user-form";
 import { Location } from '@angular/common';
-import { ProfileService } from '../../profile-service';
-import { Profile, ProfileModel } from '../../settings.interface';
+import { UserService } from '../../user-service';
+import { User, UserModel } from '../../settings.interface';
 
 @Component({
   selector: 'app-add-user',
@@ -15,14 +15,14 @@ export class AddUser {
   @ViewChild(UserForm) childRef!: UserForm;
 
   private location = inject(Location);
-  private profileService = inject(ProfileService)
+  private userService = inject(UserService)
 
   onSubmitButtonClick() {
     this.childRef?.validateForm();
   }
 
-  async onProfileSubmitEvent(profile: ProfileModel) {
-    this.profileService.postProfile(profile as Profile, () => this.onPostComplete())
+  async onUserSubmitEvent(user: UserModel) {
+    this.userService.postUser(user as User, () => this.onPostComplete())
   }
 
   onPostComplete ()  {
