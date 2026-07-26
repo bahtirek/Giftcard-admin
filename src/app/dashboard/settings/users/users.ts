@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { StatusBadgeDirective } from '../../../directives/status-badge.directive';
-import { UserService } from '../user-service';
+import { UserService } from '../users.service';
 import { User } from '../settings.interface';
 
 @Component({

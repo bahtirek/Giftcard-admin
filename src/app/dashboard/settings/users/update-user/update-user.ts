@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { UserForm } from "../user-form/user-form";
 import { initialUserData, UserModel } from '../../settings.interface';
-import { User } from '../../user/user';
+
 
 @Component({
   selector: 'app-update-user',

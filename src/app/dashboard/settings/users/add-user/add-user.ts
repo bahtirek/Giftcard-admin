@@ -1,7 +1,7 @@
 import { Component, ViewChild, inject, ChangeDetectionStrategy, } from '@angular/core';
 import { UserForm } from "../user-form/user-form";
 import { Location } from '@angular/common';
-import { UserService } from '../../user-service';
+import { UserService } from '../../users.service';
 import { User, UserModel } from '../../settings.interface';
 
 @Component({
