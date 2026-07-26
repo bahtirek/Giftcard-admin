@@ -22,6 +22,6 @@ export class Profile {
   })
 
   onGiftCardEditButtonClick(){
-    this.router.navigate(['/dashboard/update-user'])
+    this.router.navigate(['/dashboard/update-profile'])
   }
 }
