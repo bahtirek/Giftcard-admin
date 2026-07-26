@@ -58,7 +58,11 @@ export const routes: Routes = [
         loadComponent: () => import('./dashboard/settings/users/add-user/add-user').then(c => c.AddUser)
       },
       {
-        path: 'user-details/:id',
+        path: 'update-user',
+        loadComponent: () => import('./dashboard/settings/users/update-user/update-user').then(c => c.UpdateUser)
+      },
+      {
+        path: 'user-details/:userData',
         loadComponent: () => import('./dashboard/settings/users/user-details/user-details').then(c => c.UserDetails)
       }
     ]

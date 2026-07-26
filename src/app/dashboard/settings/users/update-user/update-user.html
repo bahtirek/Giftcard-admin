@@ -1,1 +1,18 @@
-<p>update-user works!</p>
+<div class="view flex items-start justify-center">
+  <div class="w-full max-w-2xl">
+  <div class="mb-md">
+    <h1 class="text-xl font-semibold text-primary leading-snug">Edit user</h1>
+    <p class="text-sm text-secondary mt-xs">Update user profile.</p>
+  </div>
+  <div class="card">
+    <div class="card__body">
+      <app-user-form (submitProfile)="onProfileSubmitEvent($event)"></app-user-form>
+      <!-- <app-user-form (submitProfile)="onProfileSubmitEvent($event)" [profile]="profile"></app-user-form> -->
+    </div>
+    <div class="card__footer flex justify-end gap-md">
+      <button class="btn btn--outline" (click)="onCancel()">Cancel</button>
+      <button class="btn btn--primary" (click)="onSubmitButtonClick()">Update Profile</button>
+    </div>
+  </div>
+  </div>
+</div>

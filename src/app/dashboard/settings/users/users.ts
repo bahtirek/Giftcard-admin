@@ -1,6 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { StatusBadgeDirective } from '../../../directives/status-badge.directive';
+import { ProfileService } from '../profile-service';
+import { Profile } from '../settings.interface';
 
 @Component({
   selector: 'app-users',
@@ -8,9 +10,19 @@ import { StatusBadgeDirective } from '../../../directives/status-badge.directive
   templateUrl: './users.html',
   styleUrl: './users.scss',
 })
+
 export class Users {
-  router = inject(Router)
-  openUserDetails(id: string){
-    this.router.navigate(['/dashboard/user-details', id])
+  ngOnInit(): void {
+    this.profileService.getAllProfiles();
+  }
+
+  router = inject(Router);
+  profileService = inject(ProfileService);
+
+  users = this.profileService.profiles;
+
+  openUserDetails(user: Profile){
+    const userData = JSON.stringify(user)
+    this.router.navigate(['/dashboard/user-details', userData ])
   }
 }

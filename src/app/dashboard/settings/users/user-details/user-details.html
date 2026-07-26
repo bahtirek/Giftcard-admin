@@ -1,1 +1,43 @@
-<p>user-details works!</p>
+
+<div class="gc-hero">
+  <div class="flex flex-col gap-sm card">
+    <div class="flex items-center gap-sm flex-wrap card__header">
+      <h1 class="text-xl font-semibold text-primary">{{user()?.firstName}} {{user()?.lastName}}</h1>
+      <span class="badge badge--dot" [appStatusBadge]="user()?.status!">{{ user()?.status }}</span>
+    </div>
+    <div class="card__body">
+
+    <div class="mt-sm">
+<!--       <div class="details-info-row">
+        <span class="text-sm text-secondary">First name</span>
+        <span class="text-sm font-medium text-right">{{user()?.firstName}}</span>
+      </div>
+      <div class="details-info-row">
+        <span class="text-sm text-secondary">Last name</span>
+        <span class="text-sm font-medium">{{user()?.lastName}}</span>
+      </div> -->
+      <div class="details-info-row">
+        <span class="text-sm text-secondary">Email</span>
+        <span class="text-sm font-medium">{{user()?.email}}</span>
+      </div>
+      <div class="details-info-row">
+        <span class="text-sm text-secondary">Phone</span>
+        <span class="text-sm font-medium">{{user()?.phone}}</span>
+      </div>
+      <div class="details-info-row">
+        <span class="text-sm text-secondary">Created</span>
+        <span class="text-sm font-medium">{{ user()?.createdAt | date:'shortDate' }} by {{user()?.createdBy}}</span>
+      </div>
+      <div class="details-info-row">
+        <span class="text-sm text-secondary">Last updated</span>
+        <span class="text-sm font-medium">{{ user()?.updatedAt | date:'shortDate' }} by {{user()?.updatedBy}}</span>
+      </div>
+    </div>
+
+  </div>
+  <div class="flex gap-md mt-sm flex-wrap card__footer justify-end">
+    <button class="btn btn--primary-outline btn--sm" (click)="onUserUpdateButtonClick()"><i class="ti ti-edit" aria-hidden="true"></i>Update user</button>
+    <button class="btn btn--danger-outline btn--sm" (click)="onUserDeleteButtonClick()"><i class="ti ti-trash" aria-hidden="true"></i>Delete</button>
+  </div>
+  </div>
+</div>
