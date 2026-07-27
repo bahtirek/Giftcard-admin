@@ -1,0 +1,35 @@
+
+
+<div class="view flex items-start justify-center">
+  <div class="w-full max-w-md mt-xxxl">
+    <div class="mb-md">
+      <h1 class="text-xl font-semibold text-primary leading-snug">Login</h1>
+    </div>
+    <div class="card">
+      <div class="card__body">
+        <div class="text-danger">{{errorMessage()}}</div>
+        <div class="flex flex-col gap-md pt-md">
+          <app-input
+            [inputFormField]="loginForm.email()"
+            [label]="'Email'"
+            [placeholder]="'example@example.com'"
+            [required]="true"
+          />
+          <app-input
+            [inputFormField]="loginForm.password()"
+            [label]="'Password'"
+            [placeholder]="''"
+            [required]="true"
+            [type]="'password'"
+          />
+        </div>
+      </div>
+      <div class="card__footer flex justify-end gap-md">
+        <button class="btn btn--primary" (click)="onLoginButtonClick()">Login</button>
+      </div>
+    </div>
+    <div class="flex">
+      <a routerLink="/forgot-password" class="ml-auto mt-sm mr-lg link">Forgot password</a>
+    </div>
+  </div>
+</div>
