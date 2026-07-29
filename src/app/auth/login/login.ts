@@ -31,12 +31,9 @@ export class Login {
     if (this.loginForm().valid()) {
       this.authService.login(this.loginModel(), (result: HttpResponse) => {
         if(result.success) {
-          console.log(result);
           this.router.navigate(['/'])
         } else {
-          console.log(this.errorMessage());
           this.errorMessage.set(result.error)
-
         }
       });
     }
