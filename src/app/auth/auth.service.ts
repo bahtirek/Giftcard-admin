@@ -5,11 +5,13 @@ import { API_URL } from '../app.config.tokens';
 import { SHOW_LOADER } from '../core/loader/loader-context.token';
 import { Credentials } from './login/login.interface';
 import { HttpResponse } from '../interfaces/common.interface';
+import { Router } from '@angular/router';
 
 @Service()
 export class AuthService {
   private http = inject(HttpClient);
   private baseUrl = inject(API_URL);
+  private router = inject(Router)
 
   loggedUser = signal<User>(initialUserData as User);
   token = signal<string>('')
@@ -35,11 +37,11 @@ export class AuthService {
   }
 
   getUserDetailsByEmail(email: string){
-    this.http.get<User>( `${this.baseUrl}/users?email=${email}`, {
+    this.http.get<User[]>( `${this.baseUrl}/users?email=${email}`, {
       context: new HttpContext().set(SHOW_LOADER, true)
     }).subscribe({
       next: (response) => {
-        this.loggedUser.set(response);
+        this.loggedUser.set(response[0]);
       }
     })
   }
@@ -60,6 +62,7 @@ export class AuthService {
     const signature = 'mock_signature_hash';
     const fakeToken = `${header}.${payload}.${signature}`;
 
+    localStorage.setItem('mock_token', fakeToken);
     this.token.set(fakeToken);
   }
 
@@ -109,5 +112,6 @@ export class AuthService {
     localStorage.removeItem('mock_token');
     this.loggedUser.set(initialUserData as User)
     this.token.set('');
+    this.router.navigate(['login'])
   }
 }
