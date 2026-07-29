@@ -3,7 +3,7 @@ import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { authInterceptor } from './core/auth/auth-interceptor';
+import { authInterceptor } from './auth/auth-interceptor';
 import { globalHttpErrorInterceptor } from './core/http/global-http-error-interceptor';
 import { API_URL } from './app.config.tokens';
 import { environment } from '../environments/environment';
