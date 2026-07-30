@@ -27,21 +27,23 @@
       [required]="true"
     />
   </div>
-  <div class="grid-2 gap-md">
-    <app-select
-      [inputFormField]="userForm.role()"
-      [label]="'Role'"
-      [placeholder]="'Role'"
-      [required]="true"
-      [options]="rolesOptions()"
-    />
-    <app-select
-      [inputFormField]="userForm.status()"
-      [label]="'Status'"
-      [placeholder]="'Status'"
-      [required]="true"
-      [options]="statusOptions()"
-    />
-  </div>
+  @if(!profile()){
+    <div class="grid-2 gap-md">
+      <app-select
+        [inputFormField]="userForm.role()"
+        [label]="'Role'"
+        [placeholder]="'Role'"
+        [required]="true"
+        [options]="rolesOptions()"
+      />
+      <app-select
+        [inputFormField]="userForm.status()"
+        [label]="'Status'"
+        [placeholder]="'Status'"
+        [required]="true"
+        [options]="statusOptions()"
+      />
+    </div>
+  }
 </div>
 

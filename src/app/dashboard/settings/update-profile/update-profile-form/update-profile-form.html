@@ -1,0 +1,10 @@
+<div class="card">
+  <div class="card__header"><span class="card__title">Profile</span></div>
+  <div class="card__body flex flex-col gap-md">
+    <app-user-form [profile]="true" [user]="user()" />
+  </div>
+  <div class="card__footer flex justify-end gap-md">
+    <button class="btn btn--outline" (click)="onCancel()">Cancel</button>
+    <button class="btn btn--primary" (click)="onSaveButtonClick()">Save changes</button>
+  </div>
+</div>

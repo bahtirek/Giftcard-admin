@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { StatusBadgeDirective } from '../../../directives/status-badge.directive';
 import { UserService } from '../users.service';
@@ -16,6 +16,7 @@ export class Users {
     this.userService.getAllUsers();
   }
 
+  user = input<User>()
   router = inject(Router);
   userService = inject(UserService);
 

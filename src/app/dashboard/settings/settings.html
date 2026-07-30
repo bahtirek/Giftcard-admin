@@ -5,7 +5,9 @@
   </div>
   <div class="flex flex-col gap-md">
     <app-profile />
-    <button class="btn btn--primary btn-sm ml-auto" tabindex="0" (click)="onAddUserButtonClicked()"><i aria-hidden="true" class="ti ti-plus"></i>Add User</button>
-    <app-users />
+    @if(user()?.role === 'Admin'){
+      <button class="btn btn--primary btn-sm ml-auto" tabindex="0" (click)="onAddUserButtonClicked()"><i aria-hidden="true" class="ti ti-plus"></i>Add User</button>
+      <app-users [user]="user()" />
+    }
   </div>
 </div>

@@ -11,23 +11,25 @@
                 </tr>
             </thead>
             <tbody>
-              @for(user of users(); track user.id ) {
-                <tr (click)="openUserDetails(user)" class="cursor-pointer">
-                    <td>
-                        <div class="flex items-center gap-sm">
-                            <div class="c-avatar" style="background:#dbeafe;color:#1e40af">JL</div>
-                            <div>
-                                <div class="font-medium">{{user?.firstName}} {{user?.lastName}}</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="text-secondary">{{user?.email}}</td>
-                    <td class="font-medium">{{user?.phone}}</td>
-                    <td class="text-secondary text-xs">{{user?.role}}</td>
-                    <td class="text-secondary text-xs">
-                      <span class="badge badge--dot" [appStatusBadge]="user?.status">{{user?.status}}</span>
-                    </td>
-                </tr>
+              @for(userItem of users(); track userItem.id ) {
+                @if(user()?.email !== userItem.email) {
+                  <tr (click)="openUserDetails(userItem)" class="cursor-pointer">
+                      <td>
+                          <div class="flex items-center gap-sm">
+                              <div class="c-avatar" style="background:#dbeafe;color:#1e40af">JL</div>
+                              <div>
+                                  <div class="font-medium">{{userItem?.firstName}} {{userItem?.lastName}}</div>
+                              </div>
+                          </div>
+                      </td>
+                      <td class="text-secondary">{{userItem?.email}}</td>
+                      <td class="font-medium">{{userItem?.phone}}</td>
+                      <td class="text-secondary text-xs">{{userItem?.role}}</td>
+                      <td class="text-secondary text-xs">
+                        <span class="badge badge--dot" [appStatusBadge]="userItem?.status">{{userItem?.status}}</span>
+                      </td>
+                  </tr>
+                }
               }
             </tbody>
         </table>

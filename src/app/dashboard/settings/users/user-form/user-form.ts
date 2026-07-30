@@ -1,4 +1,4 @@
-import { Component, input, output, signal } from '@angular/core';
+import { Component, effect, input, output, signal } from '@angular/core';
 import { AppInput } from '../../../../common/forms/input/input';
 import { Select } from '../../../../common/forms/select/select';
 import { Option } from '../../../../interfaces/options';
@@ -13,15 +13,15 @@ import { form } from '@angular/forms/signals';
   styleUrl: './user-form.scss',
 })
 export class UserForm {
-  ngOnInit(): void {
+  userEffect = effect(() => {
     if(this.user()?.id) {
       const editingUser: UserModel = this.user() as UserModel;
       this.userModel.set(editingUser)
     }
-  }
+  })
 
-
-  user = input<User>()
+  user = input<User>();
+  profile = input<boolean>();
   submitUser = output<UserModel>();
 
   userModel = signal<UserModel>(initialUserData);
