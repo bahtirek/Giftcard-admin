@@ -20,7 +20,7 @@ export class UserForm {
     }
   })
 
-  user = input<User>();
+  user = input<User | null>();
   profile = input<boolean>();
   submitUser = output<UserModel>();
 

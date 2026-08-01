@@ -18,8 +18,6 @@ export class UserDetails {
   userData = input<string>()
 
   user = computed<User>(() => {
-    console.log(this.userData());
-
     const rawJson = this.userData();
     if (!rawJson) {
       this.location.back();
@@ -34,7 +32,11 @@ export class UserDetails {
   });
 
   onUserUpdateButtonClick(){
-    this.router.navigate(['/dashboard/update-user'])
+    if(!this.userData()) return;
+    const user = JSON.parse(this.userData()!)
+    this.router.navigate(['/dashboard/update-user'], {
+      state: {user: user}
+    })
   }
 
   onUserDeleteButtonClick() {
