@@ -6,11 +6,13 @@ import { rxResource, toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { StatusEnum } from '../../interfaces/status';
 import { debounceTime } from 'rxjs';
 import { UserModel, User } from './settings.interface';
+import { ToastService } from '../../common/toast/toast.service';
 
 @Service()
 export class UserService {
   private http = inject(HttpClient);
   private baseUrl = inject(API_URL);
+  private toastService = inject(ToastService);
 
   users = signal<User[]>([]);
   userId = signal<string>('');
@@ -63,7 +65,11 @@ export class UserService {
     }).subscribe({
       complete: () => {
         onComplteCallback()
+        this.toastService.success('User deleted successfully');
       },
+      error: (error) => {
+        this.toastService.error('Error deleting user: ' + error.message);
+      }
     })
   }
 
