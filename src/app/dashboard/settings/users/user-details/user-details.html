@@ -3,7 +3,8 @@
   <div class="flex flex-col gap-sm card">
     <div class="flex items-center gap-sm flex-wrap card__header">
       <h1 class="text-xl font-semibold text-primary">{{user()?.firstName}} {{user()?.lastName}}</h1>
-      <span class="badge badge--dot" [appStatusBadge]="user()?.status!">{{ user()?.status }}</span>
+      <!-- <span class="badge badge--dot" [appStatusBadge]="user()?.status!">{{ user()?.status }}</span> -->
+       <app-status-menu [defaultOption]="status()" [typeToUpdate]="'User'" [name]="user()?.firstName + ' ' + user()?.lastName" (onStatusSelectedEvent)="onStatusSelectedEvent($event)" />
     </div>
     <div class="card__body">
 
@@ -41,4 +42,4 @@
   </div>
   </div>
 </div>
-<app-user-delete-modal [name]="user()?.firstName + ' ' + user()?.lastName" [isModalOpen]="isModalOpen()" (onUserDeleteEvent)="onUserDeleteEvent()" />
+<app-user-delete-modal [name]="user()?.firstName + ' ' + user()?.lastName" [isModalOpen]="isModalOpen()" (onUserDeleteEvent)="onUserDeleteEvent($event)" />

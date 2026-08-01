@@ -4,10 +4,10 @@
 
 <modal (modalCloseEvent)="closeModal()" [isModalOpen]="isModalOpen()">
   <div modal-header>
-    <div><h2 class="modal__title" id="modal-giftcard-edit-title">Status update</h2></div>
+    <div><h2 class="modal__title" id="modal-giftcard-edit-title">{{typeToUpdate()}} status update</h2></div>
   </div>
   <div modal-body class="">
-    Updating "{{name()}}" {{typeToUpdate()}} status to <span class="strong" >{{defaultOption()}}</span>
+    Updating "{{name()}}" status to <span class="strong" >{{defaultOption()}}</span>
   </div>
   <div modal-footer>
       <button class="btn btn--danger-outline ml-md" (click)="closeModal()">Cancel</button>

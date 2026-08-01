@@ -5,7 +5,7 @@
       <div class="flex flex-col gap-sm card">
         <div class="flex items-center gap-sm flex-wrap card__header">
           <h1 class="text-xl font-semibold text-primary">{{ giftCard()?.name }}</h1>
-          <app-status-menu [defaultOption]="status()" [typeToUpdate]="'gift card'" [name]="giftCard()?.name!" (onStatusSelectedEvent)="onStatusSelectedEvent($event)" />
+          <app-status-menu [defaultOption]="status()" [typeToUpdate]="'Gift card'" [name]="giftCard()?.name!" (onStatusSelectedEvent)="onStatusSelectedEvent($event)" />
         </div>
         <div class="card__body">
         <p class="text-sm text-secondary leading-relaxed mt-xs">{{ giftCard()?.description }}</p>

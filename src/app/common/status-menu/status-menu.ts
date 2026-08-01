@@ -45,20 +45,6 @@ export class StatusMenu {
       return
     }
     this.onStatusSelectedEvent.emit(this.selectedStatus as string)
-    if(this.typeToUpdate() === 'account') {
-      this.updateAccountStatus(this.selectedStatus as string)
-    } else if (this.typeToUpdate() === 'gift card') {
-      this.updateGiftCardStatus(this.selectedStatus as string)
-    }
-  }
-
-  updateAccountStatus(status: string){
-    this.onStatusSelectedEvent.emit(status)
-    this.closeModal()
-  }
-
-  updateGiftCardStatus(status: string){
-    this.onStatusSelectedEvent.emit(status)
     this.closeModal()
   }
 }

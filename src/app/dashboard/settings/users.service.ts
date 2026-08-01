@@ -90,17 +90,22 @@ export class UserService {
   currentUser = httpResource<User>(() => `${this.baseUrl}/users/${this.userId()}`)
 
 
-  patchUserStatus(status: string, onCompleteCallback: () => void) {
-    this.http.patch(`${this.baseUrl}/users/${this.userId()}`, {status: status}, {
+  patchUserStatus(status: string, userId: string, onCompleteCallback: () => void) {
+    this.http.patch(`${this.baseUrl}/users/${userId}`, {status: status}, {
       context: new HttpContext().set(SHOW_LOADER, true),
     }).subscribe({
       next: (response) => {
-        console.log('User satus updated:', response);
+        console.log('User status updated:', response);
       },
       complete: () => {
         this.currentUser.reload(); // Refresh the current user resource to get the updated data
+        this.toastService.success('User status updated successfully');
         onCompleteCallback();
       },
+      error: (error) => {
+        console.error('Error updating user status:', error);
+        this.toastService.error('Error updating user status: ' + error.message);
+      }
     });
   }
 

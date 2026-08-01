@@ -6,7 +6,7 @@
         <h1 class="text-xl font-semibold text-primary">{{ account()?.businessName}}</h1>
         <span class="badge badge--brand self-center">{{ account()?.businessType }}</span>
       </div>
-      <app-status-menu [defaultOption]="status()" [typeToUpdate]="'account'" [name]="account()?.businessName!" (onStatusSelectedEvent)="onStatusSelectedEvent($event)" />
+      <app-status-menu [defaultOption]="status()" [typeToUpdate]="'Account'" [name]="account()?.businessName!" (onStatusSelectedEvent)="onStatusSelectedEvent($event)" />
     </div>
     <div class="card__body">
       <p class="text-sm text-secondary mt-xs">{{ account()?.notes }}</p>
