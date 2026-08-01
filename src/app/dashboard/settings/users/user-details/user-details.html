@@ -41,3 +41,4 @@
   </div>
   </div>
 </div>
+<app-user-delete-modal [name]="user()?.firstName + ' ' + user()?.lastName" [isModalOpen]="isModalOpen()" (onUserDeleteEvent)="onUserDeleteEvent()" />

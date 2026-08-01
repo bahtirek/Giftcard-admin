@@ -4,10 +4,12 @@ import { Router } from '@angular/router';
 import { StatusBadgeDirective } from '../../../../directives/status-badge.directive';
 import { User } from '../../settings.interface';
 import { Location } from '@angular/common';
+import { UserDeleteModal } from './user-delete-modal/user-delete-modal';
+import { UserService } from '../../users.service';
 
 @Component({
   selector: 'app-user-details',
-  imports: [StatusBadgeDirective, DatePipe],
+  imports: [StatusBadgeDirective, DatePipe, UserDeleteModal],
   templateUrl: './user-details.html',
   styleUrl: './user-details.scss',
 })
@@ -15,7 +17,10 @@ import { Location } from '@angular/common';
 export class UserDetails {
   router = inject(Router)
   location = inject(Location)
+  userService = inject(UserService)
   userData = input<string>()
+
+  isModalOpen = signal<boolean>(false);
 
   user = computed<User>(() => {
     const rawJson = this.userData();
@@ -40,6 +45,13 @@ export class UserDetails {
   }
 
   onUserDeleteButtonClick() {
+    this.isModalOpen.set(true)
+  }
 
+  onUserDeleteEvent() {
+    this.isModalOpen.set(false);
+    this.userService.deleteUser(this.user()!, () => {
+      this.router.navigate(['/dashboard/settings']);
+    });
   }
 }

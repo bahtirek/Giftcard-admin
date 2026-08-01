@@ -57,6 +57,16 @@ export class UserService {
     })
   }
 
+  deleteUser(user: User, onComplteCallback: () => void) {
+    this.http.delete<User>( `${this.baseUrl}/users/${user.id}`, {
+      context: new HttpContext().set(SHOW_LOADER, true)
+    }).subscribe({
+      complete: () => {
+        onComplteCallback()
+      },
+    })
+  }
+
   getAllUsers() {
     this.http.get<User[]>( `${this.baseUrl}/users`, {
       context: new HttpContext().set(SHOW_LOADER, true)
