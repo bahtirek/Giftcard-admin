@@ -34,5 +34,5 @@ jobs:
           # Angular builds to 'dist/[project-name]/browser' or just 'dist/[project-name]'
           # Check your angular.json file under "outputPath" to confirm this path
           local-dir: ./dist/giftcard-admin/browser/
-          server-dir: /giftcard-admin/
+          server-dir: ./
           dangerous-clean-slate: false # Set to true if you want to delete old files on the server first
