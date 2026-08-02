@@ -28,7 +28,7 @@ jobs:
         run: npm run build -- --configuration=production
 
       - name: Sync files to HawkHost via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.4.5
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.HAWKHOST_FTP_SERVER }}
           username: ${{ secrets.HAWKHOST_FTP_USERNAME }}
