@@ -37,4 +37,4 @@ jobs:
           # Check your angular.json file under "outputPath" to confirm this path
           local-dir: ./dist/giftcard-admin/browser/
           server-dir: ./
-          dangerous-clean-slate: false # Set to true if you want to delete old files on the server first
+          dangerous-clean-slate: true # Set to true if you want to delete old files on the server first
