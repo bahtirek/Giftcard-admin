@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "gift-sales-app": {
+    "giftcard-admin": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -65,10 +65,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "gift-sales-app:build:production"
+              "buildTarget": "giftcard-admin:build:production"
             },
             "development": {
-              "buildTarget": "gift-sales-app:build:development"
+              "buildTarget": "giftcard-admin:build:development"
             }
           },
           "defaultConfiguration": "development"

@@ -11,5 +11,5 @@ import { Toast } from "./common/toast/toast";
   styleUrl: './app.scss',
 })
 export class App {
-  protected readonly title = signal('gift-sales-app');
+  protected readonly title = signal('giftcard-admin');
 }
