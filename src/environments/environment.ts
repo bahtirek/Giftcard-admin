@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://example.com' // Your real production server
+  apiUrl: 'https://api.giftcard-admin.startng.app' // Your real production server
 };
